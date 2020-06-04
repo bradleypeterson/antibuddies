@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\Angular-GettingStarted\\Virtual_lab"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
