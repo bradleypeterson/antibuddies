@@ -1,3 +1,4 @@
 {
-    "git.ignoreLimitWarning": true
+  "files.autoSave": "afterDelay",
+  "html.format.wrapAttributes": "force-aligned"
 }
