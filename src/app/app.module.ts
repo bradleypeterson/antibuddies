@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
-import { TeachHeaderComponent } from './home/Teacher_Header/teacher-header.component';
+import { TeachHeaderComponent } from './Teacher_Header/teacher-header.component';
 
 @NgModule({
   declarations: [
