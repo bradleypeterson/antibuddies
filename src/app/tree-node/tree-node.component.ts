@@ -1,23 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-tree-node',
   templateUrl: './tree-node.component.html',
   styleUrls: ['./tree-node.component.css']
 })
-export class TreeNodeComponent implements OnInit {
+export class TreeNodeComponent implements OnInit, OnChanges {
 
   // list of available node behaviors - fetch from database later
-  nodeBehaviors: String[] = ['Matching', 'Play video', 'Perform experiment', 'Question / Answer'];
-
-  // available behavior nodes
-  // behaviorNodes = [
-  //   {
-  //     name: 'Matching',
-
-  //     subComponents: []
-  //   }
-  // ]
+  nodeBehaviors: string[] = ['Matching', 'Play video', 'Perform experiment', 'Question / Answer'];
+  nodeType: string;
 
   /*
   // fetch appropriate node-behavior component based on selected behavior.
@@ -30,18 +22,13 @@ export class TreeNodeComponent implements OnInit {
   */
 
 
-  // Two approaches - create component for every behavior (not scalable)
-  // fetchBehaviorNode(nodeType) {
-    // return component based on type, using interpolation
-    // `app-${nodeType}-node`
-  // }
-
-  // or, fetch one generic behavior component that can be passed required elements?
-
-
   constructor() { }
+  ngOnChanges(): void {
+    this.nodeType = this.nodeType;
+  }
 
   ngOnInit(): void {
+    this.nodeType = this.nodeBehaviors[0];
   }
 
 }

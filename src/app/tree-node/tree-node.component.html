@@ -3,15 +3,25 @@
 
     <div class="card">
         <h2>Behavior</h2>
-        <form action="">
-            <select name="" id="">
-                <option *ngFor="let behavior of nodeBehaviors" value={{behavior}}>{{ behavior }}</option>
-            </select>
-        </form>
+        <select [(ngModel)]="nodeType">
+            <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+        </select>
     </div>
+
     <!--This is where the appropriate behavior node will be loaded-->
-    <!-- call fetchBehaviorNode to load it -->
-    <app-behavior-node></app-behavior-node>
+    <div *ngIf="nodeType === 'Matching'">
+        <app-matching-node></app-matching-node>
+    </div>
+    <div *ngIf="nodeType === 'Play video'">
+        <app-video-node></app-video-node>
+    </div>
+    <div *ngIf="nodeType === 'Perform experiment'">
+        <app-experiment-node></app-experiment-node>
+    </div>
+    <div *ngIf="nodeType === 'Question / Answer'">
+        <app-quiz-node></app-quiz-node>
+    </div>
+    
     <div class="card">
         <h2>Outgoing nodes:</h2>
         <!--Populate with list of outgoing nodes-->
