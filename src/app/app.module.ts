@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms'; 
 import { ProductListComponent } from './products/product-list.component';
 import { TeachHeaderComponent } from './Teacher_Header/teacher-header.component';
 import { LabListComponent } from './Lab-List/lab-list.component';
@@ -24,7 +25,8 @@ import { VideoNodeComponent } from './video-node/video-node.component';
     QuizNodeComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
