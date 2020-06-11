@@ -11,6 +11,11 @@ import { QuizNodeComponent } from './quiz-node/quiz-node.component';
 import { MatchingNodeComponent } from './matching-node/matching-node.component';
 import { ExperimentNodeComponent } from './experiment-node/experiment-node.component';
 import { VideoNodeComponent } from './video-node/video-node.component';
+import { AdminlabComponent } from './adminlab/adminlab.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { AdmincurrentnodeComponent } from './admincurrentnode/admincurrentnode.component';
+import { AdmintreepaneComponent } from './admintreepane/admintreepane.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { VideoNodeComponent } from './video-node/video-node.component';
     VideoNodeComponent,
     ExperimentNodeComponent,
     QuizNodeComponent,
+    AdminlabComponent,
+    AnalyticsComponent,
+    AdmincurrentnodeComponent,
+    AdmintreepaneComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
