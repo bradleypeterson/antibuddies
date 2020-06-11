@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-tree-node',
+  selector: 'tree-node',
   templateUrl: './tree-node.component.html',
   styleUrls: ['./tree-node.component.css']
 })
