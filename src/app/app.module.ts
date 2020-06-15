@@ -14,6 +14,8 @@ import { AdminlabComponent } from './admin/adminlab/adminlab.component';
 import { AnalyticsComponent } from './admin/analytics/analytics.component';
 import { AdmintreepaneComponent } from './admin/adminlab/admintreepane/admintreepane.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LabviewComponent } from './labview/labview.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +31,12 @@ import { HeaderComponent } from './shared/header/header.component';
     AnalyticsComponent,
     AdmintreepaneComponent,
     HeaderComponent,
+    LabviewComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
