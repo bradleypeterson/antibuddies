@@ -1,29 +1,36 @@
 <div class="card">
-    <h1>Node name/number</h1>
 
     <div class="card">
-        <h2>Behavior</h2>
-        <select [(ngModel)]="nodeType">
-            <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
-        </select>
+        <h1>Node name/number</h1>
+        <label for="">
+            (Node description)
+        </label>
     </div>
-
-    <!--This is where the appropriate behavior node will be loaded-->
-    <div *ngIf="nodeType === 'Matching'">
-        <app-matching-node></app-matching-node>
-    </div>
-    <div *ngIf="nodeType === 'Play video'">
-        <app-video-node></app-video-node>
-    </div>
-    <div *ngIf="nodeType === 'Perform experiment'">
-        <app-experiment-node></app-experiment-node>
-    </div>
-    <div *ngIf="nodeType === 'Question / Answer'">
-        <app-quiz-node></app-quiz-node>
-    </div>
-    
     <div class="card">
-        <h2>Outgoing nodes:</h2>
-        <!--Populate with list of outgoing nodes-->
+        <div class="card">
+            <h2>Behavior</h2>
+            <select [(ngModel)]="nodeType">
+                <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+            </select>
+        </div>
+
+        <!--This is where the appropriate behavior node will be loaded-->
+        <div *ngIf="nodeType === 'Matching'">
+            <app-matching-node></app-matching-node>
+        </div>
+        <div *ngIf="nodeType === 'Play video'">
+            <app-video-node></app-video-node>
+        </div>
+        <div *ngIf="nodeType === 'Perform experiment'">
+            <app-experiment-node></app-experiment-node>
+        </div>
+        <div *ngIf="nodeType === 'Question / Answer'">
+            <app-quiz-node></app-quiz-node>
+        </div>
+        
+        <div class="card">
+            <h2>Outgoing nodes:</h2>
+            <!--Populate with list of outgoing nodes-->
+        </div>
     </div>
 </div>
