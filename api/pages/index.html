@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <script src="/js/api.js"></script>
+    <style>
+      textarea{
+        border: none;
+        resize: none;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" onsubmit="submitForm(event, this)">
+      Username: <input type="text" name="username"> <br>
+      First Name: <input type="text" name="firstName"> <br>
+      Last Name: <input type="text" name="lastName"> <br>
+      Password: <input type="password" name="password"> <br>
+      Admin: <input type="checkbox" name="admin"><br>
+      <button type="submit" name="submit">Sign Up</button> <br>
+      <textarea readonly id="output"></textarea>
+    </form>
+    <a href="/login"><button>Log In</button></a>
+  </body>
+  
+  
+  <script>
+    function submitForm(e, form){
+      e.preventDefault();
+      
+      let user = {
+        username: form.username.value,
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        password: form.password.value,
+        isAdmin: form.admin.checked
+      }
+      
+      var outputbox = document.getElementById('output');
+      var content = outputbox.value;
+      
+      api.signup(user).then((data) => {
+        // show message in html
+        // if (data){
+        //   content = "Welcome " + data.user.firstName + ' ' + data.user.lastName;
+        // }
+        
+        console.log(data)
+        //outputbox.value = content;
+        window.location.href = '/logout?user=' + JSON.stringify(data);
+      }).catch((err) => {
+        outputbox.value = err.error;
+      });
+      
+      //api.signup(user).then(console.log).catch(console.error);
+    }
+  </script>
+</html>
