@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule }    from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; 
 import { TeachHeaderComponent } from './shared/Teacher_Header/teacher-header.component';
@@ -18,8 +16,6 @@ import { AdmintreepaneComponent } from './admin/adminlab/admintreepane/admintree
 import { HeaderComponent } from './shared/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LabviewComponent } from './labview/labview.component';
-import { FileUploader } from './shared/file-uploader/file-uploader.component';
-import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +32,9 @@ import { MessagesComponent } from './messages/messages.component';
     AdmintreepaneComponent,
     HeaderComponent,
     LabviewComponent,
-    FileUploader,
-    MessagesComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     AppRoutingModule
   ],
