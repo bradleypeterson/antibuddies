@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'; 
 import { TeachHeaderComponent } from './shared/Teacher_Header/teacher-header.component';
 import { LabListComponent } from './Lab-List/lab-list.component';
 import { TreeNodeComponent } from './admin/adminlab/nodes/tree-node/tree-node.component';
@@ -39,7 +40,8 @@ import { FileUploader } from './shared/file-uploader/file-uploader.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
