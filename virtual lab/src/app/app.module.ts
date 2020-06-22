@@ -17,6 +17,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LabviewComponent } from './labview/labview.component';
 
+import { FileUploader } from './shared/file-uploader/file-uploader.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { LabviewComponent } from './labview/labview.component';
     AdmintreepaneComponent,
     HeaderComponent,
     LabviewComponent,
+    FileUploader
   ],
   imports: [
     BrowserModule,

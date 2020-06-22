@@ -31,4 +31,8 @@ export class TreeNodeComponent implements OnInit, OnChanges {
     this.nodeType = this.nodeBehaviors[0];
   }
 
+  onClickDesc(): void {
+    
+  }
+
 }
