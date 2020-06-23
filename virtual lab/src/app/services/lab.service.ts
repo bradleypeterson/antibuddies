@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ILab } from '../labInterface';
+import { ILab } from '../interfaces/labInterface';
 // for http requests
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
