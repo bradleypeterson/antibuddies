@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LabviewComponent } from './labview/labview.component';
 
 import { FileUploader } from './shared/file-uploader/file-uploader.component';
+import { StudentViewComponent } from './student/student-view/student-view.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FileUploader } from './shared/file-uploader/file-uploader.component';
     AdmintreepaneComponent,
     HeaderComponent,
     LabviewComponent,
+    StudentViewComponent,
     FileUploader
   ],
   imports: [
