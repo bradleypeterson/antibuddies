@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentViewComponent implements OnInit {
 
+  filters: string[] = ['Most Recent', 'Discipline', 'Level'];
+  selectedFilter: string;
+
   constructor() { }
 
   ngOnInit(): void {
