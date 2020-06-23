@@ -20,6 +20,7 @@ import { LabviewComponent } from './labview/labview.component';
 
 import { FileUploader } from './shared/file-uploader/file-uploader.component';
 import { StudentViewComponent } from './student/student-view/student-view.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { StudentViewComponent } from './student/student-view/student-view.compon
     HeaderComponent,
     LabviewComponent,
     StudentViewComponent,
-    FileUploader
+    FileUploader,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
