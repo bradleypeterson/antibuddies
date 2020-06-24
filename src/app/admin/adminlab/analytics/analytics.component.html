@@ -1,6 +1,28 @@
 <div class='container'>
     <div class='row'>
-        <div class='diagrams col-md-12'>Anaylitics</div>
+        <div class='diagrams col-md-12'>
+            <div style ="display: inline-block; overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
+                <canvas style ="display: inline-block;" baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"></canvas>
+
+                <canvas style ="display: inline-block;" baseChart
+                [datasets]="pieChartData"
+                [labels]="pieChartLabels"
+                [options]="pieChartOptions"
+                [chartType]="pieChartType"></canvas>
+
+                <canvas style ="display: inline-block;" baseChart
+                [datasets]="radarChartData"
+                [labels]="radarChartLabels"
+                [options]="radarChartOptions"
+                [chartType]="radarChartType"></canvas>
+                
+            </div>
+        </div>
     </div>
 </div>
 
