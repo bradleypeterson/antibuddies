@@ -89,6 +89,12 @@ label {
 #btn-group{
 	display: block;
 }
+.correct{
+    color: #28DF24;
+}
+.incorrect{
+    color: #FF0000;
+}
 
 /*-----Input areas-----*/
 input[type='radio'] { 

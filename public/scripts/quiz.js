@@ -1,3 +1,5 @@
+var quizName = "Sample Quiz #1";
+
 var myQuestions = [
     {
         question: "1. Which of the following antibodies can be neutralized by pooled human plasma?",
@@ -36,6 +38,7 @@ window.onload = function(){
 // generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+    document.getElementById('quizName').innerHTML = "Quiz: " + quizName;
     function showQuestions(questions, quizContainer){
         var output = [];
         var answers;
@@ -43,7 +46,13 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
         for(var i=0; i<questions.length; i++){
             answers = [];
             for(letter in questions[i].answers){
-                answers.push('<label class="radio row">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + letter.toUpperCase() + ': ' + questions[i].answers[letter] + '</label>');
+                answers.push('<label class="radio row" id="question' + i + letter +'">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + letter.toUpperCase() + ': ' + questions[i].answers[letter] );
+                if(letter == questions[i].correctAnswer){
+                    answers.push('<span class="correct" hidden>&nbspCorrect</span>'+ '</label>');
+                }
+                else{
+                    answers.push('<span class="incorrect" id="question' + i + letter + 'Incorrect" hidden>&nbspIncorrect</span>'+ '</label>');
+                }
             }
             output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
             // output.push('<div class="question row ">' + questions[i].question  + '<div class="answers">' + answers.join('') + '</div></div>');
@@ -58,17 +67,32 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
         var userAnswer = '';
         var numCorrect = 0;
         
+        //Displays correct label next correct answers.
+        var cor = document.getElementsByClassName('correct');
+        for(var j = 0; j < cor.length; j++){
+            cor[j].hidden = false;
+        }
+
+
         for(var i=0; i<questions.length; i++){
             userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
+            
             if(userAnswer===questions[i].correctAnswer){
                 numCorrect++;
-                answerContainers[i].style.color = 'lightgreen';
+                //answerContainers[i].style.color = 'lightgreen';
                 //console.log(i + "is correct")
+                //var z = document.getElementsByClassName('question' + i + 'Correct');
             }
 
             else{
-                answerContainers[i].style.color = 'red';
+                //answerContainers[i].style.color = 'red';
                 //if (userAnswer!==questions[i].correctAnswer) {
+                var test = document.getElementById('question0c');
+                console.log(test);
+                if(userAnswer != null){
+                    document.getElementById('question' + i + userAnswer).style.color = 'red';
+                    document.getElementById('question' + i + userAnswer + 'Incorrect').hidden = false;
+                }
                 document.getElementById('explanation'+i).hidden = false;
                     //console.log(questions[i].displayAnswer);
                 //}
@@ -79,7 +103,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                 // }
             }
         }
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
     }
 
     showQuestions(questions, quizContainer);
