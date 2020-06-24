@@ -1,0 +1,18 @@
+<div class='card container'>
+    <div class='card-header'>
+        <div class='row' id='header-div'>
+            <div class='col-md-2'>Virtual Labs</div>
+            <div class='col-md-4'>
+              <input type='text' placeholder='search labs'/>
+            </div>
+            <div class='col-md-2'>
+                <label for="filterLabs">Filter by: </label>
+                <select name="filterLabs" id="filterLabs">
+                    <option *ngFor="let filter of filters" [ngValue]="filter" value=filter>{{ filter }}</option>
+                </select>
+            </div>
+          </div>
+    </div>
+
+    <pm-lablist></pm-lablist>
+</div>

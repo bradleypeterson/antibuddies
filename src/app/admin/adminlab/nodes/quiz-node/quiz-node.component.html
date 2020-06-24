@@ -1,1 +1,38 @@
-<p>quiz-node works!</p>
+<div>
+    <form>
+        <label for="questionText">Question Text</label><br>
+        <textarea name="questionText" id="questionText" cols="30" rows="10" maxlength="500"></textarea>
+        <br>
+
+        <label>Question image (optional):</label>
+        <file-uploader></file-uploader>
+        <br>
+
+        <label>Answer type</label><br>
+        <input type="radio" id="single-choice" name="answer-type" value="single-choice" checked>
+        <label for="single-choice">Single-choice</label>
+        <input type="radio" id="multi-choice" name="answer-type" value="multi-choice">
+        <label for="multi-choice">Multi-choice</label>
+        <br>
+
+        <label for="">Answer options</label><br>
+
+        <!-- Display current input answer options if answerOptions array has values -->
+        <ul *ngIf="answerOptions.length > 0">
+            <li *ngFor="let answer of answerOptions">
+                {{ answer }}
+            </li>
+        </ul>
+        <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answerOptions.length < maxAnswerOptions">Add new answer option</button>
+        <div *ngIf="newAnswer" >
+            <input [(ngModel)]="newAnswerVal" name="newAnswerVal" type="text" maxlength="250">
+            <br>
+            <button (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
+        </div>
+
+        <!-- Determines which node to go to for right/wrong answers -->
+        <div>
+
+        </div>
+    </form>
+</div>

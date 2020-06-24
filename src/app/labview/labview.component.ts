@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'pm-labview',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LabviewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.messageService.add('Labview page loaded');
   }
 
 }
