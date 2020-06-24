@@ -87,8 +87,8 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             else{
                 //answerContainers[i].style.color = 'red';
                 //if (userAnswer!==questions[i].correctAnswer) {
-                var test = document.getElementById('question0c');
-                console.log(test);
+                //var test = document.getElementById('question0c');
+                //console.log(test);
                 if(userAnswer != null){
                     document.getElementById('question' + i + userAnswer).style.color = 'red';
                     document.getElementById('question' + i + userAnswer + 'Incorrect').hidden = false;
