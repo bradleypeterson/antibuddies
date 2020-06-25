@@ -23,6 +23,7 @@ export class LabService {
                 "labName": "Lab #1: First Project",
                 "labDescription": "A new lab",
                 "publishDate": new Date(),
+                "course": "Immunohematology",
                 "nodeCount": 20
             },
             {
@@ -30,6 +31,7 @@ export class LabService {
                 "labName": "Lab #2: Transfusion #1",
                 "labDescription": "Another placeholder lab",
                 "publishDate": new Date(),
+                "course": "Immunohematology",
                 "nodeCount": 24
             },
             {
@@ -37,6 +39,7 @@ export class LabService {
                 "labName": "Lab #3: The Third Lab",
                 "labDescription": "The third lab in the series",
                 "publishDate": new Date(),
+                "course": "Immunohematology",
                 "nodeCount": 17
             },
         ];

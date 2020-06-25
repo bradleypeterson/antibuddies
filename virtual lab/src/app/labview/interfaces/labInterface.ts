@@ -3,5 +3,6 @@ export interface ILab {
     labName: string;
     labDescription: string;
     publishDate: Date;
+    course: string;
     nodeCount: number;
 }
