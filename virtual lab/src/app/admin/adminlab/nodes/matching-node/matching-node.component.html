@@ -1,1 +1,33 @@
-<p>matching-node works!</p>
+<div id="matchingAdmin">
+    <div class="keys">
+        <h3>Keys: </h3>
+        <form action="#">
+            <label for="addKey" class="input" >Add Key: </label>
+            <input type="text" name="addKey" id="addKey" placeholder="new key" ng-model="addKey" />
+            <button (click)="addKey(addKey)">Add Key</button>
+        </form>
+    </div>
+    <div class="values">
+        <h3>Values: </h3>
+        <form action="#">
+            <label for="addValue">Add Value: </label>
+            <input type="text" name="addValue" id="addValue" placeholder="new value" [ngModel]="addValue" />
+            <button (click)="addValue(addValue)">Add Value</button>
+        </form>
+    </div>
+</div>
+<div id="matchingNode">
+    <h3>TEST !!!!</h3>
+    <div id="matchingLists">
+        <div class="keys">
+            <ul>
+                <li *ngFor="let key of keys">{{ key }}</li>
+            </ul>
+        </div>
+        <div class="values">
+            <ul>
+                <li *ngFor="let value of values">{{ value }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

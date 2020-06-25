@@ -1,0 +1,9 @@
+#matchingLists {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+#matchingList div {
+    flex: 1;
+}
