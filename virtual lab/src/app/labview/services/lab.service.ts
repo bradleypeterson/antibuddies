@@ -11,7 +11,7 @@ export class LabService {
     private labUrl = 'urltogetlabs/api/labs';
 
     // inject the httpService dependency
-    constructor(private http: HttpClient) {}
+    constructor(/*private http: HttpClient*/) {}
     
     getLabs(): /*Observable<ILab[]>*/ ILab[] {
 
