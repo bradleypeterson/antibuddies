@@ -3,25 +3,33 @@ var quizName = "Sample Quiz #1";
 var myQuestions = [
     {
         question: "1. Which of the following antibodies can be neutralized by pooled human plasma?",
-        answers: {
-            a: 'anti-Kna',
-            b: 'anti-Ch',
-            c: 'anti-Yka',
-            d: 'anti-Csa'
-        },
-        correctAnswer: 'b',
-        displayAnswer: 'Correct response is B. Anti-Ch and anti-Rg can be neutralized by pooled human plasma because the Ch and Rg antigens reside on complement protein C4. Neutralization studies with pooled plasma can help confirm the antibody reactivity in a patient’s sample. (Source Harmening, 7th Edition, Chapter...)'
+        answers: [
+            // a: 'anti-Kna',
+            // b: 'anti-Ch',
+            // c: 'anti-Yka',
+            // d: 'anti-Csa'
+            'anti-Ch',
+            'anti-Kna',
+            'anti-Yka',
+            'anti-Csa'
+        ],
+        correctAnswer: '',
+        displayAnswer: 'Anti-Ch and anti-Rg can be neutralized by pooled human plasma because the Ch and Rg antigens reside on complement protein C4. Neutralization studies with pooled plasma can help confirm the antibody reactivity in a patient’s sample. (Source Harmening, 7th Edition, Chapter...)'
     },
     {
         question: "2. The following test results are noted for a unit of blood labeled group A, Rh-negative: <br> Cells tested with: <br> anti-A anti-B anti-D <br> 4+ 0 3+ <br>  What should be done next?",
-        answers: {
-            a: 'transfuse as a group A, Rh-negative',
-            b: 'transfuse as a group A, Rh-positive',
-            c: 'notify the collecting facility',
-            d: 'discard the unit'
-        },
-        correctAnswer: 'c',
-        displayAnswer: 'Correct response is C. A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)'
+        answers: [
+            // a: 'transfuse as a group A, Rh-negative',
+            // b: 'transfuse as a group A, Rh-positive',
+            // c: 'notify the collecting facility',
+            // d: 'discard the unit'
+            'notify the collecting facility',
+            'transfuse as a group A, Rh-negative',
+            'transfuse as a group A, Rh-positive',
+            'discard the unit'
+        ],
+        correctAnswer: '',
+        displayAnswer: 'A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)'
     }
 ];
 
@@ -42,16 +50,25 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
     function showQuestions(questions, quizContainer){
         var output = [];
         var answers;
-
         for(var i=0; i<questions.length; i++){
+            var ansArray = [];
+            var places = [0,1,2,3];
+            for(var j = 0; j < questions[i].answers.length; j++){
+                var ansNum = Math.floor(Math.random() * places.length);
+                ansArray[j] = questions[i].answers[places[ansNum]];
+                if(places[ansNum] == 0){
+                    questions[i].correctAnswer = j;
+                }
+                places.splice(ansNum, 1);
+            }
             answers = [];
-            for(letter in questions[i].answers){
-                answers.push('<label class="radio row" id="question' + i + letter +'">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + letter.toUpperCase() + ': ' + questions[i].answers[letter] );
+            for(letter in ansArray){
+                answers.push('<label class="radio row" id="question' + i + '_' + letter +'">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + ansArray[letter] );
                 if(letter == questions[i].correctAnswer){
                     answers.push('<span class="correct" hidden>&nbspCorrect</span>'+ '</label>');
                 }
                 else{
-                    answers.push('<span class="incorrect" id="question' + i + letter + 'Incorrect" hidden>&nbspIncorrect</span>'+ '</label>');
+                    answers.push('<span class="incorrect" id="question' + i + '_' + letter + 'Incorrect" hidden>&nbspIncorrect</span>'+ '</label>');
                 }
             }
             output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
@@ -64,7 +81,7 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
     function showResults(questions, quizContainer, resultsContainer){
         
         var answerContainers = quizContainer.querySelectorAll('.answers');
-        var userAnswer = '';
+        var userAnswer;
         var numCorrect = 0;
         
         //Displays correct label next correct answers.
@@ -75,8 +92,8 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
 
         for(var i=0; i<questions.length; i++){
-            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-            
+
+            userAnswer = parseInt((answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value);
             if(userAnswer===questions[i].correctAnswer){
                 numCorrect++;
                 //answerContainers[i].style.color = 'lightgreen';
@@ -90,8 +107,8 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                 //var test = document.getElementById('question0c');
                 //console.log(test);
                 if(userAnswer != null){
-                    document.getElementById('question' + i + userAnswer).style.color = 'red';
-                    document.getElementById('question' + i + userAnswer + 'Incorrect').hidden = false;
+                    document.getElementById('question' + i + '_' + userAnswer).style.color = 'red';
+                    document.getElementById('question' + i + '_' + userAnswer + 'Incorrect').hidden = false;
                 }
                 document.getElementById('explanation'+i).hidden = false;
                     //console.log(questions[i].displayAnswer);
