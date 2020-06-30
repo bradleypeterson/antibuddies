@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LabviewComponent } from './labview/labview.component';
 import { FileUploader } from './shared/file-uploader/file-uploader.component';
 import { MessagesComponent } from './messages/messages.component';
+import { StudentToolbarComponent } from './shared/student-toolbar/student-toolbar.component';
 
 
 
@@ -38,7 +39,8 @@ import { MessagesComponent } from './messages/messages.component';
     HeaderComponent,
     LabviewComponent,
     FileUploader,
-    MessagesComponent
+    MessagesComponent,
+    StudentToolbarComponent
   ],
   imports: [
     BrowserModule,
