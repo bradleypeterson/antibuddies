@@ -63,4 +63,9 @@ module.exports = (app) => {
     });
   });
   
+  //api page
+  app.get("/api", function(req, res){
+    res.sendFile(__dirname + "/pages/api.html");
+  });
+  
 };

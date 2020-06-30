@@ -33,11 +33,15 @@ function get(url){
   return request(url, 'GET');
 }
 
+function del(url){
+  return request(url, 'DELETE');
+}
+
 var api = {};
 
 api.post = post;
 api.get = get;
-
+api.del = del;
 
 /*
  * ENDPOINTS
@@ -45,7 +49,7 @@ api.get = get;
  */
 
 api.getTest = (data) => {
-  return get(`/api/test/${data}`);
+  return get(`/api/test/${data}`); 
 }
 
 api.signup = (user) => {
@@ -58,4 +62,57 @@ api.authenticate = (user) => {
 
 api.deauthenticate = () => {
   return get(`/api/deauthenticate`);
+}
+
+api.getUsers = () => {
+  return get(`/api/users`);
+}
+
+api.getCourses = () => {
+  return get(`/api/courses`);
+}
+
+api.addCourse = () => {
+  return post(`/api/courses`);
+}
+
+api.getCourse = (course) => {
+  return get(`/api/courses/${course}`);
+}
+
+api.getQuizzes = (course) => {
+  return get(`/api/courses/${course}/quizzes`);
+}
+
+api.addQuiz = (course, quizData) => {
+  return post(`/api/courses/${course}/quizzes`, quizData);
+}
+
+api.getQuiz = (course, quiz) => {
+  return get(`/api/courses/${course}/quizzes/${quiz}`);
+}
+
+api.getQuizQuestions = (course, quiz) => {
+  return (`/api/courses/${course}/quizzes/{quiz}/questions`);
+}
+
+api.getQuizQuestion = (course, quiz, questionIndex) => {
+  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
+}
+
+
+api.addQuizQuestion = (course, quiz, questionData) => {
+  return (`/api/courses/:course/quizzes/:quiz/addQuestion`, questionData);
+}
+
+api.checkAnswer = (course, quiz, questionIndex, choice) => {
+  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}/checkAnswer`, choice);
+}
+
+api.deleteQuiz = (course, quiz) => {
+  return (`/api/course/${course}/quizzes/${quiz}`);
+}
+
+api.deleteQuestion = (course, quiz, questionIndex) => {
+  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
 }

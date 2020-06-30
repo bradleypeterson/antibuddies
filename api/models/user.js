@@ -22,3 +22,6 @@ userSchema.methods.checkPassword = function(password){
 
 // create the model
 module.exports = mongoose.model('User', userSchema);
+
+
+// Add W#?

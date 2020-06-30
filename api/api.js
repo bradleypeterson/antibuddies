@@ -61,7 +61,7 @@ module.exports = app => {
   app.post('/api/signup', (req, res) => {
     return respond(res, api.signup(req.body));
   });
-  //api.signup function
+  //api.signup function - Add (Create) User
   api.signup = (user) => {
     return new Promise((resolve, reject) => {
       console.log(user);
@@ -94,6 +94,14 @@ module.exports = app => {
       });
     });
   }
+  
+  
+  //TODO: Delete User
+  /*
+    api.get('/deleteUser') function (req, res){
+    
+    }
+  */
   
   /*
   * authenticate: returns true if credentials are correct
@@ -148,16 +156,78 @@ module.exports = app => {
   }
   
   /*
-  * course/{course}: get course data
-  * @param {Object} course course identifier, can be id or course name
+  * users: get list of users
   */
-  app.get('/api/course/:course', (req, res) => {
+  app.get('/api/users', (req, res) => {
+    return respond(res, api.getUsers());
+  });
+  api.getUsers = () => {
+    return new Promise((resolve, reject) => {
+      User.find({}).exec((err, users) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(users);
+      });
+    });
+  }
+  
+  /*
+  * courses: get list of courses
+  */
+  app.get('/api/courses', (req, res) => {
+    return respond(res, api.getCourses());
+  });
+  api.getCourses = () => {
+    return new Promise((resolve, reject) => {
+      Course.find({}).exec((err, courses) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(courses);
+      });
+    });
+  }
+  
+  /*
+  * POST courses: add course
+  * @param {Object} body course data
+  * @param {String} body.courseName name of the course
+  */
+  /*
+    courseName    : { type: String,   required: true}
+  */
+  
+  app.post('/api/courses', (req, res) => {
+    return respond(res, api.addCourse(req.body));
+  });
+  api.addCourse = (courseData) => {
+    return new Promise(async (resolve, reject) => {
+      if(!courseData.courseName){
+        return reject('Invalid course structure');
+      }
+      //create and save course
+      let newCourse = new Course(courseData);
+      newCourse.save((err, savedCourse) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(savedCourse);
+      });
+    });
+  }
+  
+  /*
+  * courses/{course}: get course data
+  * @param {String} course course identifier, can be id or course name
+  */
+  app.get('/api/courses/:course', (req, res) => {
     return respond(res, api.getCourse(req.params.course));
   });
   //api.getCourse function
   api.getCourse = (course) => {
     return new Promise((resolve, reject) => {
-      if(course instanceof User){
+      if(course instanceof Course){
         //already a course object
         return resolve(course);
       } else if(mongoose.Types.ObjectId.isValid(course)){
@@ -179,11 +249,72 @@ module.exports = app => {
   }
   
   /*
-  * quiz/{quiz}: get quiz data
-  * @param {Object} course course identifier, can be id or course name
-  * @param {Object} quiz quiz identifier, can be id or quiz name
+  * quizzes: get list of quizzes
   */
-  app.get('/api/course/:course/quiz/:quiz', (req, res) => {
+  app.get('/api/courses/:course/quizzes', (req, res) => {
+    return respond(res, api.getQuizzes(req.params.course));
+  });
+  api.getQuizzes = (course) => {
+    return new Promise(async (resolve, reject) => {
+      
+      //get course
+      course = await api.getCourse(course);
+      
+      Quiz.find({course_id: course._id}).exec((err, courses) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(courses);
+      });
+    });
+  }
+  
+  /*
+  * POST quizzes: add quiz to course
+  * @param {Object} body quiz data
+  * @param {String} body.title quiz title
+  * @param {Array<Question>} body.questions quiz questions
+  * @param {String} body.questions.question question text
+  * @param {Array<String>} body.questions.answers list of possible choices, the first item will be marked as the correct answer
+  */
+  /*
+    title      : { type: String,   required: true },
+    questions  : [
+      {
+        question: { type: String, required: true },
+        answers:  [ String ]
+      }
+    ]
+  */
+  
+  app.post('/api/courses/:course/quizzes', (req, res) => {
+    return respond(res, api.addQuiz(req.params.course, req.body));
+  });
+  api.addQuiz = (course, quizData) => {
+    return new Promise(async (resolve, reject) => {
+      //get course
+      course = await api.getCourse(course);
+      //create quiz
+      if(!quizData.title){
+        return reject('Invalid quiz structure');
+      }
+      quizData.course_id = course._id;
+      let newQuiz = new Quiz(quizData);
+      newQuiz.save((err, savedQuiz) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(savedQuiz);
+      });
+    });
+  }
+  
+  /*
+  * quizzes/{quiz}: get quiz data
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
+  */
+  app.get('/api/courses/:course/quizzes/:quiz', (req, res) => {
     return respond(res, api.getQuiz(req.params.course, req.params.quiz));
   });
   //api.getQuiz function
@@ -193,7 +324,7 @@ module.exports = app => {
         //already a quiz object
         return resolve(quiz);
       }
-      
+      console.log({course, quiz});
       //get course
       course = await api.getCourse(course);
       
@@ -217,10 +348,10 @@ module.exports = app => {
   
   /*
   * quiz/questions: get quiz questions
-  * @param {Object} course course identifier, can be id or course name
-  * @param {Object} quiz quiz identifier, can be id or quiz name
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
   */
-  app.get('/api/course/:course/quiz/:quiz/questions', (req, res) => {
+  app.get('/api/courses/:course/quizzes/:quiz/questions', (req, res) => {
     return respond(res, api.getQuizQuestions(req.params.course, req.params.quiz));
   });
   //api.getQuizQuestion function
@@ -236,82 +367,203 @@ module.exports = app => {
   }
   
   /*
-  * quiz/addQuestion: add question to quiz
-  * @param {Object} course course identifier, can be id or course name
-  * @param {Object} quiz quiz identifier, can be id or quiz name
+  * quiz/questions/{question}: get quiz question
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
   */
-  app.post('/api/course/:course/quiz/:quiz/addQuestion', (req, res) => {
-    return respond(res, api.addQuizQuestion(req.params.course, req.params.quiz, req.body.question));
+  app.get('/api/courses/:course/quizzes/:quiz/questions/:questionIndex', (req, res) => {
+    return respond(res, api.getQuizQuestion(req.params.course, req.params.quiz, req.params.questionIndex));
   });
-  //api.addQuizQuestion function
-  api.addQuizQuestion = (course, quiz, question) => {
+  api.getQuizQuestion = (course, quiz, questionIndex) => {
     return new Promise(async (resolve, reject) => {
       //get course
       course = await api.getCourse(course);
       //get quiz
       quiz = await api.getQuiz(course, quiz);
-      //TODO: construct question, store in quiz
-      return resolve(quiz.questions);
+      
+      questionIndex = parseInt(questionIndex);
+      
+      if(isNaN(questionIndex)){
+        return reject('invalid questionIndex');
+      }
+      
+      return resolve(quiz.questions[questionIndex]);
+    });
+  }
+  
+  
+  /*
+  * quiz/addQuizQuestion: add question to quiz
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
+  * @param {Object} body question data
+  * @param {String} body.question the question text
+  * @param {Array<String>} body.answers possible choices. the first item will be marked as the correct answer
+  */
+  app.post('/api/courses/:course/quizzes/:quiz/addQuestion', (req, res) => {
+    return respond(res, api.addQuizQuestion(req.params.course, req.params.quiz, req.body));
+  });
+  //api.addQuizQuestion function
+  api.addQuizQuestion = (course, quiz, questionData) => {
+    return new Promise(async (resolve, reject) => {
+      //get course
+      course = await api.getCourse(course);
+      //get quiz
+      quiz = await api.getQuiz(course, quiz);
+      
+      if(!questionData.question){
+        return reject('Invalid question structure');
+      }
+      //add question and save
+      quiz.questions.push(questionData);
+      quiz.save((err, savedQuiz) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(questionData);
+      });
     });
   }
   
 
-  //TODO: addCourse
-  
-  
-  
-  
-  
-  
-  
-  
   
   //checkAnswer(course, quiz, quesitonIndex, "cat")
   // questionIndex is from the user input (select)
   /* POST Check Answer
   * quiz/checkAnswer: Check the answer from the quiz
-  * @param {Object} course course identifier, can be id or course name
-  * @param {Object} quiz quiz identifier, can be id or quiz name
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
+  * @param {String} questionIndex index of the question within the quiz
+  * @param {Object} body choice data
+  * @param {String} body.choice the string of the chosen answer
   */
   
-  // POST /api/course/478126/quiz/217836/checkAnswer/, -body {questionIndex: 0, choice: "choice 1"}
+  // POST /api/course/478126/quiz/217836/checkAnswer/, -body {choice: "choice 1"}
   
-  app.post('/api/course/:course/quiz/:quiz/checkAnswer/:questionIndex/:choice', (req, res) => {
-    return respond(res, api.checkQuizAnswer(req.params.course, req.params.quiz, req.body.questionIndex, req.body.choice));
+  app.post('/api/courses/:course/quizzes/:quiz/questions/:questionIndex/checkAnswer', (req, res) => {
+    return respond(res, api.checkQuizAnswer(req.params.course, req.params.quiz, req.params.questionIndex, req.body.choice));
   });
-  
-  api.checkAnswer = (course, quiz, questionIndex, choice) => {
+  //api.checkAnswer function
+  api.checkQuizAnswer = (course, quiz, questionIndex, choice) => {
     return new Promise(async (resolve, reject) => {
+      try{
       //get course
       course = await api.getCourse(course);
       //get quiz
       quiz = await api.getQuiz(course, quiz);
+      //Convert
+      questionIndex = parseInt(questionIndex);
+      
+      if(isNaN(questionIndex)){
+        return reject('invalid questionIndex');
+      }
       //get question Index from the user select
       let question = quiz.questions[questionIndex];
       //questionIndex = getQuizQuestion(course, quiz, question)[questionIndex]
       
       //get choice (set as default index is 0)-- correct answer; object from the question[] = {..} => index = [0]
-      //choice is the user ansswer; quiz.questions.answer[0] is the correct answer;
-      if(choice === question.answer[0]){
+      //choice is the user answer; quiz.questions.answer[0] is the correct answer;
+      if(choice === question.answers[0]){
         resolve(true);
       }
       else{
         resolve(false);
       }
-      
+      } catch(err) {
+        reject(err);
+      }
     });
   }
   
   
   
-  //TODO: Delete quiz
+  /*Delete quiz  - remove a doucement "quiz{}"
+   * quiz/questions/:quiz: Delete a quiz (document type) from the quizzes
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
+  */
+  app.delete('/api/courses/:course/quizzes/:quiz', async (req, res) => {
+    return respond(res, api.deleteQuiz(req.params.course, req.params.quiz))
+  });
+  
+  api.deleteQuiz = (course, quiz) => {
+    return new Promise(async (resolve, reject) => {
+      
+      //get course
+      course = await api.getCourse(course);
+      
+      //get quiz
+      quiz = await api.getQuiz(course, quiz);
+      
+      //remove documents ()
+      //quiz.remove();
+      //Quiz.deleteOne({ _id: quiz._id });
+      //also save;
+      console.log('deleting')
+      quiz.remove((err) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(quiz);
+      })
+    });
+  }
   
   
   
   
-  //TODO: Delete question
+   /* DELETE question by specific index
+  * quiz/questions/:questionIndex: Delete one question from the quiz which is up to the pass in index of question
+  * @param {String} course course identifier, can be id or course name
+  * @param {String} quiz quiz identifier, can be id or quiz name
+  * @param {String} questionIndex index of the question within the quiz
+  */
+  app.delete('/api/courses/:course/quizzes/:quiz/questions/:questionIndex', async (req, res) => {
+    return respond(res, api.deleteQuestion(req.params.course, req.params.quiz, req.params.questionIndex));
+  });
+  
+  api.deleteQuestion = (course, quiz, questionIndex) => {
+    return new Promise(async (resolve, reject) => {
+      
+      //get course
+      course = await api.getCourse(course);
+      //get quiz
+      quiz = await api.getQuiz(course, quiz);
+      //Convert
+      questionIndex = parseInt(questionIndex);
+      
+      if(isNaN(questionIndex)){
+        return reject("Invalid questionIndex!"); 
+      }
+      
+      //remove the speific item from an array - use splice()
+      let deletedQuestion = quiz.questions.splice(questionIndex, 1)[0];
+      
+      //Save
+      quiz.save((err, savedQuiz) => {
+        if(err){
+          return reject(err);
+        }
+        return resolve(deletedQuestion);
+      })
+    });
+  }
   
   
   
+  
+  
+  
+  
+
+  //Return to the Server.js??
   return api;
 }
+
+
+
+/*@*
+
+Test Endpoint: https://antibuddies-api.glitch.me/api
+
+*@*/
