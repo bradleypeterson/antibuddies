@@ -1,15 +1,10 @@
-function startAdminQuiz() {
-  //TODO
-  //add a lambda function that returns all the quizzes relative to each admin's courses that they are allowed to edit and review.
-  //that should be placed here
-
-
-
+function populateQuizzes() {
+  // this function will be called when the page loads and will return a button for each quiz in the database
 }
 
 //gets the questions from aws per quiz
-function getPracticeQuestions() {
-
+function getQuizQuestions() {
+  // this function will be called when a quiz button is clicked and will load all questions for that quiz onto the page
 
   //This is set up for only one quiz but can be set up for the others as well
   //TODO create buttons for each different quiz that's been created, get the courseID for each admin and the difficultly of each quiz to pull different quizzes.
@@ -38,34 +33,18 @@ function getPracticeQuestions() {
 
 }
 
-//gets the answers from aws per question
-function getAnswers(questionID) {
-
-  var Answers = [{}];
-  var listAnswers = [];
-  var check;
-
-  // create JSON object for loginParams
-  var questionParams = {
-    FunctionName: "getPracticeQuestionAnswers",
-    InvocationType: "RequestResponse",
-    LogType: "None",
-    Payload: '{"questionID":"' + String(questionID) + '"}',
-  };
-
-  lambda.invoke(questionParams, function (error, data) {
-    if (error) {
-      prompt(error, error.stack);
-    } else {
-
-      Answers = JSON.parse(data.Payload);
-
-      placeAnswers(Answers, questionID);
-
-      var answerLength = Answers.PracticeQuestionAnswers.length;
-    }
-  });
+function addQuestion() {
+  // will call this function when a user clicks the add question button
 }
+
+function deleteQuestion() {
+  // will call this function when a user clicks the delete question button
+}
+
+function changeAnswer() {
+  // will call this function when a user selects an answer to a question. it will figure out which quiz the answer is for by selecting the parent element
+}
+
 
 //places the answers per question into the admin quiz
 function placeAnswers(answers, qi) {
@@ -332,102 +311,3 @@ function deleteQuestion(questionID) {
     }
   });
 }
-
-
-
-///////////////////////////
-///////////////////////////
-/////Earlier Iteration/////
-///////////////////////////
-///////////////////////////
-
-// $(function()
-//   {
-//   function editQuizStart(questions)
-// {
-//     adminquiz.fadeOut(function() 
-//     {
-//         var questionlength = questions.length;
-
-//         console.log("you are in");
-
-//         for (var i = 0; i < questionlength; i++)
-//         {
-//             var nextQuestion = $('<div>', { id: 'question'+i});
-
-
-//             //add buttons for edit or remove per question
-//             var deletebutton = $('<input type="button" class="btns" id="delete" name="btnsdele"  value="Delete" /> ');
-//             nextQuestion.append(deletebutton);
-
-
-
-//             var editbutton = $('<input type="button" class="btns" id="edit" onClick="editQuestion('+i+')" value="Edit"/>');
-//             nextQuestion.append(editbutton);
-
-
-//             var header = $('<h2>Question ' + (i + 1) + ':</h2>');
-
-//             nextQuestion.append(header);
-
-//             var question = $('<p>').append(questions[i].question);
-//             nextQuestion.append(question);
-
-
-//             adminquiz.append(nextQuestion).fadeIn();
-
-//             var answersh = viewAnswers(i);
-//             adminquiz.append(answersh);
-
-//            var deleteButtons = document.getElementsByName("btnsdele");
-//             console.log(deleteButtons);
-
-
-
-//         }
-
-
-//     });
-// }
-
-
-// function viewAnswers(index)
-// {
-//     var questionList = $('<ul>');
-//     var item;
-//     var input = '';
-//     var count = 0;
-
-//     answers = [];
-
-//     for (letter in questions[index].choices)
-//         {
-//             /*
-//             item = $('<li>');
-//             input = '<p name="answer'+letter+'" id="'+index+letter+'">' + letter + ': ';
-//             input += questions[index].choices[letter];
-//             item.append(input);
-//             questionList.append(item);
-//             */
-//             //
-//             if(letter == questions[index].correctAnswer)
-//             {
-//                 item = $('<li>');
-//                 input = '<p name="answer'+letter+'" id="CorrectAnswer">' + letter + ': ';
-//                 input += questions[index].choices[letter];
-//                 item.append(input);
-//                 questionList.append(item);
-//             }
-//             else
-//             {
-//                 item = $('<li>');
-//                 input = '<p name="answer'+letter+'" id="'+index+letter+'">' + letter + ': ';
-//                 input += questions[index].choices[letter];
-//                 item.append(input);
-//                 questionList.append(item);
-//             }
-//         }
-
-//     return questionList;
-// }
-// } )
