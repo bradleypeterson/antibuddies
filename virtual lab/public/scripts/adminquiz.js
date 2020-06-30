@@ -17,8 +17,6 @@ function getPracticeQuestions() {
   var difficulty = "1";
   var courseID = "1";
 
-  document.getElementById("get").style.visibility = "hidden";
-
   // create JSON object for loginParams
   var questionParams = {
     FunctionName: "getPracticeQuestions",
@@ -32,14 +30,9 @@ function getPracticeQuestions() {
     if (error) {
       prompt(error, error.stack);
     } else {
-
       myQuestions = JSON.parse(data.Payload);
       console.log(myQuestions);
-
-
-
       adminQuizStart();
-
     }
   });
 
@@ -72,11 +65,6 @@ function getAnswers(questionID) {
       var answerLength = Answers.PracticeQuestionAnswers.length;
     }
   });
-
-
-
-
-
 }
 
 //places the answers per question into the admin quiz
