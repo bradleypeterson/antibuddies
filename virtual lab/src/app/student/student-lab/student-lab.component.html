@@ -1,0 +1,12 @@
+<div class="card">
+    <h1>{{ this.dummyLab.name }}</h1>
+    <div *ngIf="!isBegin">
+        <p>
+            {{ this.dummyLab.description }}
+        </p>
+    
+        <button (click)="handleBegin()">Begin lab</button>
+    </div>
+    <div>
+    </div>
+</div>

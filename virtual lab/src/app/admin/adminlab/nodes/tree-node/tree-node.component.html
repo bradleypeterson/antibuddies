@@ -15,16 +15,16 @@
 
         <!--This is where the appropriate behavior node will be loaded-->
         <div *ngIf="nodeType === 'Matching'">
-            <app-matching-node></app-matching-node>
+            <matching-node></matching-node>
         </div>
         <div *ngIf="nodeType === 'Play video'">
-            <app-video-node></app-video-node>
+            <video-node></video-node>
         </div>
         <div *ngIf="nodeType === 'Perform experiment'">
-            <app-experiment-node></app-experiment-node>
+            <experiment-node></experiment-node>
         </div>
         <div *ngIf="nodeType === 'Question / Answer'">
-            <app-quiz-node></app-quiz-node>
+            <quiz-node></quiz-node>
         </div>
         
         <div class="card">

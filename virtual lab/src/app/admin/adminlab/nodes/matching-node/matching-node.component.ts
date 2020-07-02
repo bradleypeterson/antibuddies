@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-matching-node',
+  selector: 'matching-node',
   templateUrl: './matching-node.component.html',
   styleUrls: ['./matching-node.component.css']
 })

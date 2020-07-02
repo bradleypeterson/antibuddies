@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FileUploader } from '../../../../shared/file-uploader/file-uploader.component';
 
 @Component({
-  selector: 'app-quiz-node',
+  selector: 'quiz-node',
   templateUrl: './quiz-node.component.html',
   styleUrls: ['./quiz-node.component.css']
 })
