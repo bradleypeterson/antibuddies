@@ -18,8 +18,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { LabviewComponent } from './labview/labview.component';
 import { FileUploader } from './shared/file-uploader/file-uploader.component';
 import { MessagesComponent } from './messages/messages.component';
-import { StudentToolbarComponent } from './shared/student-toolbar/student-toolbar.component';
+import { StudentToolbarComponent } from './student/student-lab/student-toolbar/student-toolbar.component';
 import { StudentLabComponent } from './student/student-lab/student-lab.component';
+import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.component';
 
 
 
@@ -42,7 +43,8 @@ import { StudentLabComponent } from './student/student-lab/student-lab.component
     FileUploader,
     MessagesComponent,
     StudentToolbarComponent,
-    StudentLabComponent
+    StudentLabComponent,
+    QuizViewComponent
   ],
   imports: [
     BrowserModule,

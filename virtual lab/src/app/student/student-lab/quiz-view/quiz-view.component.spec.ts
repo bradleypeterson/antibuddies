@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StudentToolbarComponent } from './student-toolbar.component';
+import { QuizViewComponent } from './quiz-view.component';
 
-describe('StudentToolbarComponent', () => {
-  let component: StudentToolbarComponent;
-  let fixture: ComponentFixture<StudentToolbarComponent>;
+describe('QuizViewComponent', () => {
+  let component: QuizViewComponent;
+  let fixture: ComponentFixture<QuizViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StudentToolbarComponent ]
+      declarations: [ QuizViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StudentToolbarComponent);
+    fixture = TestBed.createComponent(QuizViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

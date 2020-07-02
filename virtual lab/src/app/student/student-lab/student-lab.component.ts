@@ -29,9 +29,12 @@ export class StudentLabComponent implements OnInit {
     nodes: [
       // populate with dummy quiz nodes - nodeId, question content,
       // answers array
+
+      // will later be populated from service, populate child component quiz-view
       {
         nodeId: 0,
-        question: "What is the answer?",
+        nodeType: 'quiz',
+        question: "What is the answer to this question?",
         answers: [
           // populate with dummy answers
           {
@@ -62,6 +65,11 @@ export class StudentLabComponent implements OnInit {
 
   handleBegin(): void {
     this.isBegin = true
+  }
+
+  // function to handle future node traversal functionality
+  handleTraverse(): void {
+
   }
 
 }
