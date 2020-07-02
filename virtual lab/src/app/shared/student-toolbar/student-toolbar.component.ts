@@ -7,9 +7,24 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 })
 export class StudentToolbarComponent implements OnInit, OnChanges {
 
-  currNodeType: string = ''
+  currNodeType: string = 'Play video';
 
   constructor() { }
+
+  handlePreviousNode(): void {
+    // go to previous node -- load previous node view
+    console.log("Go to prev node");
+  }
+
+  handleNextNode(): void {
+    // go to next node -- load next node view
+    console.log("Go to next node");
+  }
+
+  handlePlayPause(): void {
+    // trigger pause/play video
+    console.log("Toggle play/pause of video");
+  }
 
   ngOnInit(): void {
 
