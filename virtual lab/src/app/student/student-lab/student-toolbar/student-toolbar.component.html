@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-body">
+        <span>**Lab Actions toolbar (student lab)**</span>
+        <div>
+            <button (click)="handlePreviousNode()">Previous node</button>
+            <button *ngIf="currNodeType === 'Play video'" (click)="handlePlayPause()">Play/Pause</button>
+            <button (click)="handleNextNode()" disabled>Next node</button>
+        </div>
+    </div>
+</div>
