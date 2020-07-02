@@ -7,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperimentNodeComponent implements OnInit {
 
-  constructor() { }
+  newExpObject: boolean;
+  maxExpObjects: number = 6;
+  expObjects: object[] = [];
+
+  constructor() { 
+    this.newExpObject = false;
+  }
+
+  handleNewObject(): void {
+    this.newExpObject = true;
+  }
 
   ngOnInit(): void {
   }

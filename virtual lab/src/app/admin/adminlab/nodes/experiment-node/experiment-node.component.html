@@ -1,1 +1,17 @@
-<p>experiment-node works!</p>
+<div>
+    <form>
+        <p>
+            An experiment allows a student to interact with various 
+            elements within the given area, overlapping them with one
+            another to see what may result. (This functionality is currently
+            low priority and may not actually be implemented in the
+            final version of the Virtual Lab project.)
+        </p>
+        <button (click)="handleNewObject()" *ngIf="!newExpObject && expObjects.length < maxExpObjects">Add new experiment object</button>
+        <div *ngIf="newExpObject">
+            <label>Object image (must conform to *dimensions*):</label>
+            <file-uploader></file-uploader>
+            <br>
+        </div>
+    </form>
+</div>
