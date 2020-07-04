@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from "./message.service";
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { labType, quizNode } from "./interfaces"
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import { Observable, of } from 'rxjs';
 export class BackEndServiceService {
   
   constructor(private http: HttpClient, private messageService: MessageService) { }
+
+  labs: any[] = []
 
   private dataUrl = 'api/vlab';  // URL to web api
 
@@ -23,6 +26,49 @@ export class BackEndServiceService {
       "dataService"
     ];
     return of(sampleString);
+  }
+
+  getLabs():labType[]{
+    return this.labs;
+  }
+
+  createLab(name:string, desc:string): labType {
+    let lab : labType = ({
+    labID: this.labs.length,
+    labName: name, //need to check for unique names
+    description:desc,
+    nodes: [],
+    });
+
+    this.labs.push(lab)
+    return lab;
+  }
+  
+  getLabID (name:string){
+    let retName:string;
+    //search by name return id, should be unique names
+    for(let i = 0;i < this.labs.length;i++){
+      if(this.labs[i].name ===name){
+        //lab found, return ID
+        retName = this.labs[i].name
+      }
+      else{
+        //not found, don't do anything
+      }
+    }
+    return retName;
+  }
+
+  createQuizNode(labID: number, desc:string, name:string, question:string){
+    let quizNode: quizNode = ({
+      nodeID: this.labs[labID].nodes.length,
+      description: desc,
+      name:name,
+      question:question,
+      answers:[],
+    })
+    this.labs[labID].nodes.push(quizNode)
+    return quizNode
   }
 
   /** GET data from the server */

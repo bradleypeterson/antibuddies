@@ -20,6 +20,7 @@ import { FileUploader } from './shared/file-uploader/file-uploader.component';
 import { MessagesComponent } from './messages/messages.component';
 import { StudentToolbarComponent } from './shared/student-toolbar/student-toolbar.component';
 
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -46,7 +47,8 @@ import { StudentToolbarComponent } from './shared/student-toolbar/student-toolba
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
