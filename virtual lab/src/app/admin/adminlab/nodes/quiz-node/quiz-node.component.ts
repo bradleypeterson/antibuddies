@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { FileUploader } from '../../../../shared/file-uploader/file-uploader.component';
 
 @Component({
-  selector: 'app-quiz-node',
+  selector: 'quiz-node',
   templateUrl: './quiz-node.component.html',
   styleUrls: ['./quiz-node.component.css']
 })
@@ -12,6 +12,8 @@ export class QuizNodeComponent implements OnInit {
   newAnswerVal: string;
   maxAnswerOptions: number = 5;
   answerOptions = [];
+  selectedOutgoingNode: number = 0;
+  outgoingNodes: number[] = [];
   imgFileTypes: string = 'image/png, image/jpg, image/jpeg';
 
   constructor() { 
@@ -19,6 +21,7 @@ export class QuizNodeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.populateOutgoingNodes();
   }
 
   ngOnChanges(): void {
@@ -33,6 +36,10 @@ export class QuizNodeComponent implements OnInit {
     this.answerOptions.push(answer);
 
     this.newAnswer = false;
+  }
+
+  populateOutgoingNodes(): void {
+    // populate component with outgoing node options
   }
 
 }

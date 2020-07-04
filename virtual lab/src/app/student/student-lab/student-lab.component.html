@@ -1,0 +1,15 @@
+<div id="lab" class="card">
+    <h1>{{ this.dummyLab.name }}</h1>
+    <div *ngIf="!isBegin">
+        <p>
+            {{ this.dummyLab.description }}
+        </p>
+    
+        <button (click)="handleBegin()">Begin lab</button>
+    </div>
+    <div class="full-view" *ngIf="isBegin">
+        <quiz-view></quiz-view>
+        <student-toolbar></student-toolbar>
+    </div>
+
+</div>

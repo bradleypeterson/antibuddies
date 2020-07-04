@@ -1,0 +1,8 @@
+<div>
+    <h2>{{ nodeData.question }}</h2>
+    <ul>
+        <li *ngFor="let answer of nodeData.answers">
+            {{ answer.answerText }}
+        </li>
+    </ul>
+</div>
