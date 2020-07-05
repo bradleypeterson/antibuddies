@@ -4,7 +4,7 @@
         <div>
             <button (click)="handlePreviousNode()">Previous node</button>
             <button *ngIf="currNodeType === 'Play video'" (click)="handlePlayPause()">Play/Pause</button>
-            <button (click)="handleNextNode()" disabled>Next node</button>
+            <button (click)="handleNextNode()" [disabled]="allowNext">Next node</button>
         </div>
     </div>
 </div>

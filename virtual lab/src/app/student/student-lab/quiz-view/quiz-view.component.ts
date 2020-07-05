@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'quiz-view',
@@ -12,35 +12,54 @@ export class QuizViewComponent implements OnInit {
   // for the student to view. Their recorded response to the
   // question should be passed back (using @event()) to the parent
   // to determine which node they will traverse to next.
+  @Input() nodeData: Object = {
+    nodeId: 0,
+    question: '',
+    answers: []
+  };
+  @Output() answered: EventEmitter<number> = new EventEmitter<number>();
+  nextNodeAsSelected: number;
 
   // everything in nodeData obj will be passed in from parent component
-  nodeData = {
-    nodeId: 0,
-        question: "What is the answer to this question?",
-        answers: [
-          // populate with dummy answers
-          {
-            nextNodeId: 1,
-            answerText: "This first option is correct",
-          },
-          {
-            nextNodeId: 2,
-            answerText: "This second option is correct"
-          },
-          {
-            nextNodeId: 3,
-            answerText: "This third option is the right one"
-          },
-          {
-            nextNodeId: 4,
-            answerText: "This final option is correct"
-          }
-        ]
+  // nodeData = {
+  //   nodeId: 0,
+  //       question: "What is the answer to this question?",
+  //       answers: [
+  //         // populate with dummy answers
+  //         {
+  //           nextNodeId: 1,
+  //           answerText: "This first option is correct",
+  //         },
+  //         {
+  //           nextNodeId: 2,
+  //           answerText: "This second option is correct"
+  //         },
+  //         {
+  //           nextNodeId: 3,
+  //           answerText: "This third option is the right one"
+  //         },
+  //         {
+  //           nextNodeId: 4,
+  //           answerText: "This final option is correct"
+  //         }
+  //       ]
+  // }
+
+  constructor() {
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+    console.log(this.nodeData)
+  }
+
+  ngOnChanges(): void {
+    this.nodeData = this.nodeData
+  }
+
+  determineNextNode(nextNodeAsSelected: number) {
+    // pass event back to parent/toolbar, traverse to next node
+    
+    this.answered.emit(this.nextNodeAsSelected);
   }
 
 }
