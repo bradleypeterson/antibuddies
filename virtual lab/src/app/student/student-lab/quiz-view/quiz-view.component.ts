@@ -12,7 +12,7 @@ export class QuizViewComponent implements OnInit {
   // for the student to view. Their recorded response to the
   // question should be passed back (using @event()) to the parent
   // to determine which node they will traverse to next.
-  @Input() nodeData: Object = {
+  @Input() nodeData = {
     nodeId: 0,
     question: '',
     answers: []
