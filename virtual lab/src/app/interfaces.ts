@@ -18,7 +18,6 @@ export class LabsContainer {
             //name already exists, throw error
             throw "Error: lab "+labName+" already exists"
         }
-        
     }
 
     //return the index if found, otherwise -1
