@@ -28,6 +28,8 @@ export class QuizNodeComponent implements OnInit {
     this.newAnswerVal = this.newAnswerVal;
   }
 
+
+  
   handleNewAnswer(): void {
     this.newAnswer = true;
   }
