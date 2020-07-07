@@ -1,5 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output } from '@angular/core';
-import { EventEmitter } from 'protractor';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'student-toolbar',
@@ -12,7 +11,7 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
 // so that the next node button is no longer greyed out,
 // allow for traversal to the next node
 @Input() allowNext: string;
-@Output() traverseIsOkay: EventEmitter = new EventEmitter();
+@Output() traverseIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
   currNodeType: string = 'Play video';
 
@@ -26,7 +25,7 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
   handleNextNode(): void {
     // go to next node -- load next node view
     console.log("Go to next node");
-    this.traverseIsOkay.emit('true');
+    this.traverseIsOkay.emit(true);
 
   }
 
