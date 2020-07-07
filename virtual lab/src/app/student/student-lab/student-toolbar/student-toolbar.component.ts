@@ -10,6 +10,7 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
 // student toolbar should listen for changes in quiz-view
 // so that the next node button is no longer greyed out,
 // allow for traversal to the next node
+@Input() isFinished: boolean;
 @Input() allowNext: string;
 @Input() allowPrevious: string;
 @Output() traverseForwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();

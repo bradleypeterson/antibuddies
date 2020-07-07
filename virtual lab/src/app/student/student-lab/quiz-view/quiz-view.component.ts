@@ -33,7 +33,12 @@ export class QuizViewComponent implements OnInit {
   determineNextNode(nextNodeAsSelected: number) {
     // pass event back to parent/toolbar, traverse to next node
     this.answered.emit(this.nextNodeAsSelected);
-    console.log("next node:", this.nextNodeAsSelected);
+    // console.log("next node:", this.nextNodeAsSelected);
+    this.resetNext();
+  }
+
+  resetNext(): void {
+    this.nextNodeAsSelected = null;
   }
 
 }

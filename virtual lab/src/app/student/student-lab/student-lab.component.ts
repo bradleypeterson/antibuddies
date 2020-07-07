@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { MessageService } from '../../message.service';
 //import { labType, quizNode } from '../../interfaces';
@@ -11,11 +11,13 @@ import { MessageService } from '../../message.service';
 export class StudentLabComponent implements OnInit {
 
   isBegin: boolean = false;
+  isEnd: boolean = false;
   currentNode: number = 0;
   nextNode: number;
   prevNode: number;
   disabledNext: string = "disabled";
   disabledPrevious: string = "disabled";
+  finalNode: number = 16;
   dummyLab = {
       // dummy lab - labId, name, description, publishDate, course,
       // nodes array
@@ -179,6 +181,9 @@ export class StudentLabComponent implements OnInit {
     this.messages.add('Student labview page loaded');
   }
 
+  ngOnChanges(): void {
+  }
+
   handleBegin(): void {
     this.isBegin = true;
   }
@@ -190,6 +195,16 @@ export class StudentLabComponent implements OnInit {
   }
 
   goNextNode(next: number): void {
+
+    this.nextNode = next
+    // if there is no next node , close lab when button pressed
+    if (this.nextNode === this.finalNode) {
+      this.isEnd = true;
+      return;
+    }
+
+    this.isEnd = false;
+
     // check that node exists before allowing traversal
     if (this.getNextIndex(next) !== -1) {
       this.nextNode = this.getNextIndex(next);
@@ -210,12 +225,14 @@ export class StudentLabComponent implements OnInit {
   // method to handle backward tree traversal --
   // currently this will only work for one node, since having multiple
   // previous nodes stored would require a structure (like an array)
-  // to store the previous nodes for traversal. Currently
+  // to store the previous nodes for history traversal. Currently
   // it is only a variable with a single value.
   handleTraverseBackward(): void {
     // this.prevNode
+    this.nextNode = null;
+    console.log(this.nextNode)
     this.currentNode = this.prevNode;
-    this.disabledNext = "";
+    this.disabledNext = "disabled";
     this.disabledPrevious = "disabled";
   }
 

@@ -5,6 +5,7 @@
             <button (click)="handlePreviousNode()" [disabled]="allowPrevious">Previous node</button>
             <button *ngIf="currNodeType === 'Play video'" (click)="handlePlayPause()">Play/Pause</button>
             <button (click)="handleNextNode()" [disabled]="allowNext">Next node</button>
+            <a routerLink="/labview" *ngIf="isFinished">Finish</a>
         </div>
     </div>
 </div>
