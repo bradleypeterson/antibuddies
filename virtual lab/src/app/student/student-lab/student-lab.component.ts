@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackEndServiceService } from '../../back-end-service.service'
-import { labType, quizNode } from '../../interfaces';
+//import { labType, quizNode } from '../../interfaces';
 
 @Component({
   selector: 'student-lab',
@@ -86,7 +86,7 @@ export class StudentLabComponent implements OnInit {
   };
   
   // Actual lab for use later
-  newLab: labType;
+  //newLab: labType;
 
   constructor(private backEnd: BackEndServiceService) { 
     // Retrieve lab from service - test

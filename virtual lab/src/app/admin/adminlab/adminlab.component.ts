@@ -13,11 +13,18 @@ export class AdminlabComponent implements OnInit {
 
   ngOnInit(): void {
     this.messageService.add('Admin page loaded');
-    let lab = this.data.createLab("chemistry","this is for chemistry part 1");
-    let quizNode = this.data.createQuizNode(lab.labID,"section 1",
-      "elements",
-      "what is the element of whatever")
-    console.log("lab",lab);
+    
+    console.log("before lab",this.data.labsContainer);
+    this.messageService.add('Admin page loaded');
+    let lab = this.data.labsContainer.createLab("Chemistry")
+    lab.description = "spring 2020 chemistry"
+    let quiz = lab.createQuizNode("what is blah blah blah")
+    quiz.createAnswer("blah 1",0)
+    quiz.createAnswer("blah 2",0)
+    quiz.createAnswer("blah 3",0)
+    quiz.createAnswer("blah 4",0)
+
+    console.log("after lab",this.data.labsContainer);
 
   }
 
