@@ -3,7 +3,7 @@
     <h2>{{ nodeData.question }}</h2>
     <div *ngFor="let answer of nodeData.answers">
         <label for="answer_{{answer.answerId}}">
-            <input id="answer_{{answer.answerId}}" [value]='answer.nextNodeId' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (click) = "determineNextNode(nextNodeAsSelected)">
+            <input id="answer_{{answer.answerId}}" [value]='answer.nextNodeId' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
             {{answer.answerText}}
         </label>
     </div>

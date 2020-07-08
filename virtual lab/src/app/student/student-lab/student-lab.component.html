@@ -1,5 +1,6 @@
 <div id="lab" class="card">
     <h1>{{ this.dummyLab.name }}</h1>
+    <a routerLink="/labview">Exit Lab</a>
     <div *ngIf="!isBegin">
         <p>
             {{ this.dummyLab.description }}
@@ -13,8 +14,11 @@
             (answered) = "goNextNode($event)"
         ></quiz-view>
         <student-toolbar
+            [isFinished]="isEnd"
             [allowNext]="disabledNext"
-            (traverseIsOkay) = "this.currentNode = this.nextNode"
+            [allowPrevious]="disabledPrevious"
+            (traverseForwardIsOkay) = "handleTraverseForward()"
+            (traverseBackwardIsOkay) = "handleTraverseBackward()"
         ></student-toolbar>
     </div>
 

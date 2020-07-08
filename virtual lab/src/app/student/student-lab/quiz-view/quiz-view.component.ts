@@ -20,46 +20,25 @@ export class QuizViewComponent implements OnInit {
   @Output() answered: EventEmitter<number> = new EventEmitter<number>();
   nextNodeAsSelected: number;
 
-  // everything in nodeData obj will be passed in from parent component
-  // nodeData = {
-  //   nodeId: 0,
-  //       question: "What is the answer to this question?",
-  //       answers: [
-  //         // populate with dummy answers
-  //         {
-  //           nextNodeId: 1,
-  //           answerText: "This first option is correct",
-  //         },
-  //         {
-  //           nextNodeId: 2,
-  //           answerText: "This second option is correct"
-  //         },
-  //         {
-  //           nextNodeId: 3,
-  //           answerText: "This third option is the right one"
-  //         },
-  //         {
-  //           nextNodeId: 4,
-  //           answerText: "This final option is correct"
-  //         }
-  //       ]
-  // }
-
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.nodeData)
+    // console.log(this.nodeData)
   }
 
   ngOnChanges(): void {
-    this.nodeData = this.nodeData
   }
 
   determineNextNode(nextNodeAsSelected: number) {
     // pass event back to parent/toolbar, traverse to next node
-    
     this.answered.emit(this.nextNodeAsSelected);
+    // console.log("next node:", this.nextNodeAsSelected);
+    this.resetNext();
+  }
+
+  resetNext(): void {
+    this.nextNodeAsSelected = null;
   }
 
 }
