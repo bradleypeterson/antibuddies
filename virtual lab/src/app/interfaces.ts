@@ -68,27 +68,40 @@ export class lab {
     }
   }
   
-  export class Quiznode {
-    nodeID: number;
+
+  //parent class for other node types
+  class node{
+      constructor(name:string,nodeID:number) {
+          this.nodeID = nodeID
+          this.name = name
+      }
+      name:string;
+      nodeID:number;
+      outGoingNodes:number[]=[];
+  }
+
+  //quiz nodeType
+  export class Quiznode extends node {
     description: string;
-    name: string;
+    //name: string;
     question: string;
     answers: answerClass[] = [];
     //called from lab class
     constructor(nodeName:string,nodeID:number){
-      this.name = nodeName
-      this.nodeID = nodeID
+        super(nodeName,nodeID) //parent constructor
+        //this.name = nodeName
     }
-    createAnswer(answerText,connectingNodeID):answerClass{
+    createAnswer(answerText:string,connectingNodeID:number):answerClass{
         //check if this answer already exists:
         if (this.findAnswerByText(answerText) == -1) {
-            let tempAnswer = new answerClass(answerText,answerText,this.answers.length)
+            let tempAnswer = new answerClass(answerText,connectingNodeID,this.answers.length)
+            //add to outgoing nodes from parent
+            this.outGoingNodes.push(connectingNodeID);
             this.answers.push(tempAnswer)
             return tempAnswer
         } else {
             throw "Error: Answer: "+answerText+" already exists"
         }
-
     }
     findAnswerByText(name:string):number{
         let foundIndex = -1

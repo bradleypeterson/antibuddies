@@ -24,10 +24,13 @@ export class AdminlabComponent implements OnInit {
     quiz.createAnswer("blah 2",0)
     quiz.createAnswer("blah 3",0)
     quiz.createAnswer("blah 4",0)
+  
 
     //example pull nodes from chemistry
     console.log("pull nodes from chemistry:",
     this.data.labsContainer.labs[this.data.labsContainer.findLabByName("Chemistry")].nodes)
+
+
 
     //another example, getting answers from the above in chemistry, and its quiz node:
     let labCon = this.data.labsContainer
