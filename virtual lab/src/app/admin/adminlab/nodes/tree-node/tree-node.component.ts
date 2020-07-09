@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'tree-node',
@@ -10,6 +10,11 @@ export class TreeNodeComponent implements OnInit, OnChanges {
   // list of available node behaviors - fetch from database later
   nodeBehaviors: string[] = ['Matching', 'Play video', 'Perform experiment', 'Question / Answer'];
   nodeType: string;
+  @Input() labName: string;
+  @Input() nodeName: string;
+
+  labName1 = ""
+  nodeName1 = ""
 
   /*
   // fetch appropriate node-behavior component based on selected behavior.

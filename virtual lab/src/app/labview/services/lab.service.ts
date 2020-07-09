@@ -24,7 +24,17 @@ export class LabService {
                 "labDescription": "A new lab",
                 "publishDate": new Date(),
                 "course": "Immunohematology",
-                "nodeCount": 20
+                "nodeCount": 20,
+                "nodes": [{ 
+                    "nodeId": 1,
+                    "description": "string",
+                    "name": "string",
+                    "answers":[{
+                        "answer": new Object(),
+                        "outGoingNodeID": 2
+                    }],
+                    "incomingNodes": [1,2,3]
+                }]
             },
             {
                 "labId": 2,
@@ -32,7 +42,17 @@ export class LabService {
                 "labDescription": "Another placeholder lab",
                 "publishDate": new Date(),
                 "course": "Immunohematology",
-                "nodeCount": 24
+                "nodeCount": 24,
+                "nodes": [{ 
+                    "nodeId": 2,
+                    "description": "string",
+                    "name": "string",
+                    "answers":[{
+                        "answer": new Object(),
+                        "outGoingNodeID": 2
+                    }],
+                    "incomingNodes": [1,2,3]
+                }]
             },
             {
                 "labId": 3,
@@ -40,7 +60,17 @@ export class LabService {
                 "labDescription": "The third lab in the series",
                 "publishDate": new Date(),
                 "course": "Immunohematology",
-                "nodeCount": 17
+                "nodeCount": 17,
+                "nodes": [{ 
+                    "nodeId": 3,
+                    "description": "string",
+                    "name": "string",
+                    "answers":[{
+                        "answer": new Object(),
+                        "outGoingNodeID": 2
+                    }],
+                    "incomingNodes": [1,2,3]
+                }]
             },
         ];
     }
