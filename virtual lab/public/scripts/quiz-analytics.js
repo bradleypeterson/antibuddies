@@ -14,10 +14,6 @@ var myQuestions = [
     {
         question: "1. Which of the following antibodies can be neutralized by pooled human plasma?",
         answers: [
-            // a: 'anti-Kna',
-            // b: 'anti-Ch',
-            // c: 'anti-Yka',
-            // d: 'anti-Csa'
             'anti-Ch',
             'anti-Kna',
             'anti-Yka',
@@ -34,10 +30,6 @@ var myQuestions = [
     {
         question: "2. The following test results are noted for a unit of blood labeled group A, Rh-negative: <br> Cells tested with: <br> anti-A anti-B anti-D <br> 4+ 0 3+ <br>  What should be done next?",
         answers: [
-            // a: 'transfuse as a group A, Rh-negative',
-            // b: 'transfuse as a group A, Rh-positive',
-            // c: 'notify the collecting facility',
-            // d: 'discard the unit'
             'notify the collecting facility',
             'transfuse as a group A, Rh-negative',
             'transfuse as a group A, Rh-positive',
@@ -74,7 +66,7 @@ function fillAnalytics(){
                         var options = {
                             legend: 'none',
                             orientation: 'vertical',
-                            height: 100,
+                            height: 120,
                         };
                         var chart = new google.visualization.CandlestickChart(document.getElementById('chart'));
                         chart.draw(data, options);
@@ -82,7 +74,7 @@ function fillAnalytics(){
 }
 
 function generateAnalytics(questions, quizContainer){
-    document.getElementById('quizInformation').innerHTML = '<div id="quizName">Quiz: ' + quizInformation.quizName + '</div>' + '<div id="quizTaken">Submissions: '+ quizInformation.taken + '</div>' + '<div id="avgScore">Average score: ' + quizInformation.avgScore + '</div>' + '<div id="highScore">High score: ' + quizInformation.highScore + '</div>';
+    document.getElementById('quizInformation').innerHTML = '<div id="quizName">Quiz: ' + quizInformation.quizName + '</div>' + '<div id="quizTaken">Submissions: '+ quizInformation.taken + '</div>' + '<div id="possible">Max possible: ' + myQuestions.length + '</div>' + '<div id="avgScore">Average score: ' + quizInformation.avgScore + '</div>' + '<div id="highScore">High score: ' + quizInformation.highScore + '</div>' + '</div>' + '<div id="highScore">Low score: ' + quizInformation.lowScore + '</div>';
     function showQuestions(questions, quizContainer){
         var output = [];
         var answers;
@@ -99,7 +91,7 @@ function generateAnalytics(questions, quizContainer){
                 }
                 answers.push(((questions[i].studentAnswers[letter] / quizInformation.taken) * 100) + '% ' + questions[i].answers[letter] + '</div>');
             }
-            output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
+            output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div>');
             // output.push('<div class="question row ">' + questions[i].question  + '<div class="answers">' + answers.join('') + '</div></div>');
         }
         quizContainer.innerHTML = output.join('');
