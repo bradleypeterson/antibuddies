@@ -83,13 +83,11 @@ export class lab {
   //quiz nodeType
   export class Quiznode extends node {
     description: string;
-    //name: string;
     question: string;
     answers: answerClass[] = [];
-    //called from lab class
+    //intended to be called from lab class
     constructor(nodeName:string,nodeID:number){
         super(nodeName,nodeID) //parent constructor
-        //this.name = nodeName
     }
     createAnswer(answerText:string,connectingNodeID:number):answerClass{
         //check if this answer already exists:
@@ -115,7 +113,7 @@ export class lab {
   }
   
   export class answerClass {
-      //called from quizNode class
+      //intended to be called from quizNode class
     constructor(answerText:string,connectingNodeID:number,answerID:number){
       this.answerText = answerText
       this.connectingNodeID = connectingNodeID
