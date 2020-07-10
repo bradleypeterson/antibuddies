@@ -23,13 +23,14 @@ export class AdminlabComponent implements OnInit {
     console.log("before lab",this.data.labsContainer);
     
     //example
-    // let lab = this.data.labsContainer.createLab("Chemistry")
-    // lab.description = "spring 2020 chemistry"
-    // let quiz = lab.createQuizNode("what is blah blah blah")
-    // quiz.createAnswer("blah 1",0)
-    // quiz.createAnswer("blah 2",0)
-    // quiz.createAnswer("blah 3",0)
-    // quiz.createAnswer("blah 4",0)
+    let lab = this.data.labsContainer.createLab("Chemistry")
+    lab.description = "spring 2020 chemistry"
+    let quiz = lab.createQuizNode("what is blah blah blah")
+    quiz.createAnswer("blah 1",0)
+    quiz.createAnswer("blah 2",0)
+    quiz.createAnswer("blah 3",0)
+    quiz.createAnswer("blah 4",0)
+  
 
     //example pull nodes from chemistry
     // console.log("pull nodes from chemistry:",
@@ -44,14 +45,19 @@ export class AdminlabComponent implements OnInit {
 
     //console.log("after lab",this.data.labsContainer);
 
-  }
 
-  nodeName = "";
+
+    //another example, getting answers from the above in chemistry, and its quiz node:
+    let labCon = this.data.labsContainer
+    let la = labCon.labs[labCon.findLabByName("Chemistry")]
+    let node = la.nodes[la.findNodeByName("what is blah blah blah")]
+    let answers = node.answers
+    console.log ("pull answers created above:",answers)
+  }
   isNewLab = true;
   isNewNode = true;
   labName = "";
-  
-
+  nodeName = "";
   receiveMessage($event): void 
   {
     this.isNewLab = $event
