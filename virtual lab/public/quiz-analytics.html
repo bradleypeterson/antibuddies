@@ -2,7 +2,14 @@
 <html>
    <head>
     <style type="text/css">
-      html, body { margin: 0; padding: 0; height: 100%; width: 100%; background-color: #310F41;  } 
+      /* html, body { margin: 0; padding: 0; height: 100%; width: 100%; background-color: #310F41;  }  */
+      html, body { margin: 0; padding: 0; background-color: #310F41;  } 
+      .fa-check{
+         color: green;
+      }
+      .fa-times{
+         color: red;
+      }
   </style>
       <link
          href="https://fonts.googleapis.com/css?family=Roboto"
@@ -24,8 +31,14 @@
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
          />
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+         <script type="text/javascript">
+            google.charts.load('current', { 'packages': ['corechart'] });
+        </script>
+      <script src="scripts/quiz-analytics.js"></script>
    </head>
-   <body onload="startAdminQuiz()" style="background-color: #310F41; padding: 15px;">
+   <!-- <body onload="startAdminQuiz()" style="background-color: #310F41; padding: 15px;"> -->
+      <body style="background-color: #310F41; padding: 15px;"></body>
       <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
          <h1
             style="text-align: left; padding-left: 15px; padding-bottom: 15px; text-decoration: underline; color: #310F41;"
@@ -59,6 +72,20 @@
             align="right"/>
          <h3 class="header" style="padding-top: 50px; background-color: grey; padding-bottom: 50px;">Quiz Analytics</h3>
       </div>
+
+      <div id="quizAnalytics">
+         <div id="quizInformation">
+
+         </div>
+         <div id="chart"></div>
+         <div id="quizQuestions">
+
+         </div>
+
+      </div>
+
+
+
       <div class="footer"><footer>
         <h6> CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
       </footer></div>
@@ -66,7 +93,7 @@
    </body>
    <style>
      .footer {
-      position: absolute;
+      /* position: absolute; */
       right: 0;
       bottom: 0;
       left: 0;
