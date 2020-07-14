@@ -1,137 +1,99 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Sample Quiz</title>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+   <head>
+      <style type="text/css">
+         html, body { margin: 0; padding: 0; height: 100%; width: 100%; background-color: #310F41;  } 
+      </style>
+      <title>Sample Quiz</title>
+      <!-- this is the title for the tab.-->
+      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
       <script type="text/javascript" src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="style/panel.css">
-    <script src="scripts/login.js"></script>
-    <script type='text/javascript' src='scripts/quiz.js'></script>
-    
-</head>
-
-
-<body>
-
-<a href="index.html">HOME</a>
-<div class = "container-fluid">
-	<div class = "rowz">
-		<!-- <img src="wsulogo.png" alt="Italian Trulli" id="wsupagelogo" align="right"> -->
-		<h1 class="header" id="quizName"></h1>
-		
-	</div>
-</div>        
-
-<div class="outer container-fluid">
-     <div class="inner">
-        <div id="quiz"></div>
-        <div id="results"></div>  
-         		<div class="subbtn" id="subButt"><button id="submit" class="btn btn-light">Submit</button></div>
-    </div>
-     </div>
-	 
-</div>
-
-   
-<!-- <script type='text/javascript' src='quiz.js'></script> -->
-
-    <!-- <script>
-    var myQuestions = [
-    {
-        question: "1. Which of the following antibodies can be neutralized by pooled human plasma?",
-        answers: {
-            a: 'anti-Kna',
-            b: 'anti-Ch',
-            c: 'anti-Yka',
-            d: 'anti-Csa'
-        },
-        correctAnswer: 'b',
-        displayAnswer: 'Correct response is B. Anti-Ch and anti-Rg can be neutralized by pooled human plasma because the Ch and Rg antigens reside on complement protein C4. Neutralization studies with pooled plasma can help confirm the antibody reactivity in a patient’s sample. (Source Harmening, 7th Edition, Chapter...)'
-    },
-    {
-        question: "2. The following test results are noted for a unit of blood labeled group A, Rh-negative: <br> Cells tested with: <br> anti-A anti-B anti-D <br> 4+ 0 3+ <br>  What should be done next?",
-        answers: {
-            a: 'transfuse as a group A, Rh-negative',
-            b: 'transfuse as a group A, Rh-positive',
-            c: 'notify the collecting facility',
-            d: 'discard the unit'
-        },
-        correctAnswer: 'c',
-        displayAnswer: 'Correct response is C. A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)'
-    }
-];
-
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
-
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
-    function showQuestions(questions, quizContainer){
-        var output = [];
-        var answers;
-
-        for(var i=0; i<questions.length; i++){
-            answers = [];
-            for(letter in questions[i].answers){
-                answers.push('<label class="radio row">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + letter + ': ' + questions[i].answers[letter] + '</label>');
-            }
-            output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div></div>');
-            // output.push('<div class="question row ">' + questions[i].question  + '<div class="answers">' + answers.join('') + '</div></div>');
-        }
-        quizContainer.innerHTML = output.join('');
-    }
-
-
-    function showResults(questions, quizContainer, resultsContainer){
-        
-        var answerContainers = quizContainer.querySelectorAll('.answers');
-        var userAnswer = '';
-        var numCorrect = 0;
-        
-        for(var i=0; i<questions.length; i++){
-            userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-            if(userAnswer===questions[i].correctAnswer){
-                numCorrect++;
-                answerContainers[i].style.color = 'lightgreen';
-            }
-
-            else{
-                answerContainers[i].style.color = 'red';
-                if (userAnswer===questions[1-1].correctAnswer) {
-                window.alert("Correct response is B. Anti-Ch and anti-Rg can be neutralized by pooled human plasma because the Ch and Rg antigens reside on complement protein C4. Neutralization studies with pooled plasma can help confirm the antibody reactivity in a patient’s sample. (Source Harmening, 7th Edition, Chapter...)");
-                }
-                if (userAnswer===questions[2-1].correctAnswer) {
-                    window.alert("Correct response is C. A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)");
-                }
-            }
-        }
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    }
-
-    showQuestions(questions, quizContainer);
-
-    submitButton.onclick = function(){
-        showResults(questions, quizContainer, resultsContainer);
-    }
-}
-</script> -->
-
-</body>
-
-<footer>
-    <div class="nav">
-        <ul class="main-menu" id="logbut">		
-            <li><a href="index.html" >Logout</a>			
-            </li>			
-        </ul>
-
-    </div>
-
-</footer>
-
+      <link rel="stylesheet" href="style/panel.css">
+      <script src="scripts/login.js"></script>
+      <script type='text/javascript' src='scripts/quiz.js'></script>
+      <link
+         href="https://fonts.googleapis.com/css?family=Roboto"
+         rel="stylesheet"
+         />
+      <title>Sample Quiz</title>
+      <!-- this is the title for the tab.-->
+      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.js"></script>
+      <link rel="stylesheet" href="style/panel.css">
+      <link rel="stylesheet" href="style/styleQuizCleanUp.css" />
+      <link rel="stylesheet" href="style/style.css" />
+      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+      <script type="text/javascript" src="js/bootstrap.js"></script>
+      <link rel="stylesheet" href="style/panel.css">
+      <script src="scripts/login.js"></script>
+      <script type='text/javascript' src='scripts/quiz.js'></script>
+      <script src="scripts/quizCleanUpScripts.js"></script>
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+         />
+      <script src="scripts/login.js"></script>
+      <script type='text/javascript' src='scripts/quiz.js'></script>
+   </head>
+   <body onstart="startQuiz()" style="background-color: #310F41; padding: 15px;">
+      <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
+         <h1
+            style="text-align: left; padding-left: 15px; padding-bottom: 15px; text-decoration: underline; color: #310F41;"
+            >
+            Menu Options
+         </h1>
+         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+            >&times;</a
+            >
+         <a href="student-home-page.html" style="color: #310F41;">-- Home</a>
+         <a href="quiz-results.html" style="color: #310F41;">-- Quiz Results</a>
+         <a href="quiz-analytics.html" style="color: #310F41;">-- Quiz Analytics</a>
+         <a href="study-materials.html" style="color: #310F41;">-- Study Material</a>
+         <a href="index.html" style="color: #310F41;">-- Log Off</a>
+      </div>
+      </div>
+      <!-- Use any element to open the sidenav -->
+      <button style="background-color: grey; height: 84px; width: 80px; padding-left: 10px; padding-top: 12px;">
+         <div
+            class="fa fa-bars"
+            style="align-content: center; font-size: 42px; padding: 10px; color: white;"
+            onclick="openNav()"></div>
+      </button>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page
+         <div id="main"> Add all page content here...</div> -->
+      <div class="rowz" style="align-content: center;">
+         <img
+            src="wsulogo.png"
+            alt="Italian Trulli"
+            id="wsupagelogo"
+            align="right"/>
+         <h3 class="header" style="padding-top: 50px; background-color: grey; padding-bottom: 50px;" id="quizName">Quiz: Sample Quiz</h3>
+         <div class = "container-fluid">
+            <div class = "rowz">
+               <!-- <img src="wsulogo.png" alt="Italian Trulli" id="wsupagelogo" align="right"> -->
+            </div>
+         </div>
+         <div class="outer container-fluid">
+            <div class="inner">
+               <div id="quiz"></div>
+               <div id="results"></div>
+               <div class="subbtn" id="subButt">
+                  <button id="submit" class="btn btn-light">Submit</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="quiz-footer">
+         <footer>
+            <h6> CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
+         </footer>
+      </div>
+   </body>
 </html>
