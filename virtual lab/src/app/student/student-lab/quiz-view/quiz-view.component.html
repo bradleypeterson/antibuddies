@@ -1,12 +1,10 @@
 <div>
-    <h2>Node ID: {{ nodeData.nodeId }}</h2>
+    <h2>Node ID: {{ nodeData.nodeID }}</h2>
     <h2>{{ nodeData.question }}</h2>
     <div *ngFor="let answer of nodeData.answers">
         <label for="answer_{{answer.answerId}}">
-            <input id="answer_{{answer.answerId}}" [value]='answer.nextNodeId' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
+            <input id="answer_{{answer.answerId}}" [value]='answer.connectingNodeID' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
             {{answer.answerText}}
         </label>
     </div>
-
-    (Next node should be: {{ nextNodeAsSelected }})
 </div>
