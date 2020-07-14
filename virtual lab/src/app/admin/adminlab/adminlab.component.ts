@@ -25,12 +25,25 @@ export class AdminlabComponent implements OnInit {
     //example
     let lab = this.data.labsContainer.createLab("Chemistry")
     lab.description = "spring 2020 chemistry"
-    let quiz = lab.createQuizNode("what is blah blah blah")
-    quiz.createAnswer("blah 1",0)
-    quiz.createAnswer("blah 2",0)
-    quiz.createAnswer("blah 3",0)
-    quiz.createAnswer("blah 4",0)
-  
+
+    // sample quiz questions
+    let quizQ1 = lab.createQuizNode("what is blah blah blah")
+    quizQ1.createAnswer("blah 1",1)
+    quizQ1.createAnswer("blah 2",2)
+    quizQ1.createAnswer("blah 3",1)
+    quizQ1.createAnswer("blah 4",4)
+
+    let quizQ2 = lab.createQuizNode("What is the answer?")
+    quizQ2.createAnswer("q2 answer1", 5)
+    quizQ2.createAnswer("q2 answer2", 6)
+    quizQ2.createAnswer("q2 answer3", 7)
+    quizQ2.createAnswer("q2 answer4", 8)
+
+    let quizQ3 = lab.createQuizNode("Provide another answer?")
+    quizQ3.createAnswer("q3 answer1", 9)
+    quizQ3.createAnswer("q3 answer2", 10)
+    quizQ3.createAnswer("q3 answer3", 11)
+    quizQ3.createAnswer("q3 answer4", 12)
 
     //example pull nodes from chemistry
     // console.log("pull nodes from chemistry:",

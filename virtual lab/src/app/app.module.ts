@@ -25,6 +25,7 @@ import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.com
 import {HttpClientModule} from '@angular/common/http';
 import { LabHeaderComponent } from './shared/lab-header/lab-header.component';
 import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
+import { MatchingViewComponent } from './student/student-lab/matching-view/matching-view.component';
 
 
 
@@ -49,7 +50,8 @@ import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
     StudentLabComponent,
     QuizViewComponent,
     LabHeaderComponent,
-    NodelistComponent
+    NodelistComponent,
+    MatchingViewComponent
   ],
   imports: [
     BrowserModule,
