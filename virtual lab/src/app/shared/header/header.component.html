@@ -1,10 +1,16 @@
 <div class="container">
-    <div class="row">
-        <div class='col-md-4'><h1>Lab Admin</h1></div>
-        <div class='col-md-2'><button>View Analytics</button></div>
-        <div class='col-md-2'><button>View lab details</button></div>
-        <div class='col-md-2'><button>Save</button></div>
-        <div class='col-md-2'><button>Delete Lab</button></div>
+    <div class="row" >
+        <div class='col-md-4' style="float: left;;"><h1>Lab Admin</h1></div>
+        <div class="col-md-2"> 
+            <label for="labname">Enter Lab name</label>
+        </div>
+        <div class="col-md-2"> 
+            <input maxlength="15" [(ngModel)] ="labName"  type='text'  id="labname" placeholder='New Lab Name'/>
+        </div>
+        <div class='col-md-2'  >
+            <button (click) = "addNewLab()"class='btn btn-primary'>Add New Lab</button>
+        </div>
+       
     </div>
 </div>
 

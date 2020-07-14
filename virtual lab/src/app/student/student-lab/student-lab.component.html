@@ -1,5 +1,6 @@
 <div id="lab" class="card">
     <h1>{{ this.dummyLab.name }}</h1>
+    <a routerLink="/labview">Exit Lab</a>
     <div *ngIf="!isBegin">
         <p>
             {{ this.dummyLab.description }}
@@ -8,8 +9,17 @@
         <button (click)="handleBegin()">Begin lab</button>
     </div>
     <div class="full-view" *ngIf="isBegin">
-        <quiz-view></quiz-view>
-        <student-toolbar></student-toolbar>
+        <quiz-view 
+            [nodeData]="dummyLab.nodes[currentNode]"
+            (answered) = "goNextNode($event)"
+        ></quiz-view>
+        <student-toolbar
+            [isFinished]="isEnd"
+            [allowNext]="disabledNext"
+            [allowPrevious]="disabledPrevious"
+            (traverseForwardIsOkay) = "handleTraverseForward()"
+            (traverseBackwardIsOkay) = "handleTraverseBackward()"
+        ></student-toolbar>
     </div>
 
 </div>

@@ -1,3 +1,5 @@
+import { Node } from '../interfaces/NodeInterface';
+
 export interface ILab {
     labId: number;
     labName: string;
@@ -5,4 +7,5 @@ export interface ILab {
     publishDate: Date;
     course: string;
     nodeCount: number;
+    nodes: Node[];
 }

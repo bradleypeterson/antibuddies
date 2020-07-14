@@ -22,6 +22,9 @@ import { StudentToolbarComponent } from './student/student-lab/student-toolbar/s
 import { StudentLabComponent } from './student/student-lab/student-lab.component';
 import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.component';
 
+import {HttpClientModule} from '@angular/common/http';
+import { LabHeaderComponent } from './shared/lab-header/lab-header.component';
+import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
 
 
 
@@ -44,13 +47,16 @@ import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.com
     MessagesComponent,
     StudentToolbarComponent,
     StudentLabComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    LabHeaderComponent,
+    NodelistComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

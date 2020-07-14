@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from "./message.service";
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { LabsContainer } from "./interfaces"
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import { Observable, of } from 'rxjs';
 export class BackEndServiceService {
   
   constructor(private http: HttpClient, private messageService: MessageService) { }
+
+  labsContainer = new LabsContainer()
 
   private dataUrl = 'api/vlab';  // URL to web api
 
@@ -24,6 +27,8 @@ export class BackEndServiceService {
     ];
     return of(sampleString);
   }
+
+  
 
   /** GET data from the server */
   getData(): Observable<string[]> {
