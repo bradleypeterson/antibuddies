@@ -27,7 +27,6 @@ import { LabHeaderComponent } from './shared/lab-header/lab-header.component';
 import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
