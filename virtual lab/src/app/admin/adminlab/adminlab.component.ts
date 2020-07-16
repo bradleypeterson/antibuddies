@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { isNullOrUndefined } from 'util';
-import { lab, LabsContainer } from 'src/app/interfaces';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-//import { SSL_OP_CISCO_ANYCONNECT } from 'constants';
+import { lab } from 'src/app/interfaces';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'pm-adminlab',
@@ -13,51 +13,31 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 })
 export class AdminlabComponent implements OnInit {
 
-  constructor(private messageService: MessageService, private data: BackEndServiceService) {
-
+  constructor(private messageService: MessageService, private router: Router, private route: ActivatedRoute, private data: BackEndServiceService) { 
+    
   }
 
-  labsBox: LabsContainer;
-  reply
+  
 
   ngOnInit(): void {
-    //message service:
     this.messageService.add('Admin page loaded');
 
+    console.log("before lab",this.data.labsContainer);
     
 
-    console.log("get:",this.data.getUsers()
-      .subscribe(reply => this.reply = reply));
-
-    console.log("users:",this.reply);
-
-    //example:
-    this.data.getLabsContainer().subscribe(callBacklabsBox => this.labsBox = callBacklabsBox)
-
-    console.log("before lab", this.data.labsContainer);
+    this.labId  = +this.route.snapshot.paramMap.get('labid')
+    this.labName  = this.route.snapshot.paramMap.get('labname')
+    console.log(" this lab name is " ,this.labName)
 
     //example
     let lab = this.data.labsContainer.createLab("Chemistry")
     lab.description = "spring 2020 chemistry"
-
-    // sample quiz questions
-    let quizQ1 = lab.createQuizNode("what is blah blah blah")
-    quizQ1.createAnswer("blah 1",1)
-    quizQ1.createAnswer("blah 2",2)
-    quizQ1.createAnswer("blah 3",1)
-    quizQ1.createAnswer("blah 4",4)
-
-    let quizQ2 = lab.createQuizNode("What is the answer?")
-    quizQ2.createAnswer("q2 answer1", 5)
-    quizQ2.createAnswer("q2 answer2", 6)
-    quizQ2.createAnswer("q2 answer3", 7)
-    quizQ2.createAnswer("q2 answer4", 8)
-
-    let quizQ3 = lab.createQuizNode("Provide another answer?")
-    quizQ3.createAnswer("q3 answer1", 9)
-    quizQ3.createAnswer("q3 answer2", 10)
-    quizQ3.createAnswer("q3 answer3", 11)
-    quizQ3.createAnswer("q3 answer4", 12)
+    let quiz = lab.createQuizNode("what is blah blah blah")
+    quiz.createAnswer("blah 1",0)
+    quiz.createAnswer("blah 2",0)
+    quiz.createAnswer("blah 3",0)
+    quiz.createAnswer("blah 4",0)
+  
 
     //example pull nodes from chemistry
     // console.log("pull nodes from chemistry:",
@@ -68,7 +48,7 @@ export class AdminlabComponent implements OnInit {
     // let la = labCon.labs[labCon.findLabByName("Chemistry")]
     // let node = la.nodes[la.findNodeByName("what is blah blah blah")]
     // let answers = node.answers
-    // console.log ("pull answers created above:",answers)
+   // console.log ("pull answers created above:",answers)
 
     //console.log("after lab",this.data.labsContainer);
 
@@ -79,43 +59,60 @@ export class AdminlabComponent implements OnInit {
     let la = labCon.labs[labCon.findLabByName("Chemistry")]
     let node = la.nodes[la.findNodeByName("what is blah blah blah")]
     let answers = node.answers
-    console.log("pull answers created above:", answers)
+    console.log ("pull answers created above:",answers)
   }
+  labId = 0;
   isNewLab = true;
   isNewNode = true;
   labName = "";
   nodeName = "";
-  receiveMessage($event): void {
+  nodeId = 0;
+  receiveMessage($event): void 
+  {
     this.isNewLab = $event
   }
 
-  receiveMessage2($event): void {
-    this.isNewLab = $event
-    this.isNewNode = $event
-  }
-  lab: lab
-
-  receiveLabName($event) {
-    this.labName = $event
-
-    this.lab = this.data.labsContainer.createLab($event)
-    this.lab.description = "Lab Description: " + $event;
-
-  }
-
-  addNewNode(): void {
-
-
-    if (this.nodeName != "") {
-      if (this.isNewNode == true) {
-        this.isNewNode = false;
-      }
-      else { this.isNewNode = true; }
+  nodeIdMessage($event): void
+  {
+    this.nodeId = $event
+    console.log("node Id ", this.nodeId)
+    if(this.nodeId!=0)
+    {
+      this.isNewNode =false
     }
+  }
+  labDetails(): void{
 
   }
 
-  saveNode(): void {
+  saveLab(): void{
+
+  }
+
+  deleteLab(): void{
+
+  }
+
+  backButton(): void{
+  
+    this.router.navigate(['/labview'])
+  }
+ 
+  addNewNode(): void {
+    
+    if(this.nodeName != "")
+    {
+        if(this.isNewNode == true)
+        {
+          this.isNewNode = false;
+        }
+        else{this.isNewNode = true;}
+    }
+    
+  }
+
+ 
+  saveNode(): void{
     this.isNewNode = true;
   }
 

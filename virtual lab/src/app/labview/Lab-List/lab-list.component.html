@@ -17,13 +17,12 @@
             
 
                     
-                    <td>{{ lab.labName }}</td>
+                    <td> <a [routerLink] = "['/adminlab', '1', 'lab1']">{{ lab.labName }}</a></td>
                     <td>{{ lab.labDescription }}</td>
                     <td>{{ lab.publishDate }}</td>
                     <td>{{ lab.date }}</td>
                     <td>{{ lab.course }}</td>
-                    <td><a href="google.com">link</a></td>
-
+                   
                 </tr>
             </tbody>
             </table>
