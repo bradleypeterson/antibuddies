@@ -3,6 +3,105 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 
+/* Styles as defined by quiz cleanup group -- modified/expanded for our use */
+.red {
+  /* cancel/no/delete  */
+  color: #f20a0a;
+}
+
+.container-bg{
+  /* page background grey*/
+  background-color: #e5e5e5;
+}
+
+.menubar {
+  /* light grey used in menu  */
+  color: #c4c4c4;
+}
+
+.white {
+  /* regular white color  */
+  color: #fffdfd;
+}
+
+.numbered_button {
+  /* grey color of the text of question # button */
+  color: #7b7b7b;
+}
+
+.green {
+  /* used for catagory and for correct text  */
+  color: #28df24;
+}
+
+
+
+/*********************************/
+
+/* Additional virtual lab styles */
+body {
+  background: #310f41;
+}
+
+a {
+  color: #9800e0;
+}
+
+.main-component {
+  background: gray;
+}
+
+.page-header {
+  margin-bottom: 30px;
+  color: #9800e0;
+  background: black;
+}
+
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.main-nav li {
+  display: inherit;
+  list-style: none;
+  margin-right: 2px;
+  border-left: #9800e0 solid 1px;
+  border-radius: 10px 0 10px 0;
+}
+
+.main-nav li:last-of-type {
+  margin-right: 0;
+  border-right: none;
+}
+
+.main-nav a {
+  flex: 1;
+  justify-content: center;
+  padding: 10px;
+  color: rgb(202, 98, 250);
+  text-decoration: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.main-nav a:hover {
+  color: #FFF;
+  background-color:  #310f41;
+}
+
+.container {
+  color: #FFF;
+  background: none;
+}
+
+.toolbar, .navigation {
+  color: #FFF;
+}
+
+.lab-list {
+}
+
 div.card-header {
  font-size: large;
 }

@@ -1,19 +1,21 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class ="container">
-  <div class = "row header">
-    <div class = "col-md-6">
-      <h1>{{pageTitle}}</h1>
-    </div>
-    <div class = "col-sm-2">
-      <a routerLink="/adminlab">admin</a>
-    </div>
-    <div class = "col-sm-2">
-      <a routerLink="/labview">labview</a>
-    </div>
-    <div class = "col-sm-2">
-      <a routerLink="/studentlab">StudentLab (Demo)</a>
-    </div>
-</div>
+<div class = "page-header">
+  <div class="container">
+    <h1>{{pageTitle}}</h1>
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a routerLink="/adminlab">admin</a>
+        </li>
+        <li>
+          <a routerLink="/labview">labview</a>
+        </li>
+        <li>
+          <a routerLink="/studentlab">StudentLab (Demo)</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>
 <router-outlet></router-outlet>
 <pm-messages></pm-messages>
