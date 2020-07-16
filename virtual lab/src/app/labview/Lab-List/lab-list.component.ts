@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { LabService } from '../services/lab.service';
+import { BackEndServiceService } from '../../back-end-service.service';
 
 @Component ({
     selector: 'pm-lablist',
@@ -8,12 +8,29 @@ import { LabService } from '../services/lab.service';
 
 export class LabListComponent implements OnInit {
 
-    labs: Object[] = []
+    labs: Object[] = [];
 
-    constructor( private labService: LabService ) {}
+    constructor( private backendService: BackEndServiceService ) {
+        let labNew = this.backendService.labsContainer.createLab("Chemistry")
+        labNew.description = "spring 2020 chemistry"
+        let quiz = labNew.createQuizNode("what is blah blah blah")
+        quiz.createAnswer("blah 1",0)
+        quiz.createAnswer("blah 2",0)
+        quiz.createAnswer("blah 3",0)
+        quiz.createAnswer("blah 4",0)
+
+
+        let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
+        let lab = this.backendService.labsContainer.labs[labNumber];
+        this.labs.push(lab)
+    }
 
     ngOnInit(): void {
-        this.labs = this.labService.getLabs()
+        console.log(this.labs)
+
+        for (let lab of this.labs) {
+            
+        }
     }
 
     // labs =

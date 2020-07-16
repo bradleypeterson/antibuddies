@@ -40,6 +40,7 @@
 
 /* Additional virtual lab styles */
 body {
+  color: #FFF;
   background: #310f41;
 }
 
@@ -95,11 +96,18 @@ a {
   background: none;
 }
 
-.toolbar, .navigation {
+.toolbar, .navigation, .lab-list, .table {
   color: #FFF;
 }
 
-.lab-list {
+.btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  border: none;
+  background-color: #9800e0;
+}
+
+.btn-primary:hover {
+  color: #310f41;
+  background-color: #FFF;
 }
 
 div.card-header {
