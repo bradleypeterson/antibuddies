@@ -36,6 +36,8 @@ export class LabsContainer {
 //lab class
 export class lab {
     labID:number
+    createdDate:Date
+    course:string
     nodes:any[] = []
     description:string
     name:string
