@@ -65,10 +65,10 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             for(letter in ansArray){
                 answers.push('<label class="radio row" id="question' + i + '_' + letter +'">' + '<input type="radio" name="question' + i + '" value="'+letter+'">' + ansArray[letter] );
                 if(letter == questions[i].correctAnswer){
-                    answers.push('<span class="correct" hidden>&nbspCorrect</span>'+ '</label>');
+                    answers.push('<span class="correct" hidden>&nbsp<i class="fa fa-check" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
                 }
                 else{
-                    answers.push('<span class="incorrect" id="question' + i + '_' + letter + 'Incorrect" hidden>&nbspIncorrect</span>'+ '</label>');
+                    answers.push('<span class="incorrect" id="question' + i + '_' + letter + 'Incorrect" hidden>&nbsp<i class="fa fa-times" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
                 }
             }
             output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
