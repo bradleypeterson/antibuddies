@@ -61,4 +61,7 @@ import { MatchingViewComponent } from './student/student-lab/matching-view/match
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  
+ }
