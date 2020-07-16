@@ -60,4 +60,7 @@ import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  
+ }

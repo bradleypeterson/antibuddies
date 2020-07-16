@@ -3,6 +3,8 @@ import { MessageService } from '../../message.service';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { isNullOrUndefined } from 'util';
 import { lab } from 'src/app/interfaces';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'pm-adminlab',
@@ -11,7 +13,7 @@ import { lab } from 'src/app/interfaces';
 })
 export class AdminlabComponent implements OnInit {
 
-  constructor(private messageService: MessageService, private data: BackEndServiceService) { 
+  constructor(private messageService: MessageService, private router: Router, private route: ActivatedRoute, private data: BackEndServiceService) { 
     
   }
 
@@ -22,6 +24,11 @@ export class AdminlabComponent implements OnInit {
 
     console.log("before lab",this.data.labsContainer);
     
+
+    this.labId  = +this.route.snapshot.paramMap.get('labid')
+    this.labName  = this.route.snapshot.paramMap.get('labname')
+    console.log(" this lab name is " ,this.labName)
+
     //example
     let lab = this.data.labsContainer.createLab("Chemistry")
     lab.description = "spring 2020 chemistry"
@@ -54,34 +61,45 @@ export class AdminlabComponent implements OnInit {
     let answers = node.answers
     console.log ("pull answers created above:",answers)
   }
+  labId = 0;
   isNewLab = true;
   isNewNode = true;
   labName = "";
   nodeName = "";
+  nodeId = 0;
   receiveMessage($event): void 
   {
     this.isNewLab = $event
   }
 
-  receiveMessage2($event): void 
+  nodeIdMessage($event): void
   {
-    this.isNewLab = $event
-    this.isNewNode = $event
+    this.nodeId = $event
+    console.log("node Id ", this.nodeId)
+    if(this.nodeId!=0)
+    {
+      this.isNewNode =false
+    }
   }
-   lab: lab
-
-  receiveLabName($event)
-  {
-    this.labName = $event
-
-    this.lab = this.data.labsContainer.createLab($event)
-    this.lab.description = "Lab Description: "+$event;
+  labDetails(): void{
 
   }
+
+  saveLab(): void{
+
+  }
+
+  deleteLab(): void{
+
+  }
+
+  backButton(): void{
   
+    this.router.navigate(['/labview'])
+  }
+ 
   addNewNode(): void {
     
-
     if(this.nodeName != "")
     {
         if(this.isNewNode == true)
@@ -93,6 +111,7 @@ export class AdminlabComponent implements OnInit {
     
   }
 
+ 
   saveNode(): void{
     this.isNewNode = true;
   }

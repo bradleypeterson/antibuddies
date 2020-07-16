@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'pm-nodelist',
@@ -8,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class NodelistComponent implements OnInit {
 
   constructor() { }
-
+  @Output() nodeIdEvent = new EventEmitter<number>();
   ngOnInit(): void {
+  }
+
+  nodeId = 1;
+  editNode(): void {
+
+    this.nodeIdEvent.emit(this.nodeId)
   }
 
 
