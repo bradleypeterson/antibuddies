@@ -23,7 +23,9 @@ import { StudentLabComponent } from './student/student-lab/student-lab.component
 import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.component';
 
 import {HttpClientModule} from '@angular/common/http';
-
+import { LabHeaderComponent } from './shared/lab-header/lab-header.component';
+import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
+import { MatchingViewComponent } from './student/student-lab/matching-view/matching-view.component';
 
 
 @NgModule({
@@ -45,7 +47,10 @@ import {HttpClientModule} from '@angular/common/http';
     MessagesComponent,
     StudentToolbarComponent,
     StudentLabComponent,
-    QuizViewComponent
+    QuizViewComponent,
+    LabHeaderComponent,
+    NodelistComponent,
+    MatchingViewComponent
   ],
   imports: [
     BrowserModule,

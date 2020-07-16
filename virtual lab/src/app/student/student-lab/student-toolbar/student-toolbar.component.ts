@@ -16,7 +16,7 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
 @Output() traverseForwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 @Output() traverseBackwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
-  currNodeType: string = 'Play video';
+videoNode: boolean = false;
 
   constructor() { }
 

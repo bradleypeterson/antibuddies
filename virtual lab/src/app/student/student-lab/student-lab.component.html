@@ -1,18 +1,22 @@
-<div id="lab" class="card">
-    <h1>{{ this.dummyLab.name }}</h1>
+<div id="lab" class="card container">
+    <h1>{{ labName }}</h1>
     <a routerLink="/labview">Exit Lab</a>
     <div *ngIf="!isBegin">
         <p>
-            {{ this.dummyLab.description }}
+            {{ labDescription }}
         </p>
     
         <button (click)="handleBegin()">Begin lab</button>
     </div>
     <div class="full-view" *ngIf="isBegin">
         <quiz-view 
-            [nodeData]="dummyLab.nodes[currentNode]"
+            [nodeData]="nodes[currentNode]"
             (answered) = "goNextNode($event)"
         ></quiz-view>
+        <matching-view>
+            
+        </matching-view>
+
         <student-toolbar
             [isFinished]="isEnd"
             [allowNext]="disabledNext"

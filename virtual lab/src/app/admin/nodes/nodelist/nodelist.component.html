@@ -1,0 +1,30 @@
+<div class='card container'>
+    <div class='card-body'>
+        <div class='table-responsive'>
+            <table class='table'*ngIf='nodes && nodes.length'>
+            <thead>
+                <tr>
+                    <th>NodeID:</th>
+                    <th>Description</th>
+                    <th>Name</th>
+                    <th></th>
+                 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let node of nodes'>
+            
+
+                    
+                    <td>{{ node.nodeid }}</td>
+                    <td>{{ node.description }}</td>
+                    <td>{{ node.name }}</td>
+                    <td><a href="www.google.com">Link</a></td>
+                  
+
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

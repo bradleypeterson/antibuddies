@@ -1,15 +1,55 @@
-<pm-header></pm-header>
-<pm-analytics></pm-analytics>
+<div *ngIf="isNewLab">
 
+    <pm-header (labNameEvent)="receiveLabName($event)"
+               (isNewLabEvent)="receiveMessage($event)"></pm-header>
+    <pm-lablist></pm-lablist>
+</div>
 
+<div *ngIf="!isNewLab">
+    <pm-lab-header [labName]="labName"
+                   (isBackEvent)="receiveMessage2($event)"></pm-lab-header>
+    <pm-analytics></pm-analytics>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div *ngIf="isNewNode">
+                    <div>
+                        <label for="nodename">Enter Node name</label>
+                        <input maxlength="15"
+                               [(ngModel)]="nodeName"
+                               type='text'
+                               id="nodename"
+                               placeholder='New Node Name' />
+                        <button class='btn btn-primary'
+                                (click)="addNewNode()">Add New Node</button>
+                    </div>
+                    <pm-nodelist></pm-nodelist>
+                </div>
+                <div *ngIf="!isNewNode">
+                    <div class="row">
+                        <h3>Node Name: {{nodeName}}</h3>
+                        <button class='btn btn-primary'
+                                (click)="saveNode()">Save Node</button>
+                    </div>
 
-<div class="container">
-    <div class="row">
-        <div class = "col-md-6">
-            <tree-node></tree-node>
-        </div>
-        <div class = "col-md-6">
-            <pm-admintreepane></pm-admintreepane>
+                    <tree-node></tree-node>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <pm-admintreepane></pm-admintreepane>
+            </div>
         </div>
     </div>
 </div>
+
+<!---- example:
+<div *ngFor="let user of reply">
+        
+    <h4 class="card-title">{{ user.title | uppercase}}</h4>
+    <small> <strong>Name: </strong> {{ user.name }}</small>
+    <p>{{ user.body }}</p>
+
+</div>
+
+<p>{{reply}}</p>
+-->
