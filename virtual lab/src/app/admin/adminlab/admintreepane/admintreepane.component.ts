@@ -150,7 +150,7 @@ export class AdmintreepaneComponent implements OnInit {
       // ****************** links section ***************************
     
       // Update the links...
-      var <SVGPathElement>link = svg.selectAll('path.link')
+      var <SVGPathElement> link = svg.selectAll('path.link')
           .data(links, function(d: any) { return d.id; });
     
       // Enter any new links at the parent's previous position.

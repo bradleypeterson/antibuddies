@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
     <div class="container">
     <div class="row">
         <div class='col-md-4'><h3>{{labName}} </h3></div>
@@ -26,20 +26,7 @@
     <li>  <button (click) = "backButton()" class='btn btn-primary'>Back</button> </li>
 </ul> -->
 <pm-analytics></pm-analytics>
-=======
-<div *ngIf="isNewLab">
-
-    <pm-header (labNameEvent)="receiveLabName($event)"
-               (isNewLabEvent)="receiveMessage($event)"></pm-header>
-    <pm-lablist></pm-lablist>
-</div>
-
-<div *ngIf="!isNewLab">
-    <pm-lab-header [labName]="labName"
-                   (isBackEvent)="receiveMessage2($event)"></pm-lab-header>
-    <pm-analytics></pm-analytics>
->>>>>>> 9edd0d35d4faf443c90e764a51eb1985b821a5b7
-    <div class="container">
+<div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div *ngIf="isNewNode">
@@ -69,12 +56,10 @@
                 <pm-admintreepane></pm-admintreepane>
             </div>
         </div>
-    </div>
-<<<<<<< HEAD
-=======
+    
 </div>
 
-<!---- example:
+<!-- example:
 <div *ngFor="let user of reply">
         
     <h4 class="card-title">{{ user.title | uppercase}}</h4>
@@ -83,6 +68,4 @@
 
 </div>
 
-<p>{{reply}}</p>
--->
->>>>>>> 9edd0d35d4faf443c90e764a51eb1985b821a5b7
+<p>{{reply}}</p> -->
