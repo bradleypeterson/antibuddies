@@ -1,54 +1,45 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Admin Quiz Maker</title>
+  <head>
+    <title>Quiz Editor</title>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <link rel="stylesheet" href="style/panel.css">
+    <link rel="stylesheet" href="style/panel.css" />
     <script src="scripts/login.js"></script>
     <script src="scripts/adminquiz.js"></script>
-</head>
-<body onload="startAdminQuiz()">
-<div class="container-fluid">
-
-	<div class = "rowz">
-		<img src="wsulogo.png" alt="Italian Trulli" id="wsupagelogo" align="right">
-		<h3 class="header">Quiz Editor</h3>	
-	</div>
-	
-</div>
-<div id="adminQuiz" class="outer">
-    <div class="inner">
-        <div id='currentQuiz'>			
-            
-
-            
-        </div>
-		
-        <button onclick="getPracticeQuestions()" id="get">Quiz 1</button>
+  </head>
+  <body onload="startAdminQuiz()">
+    <div class="container-fluid">
+      <div class="rowz">
+        <img
+          src="wsulogo.png"
+          alt="Italian Trulli"
+          id="wsupagelogo"
+          align="right"
+        />
+        <h3 class="header">Quiz Editor</h3>
+      </div>
     </div>
-</div>
-<div id="results"></div>
-
-
-</body>
-
-<footer>
-
-	
-		<div class="nav">
-		
-			<ul class="main-menu" id="logbut">
-				<li><a href="index.html" id="logButt">Logout</a>
-				</li>
-			</ul>	
-		</div>
-		
-	     
-	
-</footer>
-
+    <div id="adminQuiz" class="outer">
+      <div class="inner">
+        <div id="currentQuiz"></div>
+        <button onclick="getPracticeQuestions()" id="get">Quiz 1</button>
+      </div>
+    </div>
+    <div id="results"></div>
+  </body>
+  <footer>
+    <div class="nav">
+      <ul class="main-menu" id="logbut">
+        <li><a href="index.html" id="logButt">Logout</a></li>
+      </ul>
+    </div>
+  </footer>
 </html>
