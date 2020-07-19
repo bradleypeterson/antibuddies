@@ -15,7 +15,7 @@ export class QuizViewComponent implements OnInit {
   @Input() nodeData = {
     nodeID: 0,  
     answers: [],
-    question: '',
+    name: '',
   };
   @Output() answered: EventEmitter<number> = new EventEmitter<number>();
   nextNodeAsSelected: number;

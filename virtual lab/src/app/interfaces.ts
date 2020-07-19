@@ -11,6 +11,8 @@ export class LabsContainer {
     constructor(){
         this.labs.push(new lab("Chemistry", 0));
         this.labs[0].description = "Spring 2020 Chemistry"
+        this.labs[0].createdDate = new Date()
+        this.labs[0].course = "Chem 1010"
         let quiz1 = this.labs[0].createQuizNode("What is the answer to this?")
         quiz1.createAnswer("Blah 1", 1);
         quiz1.createAnswer("Blah 2", 2);

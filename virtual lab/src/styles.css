@@ -40,6 +40,9 @@
 
 /* Additional virtual lab styles */
 body {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
   color: #FFF;
   background: #310f41;
 }
@@ -53,6 +56,7 @@ a {
 }
 
 .page-header {
+  flex: 1;
   margin-bottom: 30px;
   color: #9800e0;
   background: black;
@@ -110,6 +114,11 @@ a {
   background-color: #FFF;
 }
 
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #9800e0;
+  }
+
 div.card-header {
  font-size: large;
 }
@@ -120,4 +129,15 @@ div.card {
 
 .table {
   margin-top: 10px
+}
+
+.lab {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  background-color: #000;
+}
+
+.to-be-removed {
+  color: #FF0;
 }
