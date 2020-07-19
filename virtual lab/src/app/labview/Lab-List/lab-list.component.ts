@@ -11,18 +11,10 @@ export class LabListComponent implements OnInit {
     labs: Object[] = [];
 
     constructor( private backendService: BackEndServiceService ) {
-        let labNew = this.backendService.labsContainer.createLab("Chemistry")
-        labNew.description = "spring 2020 chemistry"
-        let quiz = labNew.createQuizNode("what is blah blah blah")
-        quiz.createAnswer("blah 1",0)
-        quiz.createAnswer("blah 2",0)
-        quiz.createAnswer("blah 3",0)
-        quiz.createAnswer("blah 4",0)
-
 
         let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
         let lab = this.backendService.labsContainer.labs[labNumber];
-        this.labs.push(lab)
+        this.labs = this.labs.concat(lab)
     }
 
     ngOnInit(): void {
