@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as d3 from "d3";
-import { BaseType } from 'd3';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'pm-admintreepane',
@@ -82,7 +81,7 @@ export class AdmintreepaneComponent implements OnInit {
       // ****************** Nodes section ***************************
     
       // Update the nodes...
-      var node = svg.selectAll('g.node')
+      var node = svg.selectAll<SVGGElement, any>('g.node')
           .data(nodes, function(d: any) {return d.id || (d.id = ++i); });
     
       // Enter any new modes at the parent's previous position.
@@ -150,7 +149,7 @@ export class AdmintreepaneComponent implements OnInit {
       // ****************** links section ***************************
     
       // Update the links...
-      var link = svg.selectAll('path.link')
+      var link = svg.selectAll<SVGPathElement, any>('path.link')
           .data(links, function(d: any) { return d.id; });
     
       // Enter any new links at the parent's previous position.
