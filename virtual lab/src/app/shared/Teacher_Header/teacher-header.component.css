@@ -1,16 +1,6 @@
-
-
-li {
-    display: inline;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  li {
-    float: left;
-  }
-  
+div.navigation {
+  display: flex;
+  flex-flow: row;
+  padding-top: .5rem;
+  justify-content: space-between;
+}

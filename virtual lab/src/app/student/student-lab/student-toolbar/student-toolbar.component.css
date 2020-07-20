@@ -2,3 +2,11 @@ div {
     padding: 0;
     background-color: #000;
 }
+
+.btn {
+    margin-left: .5rem;
+}
+
+.btn:first-of-type {
+    margin-left: 0;
+}

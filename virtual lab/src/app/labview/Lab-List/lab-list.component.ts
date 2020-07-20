@@ -3,7 +3,8 @@ import { BackEndServiceService } from '../../back-end-service.service';
 
 @Component ({
     selector: 'pm-lablist',
-    templateUrl: './lab-list.component.html'
+    templateUrl: './lab-list.component.html',
+    styleUrls: ['./lab-list.component.css']
 })
 
 export class LabListComponent implements OnInit {

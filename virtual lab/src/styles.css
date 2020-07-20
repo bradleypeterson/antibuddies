@@ -51,11 +51,23 @@ a {
   color: #9800e0;
 }
 
+input[type="text"] {
+  border-radius: .25rem;
+  border-style: none;
+  padding: .25rem;
+}
+
+hr {
+  margin-top: 0;
+  background-color: #9800e0;
+}
+
 .main-component {
   background: gray;
 }
 
 .page-header {
+  font-weight: 500;
   flex: 1;
   margin-bottom: 30px;
   color: #9800e0;
@@ -95,13 +107,19 @@ a {
   background-color:  #310f41;
 }
 
-.container {
+.container, .table {
   color: #FFF;
   background: none;
 }
 
-.toolbar, .navigation, .lab-list, .table {
+.card {
+  border-right: solid 1px #9800e0;
+  border-bottom: solid 1px #9800e0;
+}
+
+.toolbar, .navigation, .lab-list {
   color: #FFF;
+  background-color: #000;
 }
 
 .btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
@@ -131,7 +149,7 @@ div.card {
   margin-top: 10px
 }
 
-.lab {
+.student-lab {
   display: flex;
   flex: 1;
   padding: 20px;
@@ -159,6 +177,10 @@ div.card {
 .radio-group-item label:hover {
   /* color: #FFF; */
   background-color: #9800e0;
+}
+
+.radio-group-item label:active {
+  background-color: rgb(202, 98, 250);
 }
 
 .radio-group-item input {
