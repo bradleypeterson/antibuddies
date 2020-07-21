@@ -1,19 +1,29 @@
 import { Component, OnInit } from "@angular/core";
-import { LabService } from '../services/lab.service';
+import { BackEndServiceService } from '../../back-end-service.service';
 
 @Component ({
     selector: 'pm-lablist',
-    templateUrl: './lab-list.component.html'
+    templateUrl: './lab-list.component.html',
+    styleUrls: ['./lab-list.component.css']
 })
 
 export class LabListComponent implements OnInit {
 
-    labs: Object[] = []
+    labs: Object[] = [];
 
-    constructor( private labService: LabService ) {}
+    constructor( private backendService: BackEndServiceService ) {
+
+        let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
+        let lab = this.backendService.labsContainer.labs[labNumber];
+        this.labs = this.labs.concat(lab)
+    }
 
     ngOnInit(): void {
-        this.labs = this.labService.getLabs()
+        console.log(this.labs)
+
+        for (let lab of this.labs) {
+            
+        }
     }
 
     // labs =

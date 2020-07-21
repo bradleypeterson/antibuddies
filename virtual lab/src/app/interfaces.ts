@@ -1,10 +1,24 @@
 
 //labs container for all labs
 export class LabsContainer {
-    //labs array
-    labs:lab[] = []
+    //labs array -- added dummy lab in constructor for testing purposes.
+    // dummy labs should not be created in components, because every time
+    // a component loads it will attempt to re-create the lab and append
+    // it to the existing container of labs, which is redundant (and not allowed).
 
-    constructor(){ }
+    labs:lab[] = [];
+
+    constructor(){
+        this.labs.push(new lab("Chemistry", 0));
+        this.labs[0].description = "Spring 2020 Chemistry"
+        this.labs[0].createdDate = new Date()
+        this.labs[0].course = "Chem 1010"
+        let quiz1 = this.labs[0].createQuizNode("What is the answer to this?")
+        quiz1.createAnswer("Blah 1", 1);
+        quiz1.createAnswer("Blah 2", 2);
+        quiz1.createAnswer("Blah 3", 3);
+        quiz1.createAnswer("Blah 4", 4);
+     }
 
     //create lab from labname, checks if the lab already exists first, has to be unique
     createLab(labName:string):lab {
@@ -36,6 +50,8 @@ export class LabsContainer {
 //lab class
 export class lab {
     labID:number
+    createdDate:Date
+    course:string
     nodes:any[] = []
     description:string
     name:string

@@ -40,6 +40,10 @@
 
 /* Additional virtual lab styles */
 body {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  color: #FFF;
   background: #310f41;
 }
 
@@ -47,11 +51,24 @@ a {
   color: #9800e0;
 }
 
+input[type="text"] {
+  border-radius: .25rem;
+  border-style: none;
+  padding: .25rem;
+}
+
+hr {
+  margin-top: 0;
+  background-color: #9800e0;
+}
+
 .main-component {
   background: gray;
 }
 
 .page-header {
+  font-weight: 500;
+  flex: 1;
   margin-bottom: 30px;
   color: #9800e0;
   background: black;
@@ -90,17 +107,35 @@ a {
   background-color:  #310f41;
 }
 
-.container {
+.container, .table {
   color: #FFF;
   background: none;
 }
 
-.toolbar, .navigation {
-  color: #FFF;
+.card {
+  border-right: solid 1px #9800e0;
+  border-bottom: solid 1px #9800e0;
 }
 
-.lab-list {
+.toolbar, .navigation, .lab-list {
+  color: #FFF;
+  background-color: #000;
 }
+
+.btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  border: none;
+  background-color: #9800e0;
+}
+
+.btn-primary:hover {
+  color: #310f41;
+  background-color: #FFF;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #9800e0;
+  }
 
 div.card-header {
  font-size: large;
@@ -112,4 +147,86 @@ div.card {
 
 .table {
   margin-top: 10px
+}
+
+.student-lab {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  background-color: #000;
+}
+
+.radio-group-item {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 1rem;
+}
+
+.radio-group-item label {
+  display: inherit;
+  flex-flow: row;
+  flex: 1;
+  cursor: pointer;
+  padding: .5rem;
+  margin-bottom: 0;
+  background-color: #310f41;
+  border-radius: .25rem;
+  transition: 150ms;
+}
+
+.radio-group-item label:hover {
+  /* color: #FFF; */
+  background-color: #9800e0;
+}
+
+.radio-group-item label:active {
+  background-color: rgb(202, 98, 250);
+}
+
+.radio-group-item input {
+  position: absolute;
+  visibility: hidden;
+}
+
+/* Custom radio button */
+.radio-item {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+  /* background-color: #9800e0; */
+  border: 1px solid #9800e0;
+  border-radius: 50%;
+}
+
+.radio-group-item label:hover input ~ .radio-item {
+  background-color: #FFF;
+}
+
+.radio-group-item input:checked ~ .radio-item {
+  background-color: #9800e0;
+}
+
+.radio-item:after {
+  content: "";
+  display: none;
+}
+
+.radio-group-item input:checked ~ .radio-item:after {
+  display: block;
+}
+
+.radio-group-item .radio-item:after {
+  position: relative;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FFF;
+}
+
+.to-be-removed {
+  color: #FF0;
 }

@@ -1,20 +1,7 @@
-<div class='container navigation'>
-    <div>
-        <div class='row' id='header-div'>
-            <div class='col-md-2'>Virtual Labs</div>
-            <div class='col-md-4'>
-              <input type='text' placeholder='search labs'/>
-            </div>
-  
-            <div class="col-md-2"> 
-            <label for="labname">Enter Lab name</label>
-            </div>
-            <div class="col-md-2"> 
-              <input maxlength="15" [(ngModel)] ="labName"  type='text'  id="labname" placeholder='New Lab Name'/>
-            </div>
-            <div class='col-md-2'>
-              <button (click) = "addNewLab()"class='btn btn-primary'>Add New Lab</button>
-            </div>
-          </div>
-    </div>
+<div class='navigation'>
+  <label for="searchlab">Search Labs</label>
+  <input id="searchlab" type='text' placeholder='search labs'/>
+  <label for="labname">Enter Lab name</label>
+  <input maxlength="15" [(ngModel)] ="labName"  type='text'  id="labname" placeholder='New Lab Name'/>
+  <button (click) = "addNewLab()"class='btn btn-primary'>Add New Lab</button>
 </div>

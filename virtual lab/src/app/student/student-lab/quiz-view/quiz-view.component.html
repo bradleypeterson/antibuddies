@@ -1,9 +1,10 @@
 <div>
-    <h2>Node ID: {{ nodeData.nodeID }}</h2>
-    <h2>{{ nodeData.question }}</h2>
-    <div *ngFor="let answer of nodeData.answers">
-        <label for="answer_{{answer.answerId}}">
-            <input id="answer_{{answer.answerId}}" [value]='answer.connectingNodeID' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
+    <h3>{{ nodeData.name }}</h3>
+    <span class="to-be-removed">Node ID: {{ nodeData.nodeID }}</span>
+    <div class="radio-group-item" *ngFor="let answer of nodeData.answers">
+        <label for="answer_{{answer.answerID}}">
+            <input id="answer_{{answer.answerID}}" [value]='answer.connectingNodeID' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
+            <span class="radio-item"></span>
             {{answer.answerText}}
         </label>
     </div>
