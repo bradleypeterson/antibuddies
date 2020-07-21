@@ -20,12 +20,12 @@ export class BackEndServiceService {
 
   labsContainer = new LabsContainer()
 
-  //get all labs
+  //local get all labs
   getLabsContainer(): Observable<LabsContainer> {
     return of(this.labsContainer);
   }
 
-  // put lab
+  // http put lab
   putLab(lab: lab): Observable<lab> {
     return this.http.post<lab>(this.dataUrl, lab, this.httpOptions).pipe(
       tap((newLab: lab) => this.log(`added lab w/ id=${newLab.labID}`)),
@@ -33,7 +33,7 @@ export class BackEndServiceService {
     );
   }
 
-  // put Node
+  // http put Node
   putNode(node: any): Observable<any> {
     return this.http.post<any>(this.dataUrl, node, this.httpOptions).pipe(
       tap((newNode: any) => this.log(`added lab w/ id=${newNode.nodeID}`)),
@@ -41,7 +41,9 @@ export class BackEndServiceService {
     );
   }
 
+  //
   //get labs container, updates global labsContainer
+  //
   getlabsContainer() {
     this.getHTTPLabsContainer().subscribe(labsBox => this.labsContainer = labsBox);
     return this.labsContainer;
