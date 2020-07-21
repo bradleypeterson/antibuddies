@@ -20,6 +20,7 @@ export class BackEndServiceService {
 
   labsContainer = new LabsContainer()
 
+  //get all labs
   getLabsContainer(): Observable<LabsContainer> {
     return of(this.labsContainer);
   }
