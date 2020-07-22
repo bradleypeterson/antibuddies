@@ -1,0 +1,16 @@
+div.navigation {
+    padding: .5rem 0;
+    justify-content: flex-end;
+    border-bottom: 1px solid #9800e0;
+}
+
+.node-section {
+}
+
+.btn {
+    margin-right: .5rem;
+}
+
+.btn:last-of-type {
+    margin-right: 0;
+}

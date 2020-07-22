@@ -3,19 +3,33 @@
         <label for="questionText">Question Text</label><br>
         <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]= "Question" name="questionText" id="questionText" cols="30" rows="10" maxlength="500"></textarea>
         <br>
+        <label class="node-major-label" for="questionText">Question Text</label>
+        <textarea name="questionText" id="questionText" rows="5" maxlength="500"></textarea>
 
-        <label>Question image (optional):</label>
+        <label class="node-major-label">Question image (optional):</label>
         <file-uploader></file-uploader>
-        <br>
 
-        <label>Answer type</label><br>
-        <input type="radio" id="single-choice" name="answer-type" value="single-choice" checked>
-        <label for="single-choice">Single-choice</label>
-        <input type="radio" id="multi-choice" name="answer-type" value="multi-choice">
-        <label for="multi-choice">Multi-choice</label>
-        <br>
+        <div class="node-column">
+            <label class="node-major-label">Answer type</label>
+            <div class="radio-group-item">     
+                <label for="single-choice">
+                    <input type="radio" id="single-choice" name="answer-type" value="single-choice" checked>
+                    <span class="radio-item"></span>
+                    Single-choice (radio buttons)
+                </label>
+            </div>
+            <div class="radio-group-item">
+                <label for="multi-choice">
+                    <input type="radio" id="multi-choice" name="answer-type" value="multi-choice">
+                    <span class="radio-item"></span>
+                    Multi-choice (checkboxes)
+                </label>
+            </div>
 
-        <label for="">Answer options</label><br>
+        </div>
+
+
+        <label class="node-major-label" for="">Answer options</label><br>
 
         <!-- Display current input answer options if answerOptions array has values -->
         <ul *ngIf="answers.length > 0">
@@ -23,6 +37,7 @@
                 {{ answer }}
             </li>
         </ul>
+<<<<<<< HEAD
         <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div *ngIf="newAnswer" >
             <label for="newAnswerVal">Answer text:</label>
@@ -38,4 +53,26 @@
         </div>
         <button (click)="saveNode()">Save Node</button>
     </form>
+=======
+        <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answerOptions.length < maxAnswerOptions">Add new answer option</button>
+        <div class="node-column" *ngIf="newAnswer">
+            <div class="node-row">
+                <label for="newAnswerVal">Answer text:</label>
+                <input 
+                    [(ngModel)]="newAnswerVal" 
+                    id="newAnswerVal" 
+                    name="newAnswerVal" 
+                    type="text" 
+                    maxlength="250"
+                >
+            </div>
+            <div class="node-row">
+                <label for="outgoingNode">Outgoing node:</label>
+                <select id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
+                    <option *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
+        </div>
+>>>>>>> 6a408c912ae5adb6ebcecf258ae7e75f1e20dd5f
 </div>

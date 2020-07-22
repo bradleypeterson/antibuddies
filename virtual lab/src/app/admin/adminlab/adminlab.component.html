@@ -25,14 +25,23 @@
     <li>  <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button> </li>
     <li>  <button (click) = "backButton()" class='btn btn-primary'>Back</button> </li>
 </ul> -->
-<pm-analytics></pm-analytics>
-<div class="container">
+
+<div class="container card">
+    <div class="navigation">
+        <h3>{{labName}} </h3>
+        <button (click)="labDetails()" class='btn btn-primary'>lab details</button>
+        <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button>
+        <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button>
+        <button (click) = "backButton()" class='btn btn-primary'>Back</button>
+    </div>
+    <pm-analytics></pm-analytics>
         <div class="row">
             <div class="col-md-6">
                 <div *ngIf="isNewNode">
                     <div>
                         <label *ngIf='!invalidInput' for="nodename">Enter Node name</label>
                         <label *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
+                        <label class="node-major-label" for="nodename">Enter Node name</label>
                         <input maxlength="15"
                                [(ngModel)]="nodeName"
                                type='text'
@@ -86,6 +95,21 @@
                         </div>
                     </div>
                     <!-- <tree-node></tree-node> -->
+                <div class="node-section" *ngIf="!isNewNode">
+                    <div class="node-row">
+                        <div class="node-column">
+                            <!-- <h3>Node Name: {{nodeName}}</h3> -->
+                            <label class="node-major-label" for="nodeNameEdit">Node Name:</label>
+                            <input maxlength="15"
+                                    type='text'
+                                    id="nodeNameEdit"
+                                    value="(load current name)">
+                        </div>
+                        <button class="btn btn-primary"
+                                    (click)="saveNode()">Save Node</button>
+                    </div>
+                    <hr>
+                    <tree-node></tree-node>
                 </div>
             </div>
             <div class="col-md-6">

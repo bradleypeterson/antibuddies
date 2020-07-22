@@ -40,7 +40,7 @@ export class AdmintreepaneComponent implements OnInit {
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate("
-            + margin.left + "," + margin.top + ")");
+            + margin.left + "," + margin.top + ")").style("fill", "#9800e0");
     let i = 0,
       duration = 750,
       root;
@@ -97,7 +97,7 @@ export class AdmintreepaneComponent implements OnInit {
           .attr('class', 'node')
           .attr('r', 1e-6)
           .style("fill", function(d: any) {
-              return d._children ? "lightsteelblue" : "#fff";
+              return d._children ? "#FFF" : "#fff";
           });
     
       // Add labels for the nodes
@@ -109,7 +109,8 @@ export class AdmintreepaneComponent implements OnInit {
           .attr("text-anchor", function(d: any) {
               return d.children || d._children ? "end" : "start";
           })
-          .text(function(d: any) { return d.data.name; });
+          .text(function(d: any) { return d.data.name; })
+          .style('fill', '#FFF');
     
       // UPDATE
       var nodeUpdate = nodeEnter.merge(node);
@@ -125,10 +126,12 @@ export class AdmintreepaneComponent implements OnInit {
       nodeUpdate.select('circle.node')
         .attr('r', 10)
         .style("fill", function(d: any) {
-            return d._children ? "lightsteelblue" : "#fff";
+            return d._children ? "hsl(281, 100%, 74%)" : "#310f41";
+        }).style("stroke", function(d: any) {
+            return d._children ? "#FFF" : "#9800e0";
         })
         .attr('cursor', 'pointer');
-    
+
     
       // Remove any exiting nodes
       var nodeExit = node.exit().transition()
@@ -144,7 +147,7 @@ export class AdmintreepaneComponent implements OnInit {
     
       // On exit reduce the opacity of text labels
       nodeExit.select('text')
-        .style('fill-opacity', 1e-6);
+        .style('fill-opacity', 1e-6)
     
       // ****************** links section ***************************
     

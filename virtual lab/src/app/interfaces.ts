@@ -6,7 +6,8 @@ export class LabsContainer {
     //labs array -- added dummy lab in constructor for testing purposes.
     // dummy labs should not be created in components, because every time
     // a component loads it will attempt to re-create the lab and append
-    // it to the existing container of labs, which is redundant (and not allowed).
+    // it to the existing container of labs, which is redundant (and not allowed by createLab()).
+    // temporary, remove after testing student lab.
 
     labs:lab[] = [];
 
@@ -17,9 +18,19 @@ export class LabsContainer {
         this.labs[0].course = "Chem 1010"
         let quiz1 = this.labs[0].createQuizNode("What is the answer to this?")
         quiz1.createAnswer("Blah 1", 1);
-        quiz1.createAnswer("Blah 2", 2);
-        quiz1.createAnswer("Blah 3", 3);
-        quiz1.createAnswer("Blah 4", 4);
+        quiz1.createAnswer("Blah 2", 3);
+        quiz1.createAnswer("Blah 3", 4);
+        quiz1.createAnswer("Blah 4", 5);
+
+        let quiz2 = this.labs[0].createQuizNode("This is another question, with a longer string of text. What is the answer?")
+        quiz2.createAnswer("Number one", 2);
+        quiz2.createAnswer("Number two", 6);
+        quiz2.createAnswer("Number three", 7);
+
+        let quiz3 = this.labs[0].createQuizNode("Here is the final question. What is the answer?");
+        quiz3.createAnswer("First answer", 8);
+        quiz3.createAnswer("Second answer", 9);
+        quiz3.createAnswer("Third answer", 10);
      }
 
     //create lab from labname, checks if the lab already exists first, has to be unique
@@ -62,7 +73,6 @@ export class lab {
       this.labID = labID
       this.name = labName
     }
-  
     
     createQuizNode(nodeName:string):Quiznode{
         //check if lab already exists:
@@ -88,7 +98,7 @@ export class lab {
   
 
   //parent class for other node types
-  class node{
+  class node {
       constructor(name:string,nodeID:number) {
           this.nodeID = nodeID
           this.name = name

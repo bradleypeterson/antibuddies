@@ -1,5 +1,5 @@
 .diagrams {
-    background-color:rgb(211, 211, 211);
-    height: 200px;
-    border: solid 1px black;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+    background-color:hsl(281, 62%, 8%);
 }

@@ -48,13 +48,38 @@ body {
 }
 
 a {
-  color: #9800e0;
+  color: hsl(281, 100%, 74%);
+}
+
+a:hover {
+  color: #FFF;
 }
 
 input[type="text"] {
   border-radius: .25rem;
   border-style: none;
   padding: .25rem;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]::before {
+  content: 'select file';
+}
+
+select {
+  cursor: pointer;
+  color: #FFF;
+  background-color: #9800e0;
+  border: none;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border-radius: .25rem;
 }
 
 hr {
@@ -97,7 +122,7 @@ hr {
   flex: 1;
   justify-content: center;
   padding: 10px;
-  color: rgb(202, 98, 250);
+  color: hsl(281, 100%, 74%);
   text-decoration: none;
   border-radius: 10px 10px 0 0;
 }
@@ -117,9 +142,16 @@ hr {
   border-bottom: solid 1px #9800e0;
 }
 
-.toolbar, .navigation, .lab-list {
+.toolbar, .navigation, .lab-list, .card {
   color: #FFF;
   background-color: #000;
+}
+
+div.navigation {
+  display: flex;
+  flex-flow: row;
+  padding-top: .5rem;
+  justify-content: space-between;
 }
 
 .btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
@@ -180,7 +212,7 @@ div.card {
 }
 
 .radio-group-item label:active {
-  background-color: rgb(202, 98, 250);
+  background-color: hsl(281, 100%, 74%);
 }
 
 .radio-group-item input {
@@ -225,6 +257,28 @@ div.card {
   height: 8px;
   border-radius: 50%;
   background-color: #FFF;
+}
+
+
+/* Tree node component and children */
+.node-row, .node-column {
+  display: flex;
+}
+
+.node-row {
+  flex-flow: row;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+
+.node-column {
+  flex-flow: column;
+}
+
+.node-major-label {
+  color: hsl(281, 100%, 84%);
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .to-be-removed {
