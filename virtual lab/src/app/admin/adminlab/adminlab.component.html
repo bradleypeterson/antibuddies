@@ -30,7 +30,7 @@
                     </div>
                     <pm-nodelist (nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
                 </div>
-                <div *ngIf="!isNewNode">
+                <div class="node-section" *ngIf="!isNewNode">
                     <div class="node-row">
                         <div class="node-column">
                             <!-- <h3>Node Name: {{nodeName}}</h3> -->
@@ -43,6 +43,7 @@
                         <button class="btn btn-primary"
                                     (click)="saveNode()">Save Node</button>
                     </div>
+                    <hr>
                     <tree-node></tree-node>
                 </div>
             </div>

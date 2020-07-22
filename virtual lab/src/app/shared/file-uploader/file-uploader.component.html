@@ -1,9 +1,8 @@
-<h3>Filename</h3>
-
 <div class="form-group">
-    <label for="file">Choose File</label>
+    <!-- <label class="node-major-label">Choose File</label> -->
     <input type="file"
            id="file"
            [accept]="fileTypes"
-           (change)="handleFileInput($event.target.files)">
+           (change)="handleFileInput($event.target.files)"
+           class="btn btn-primary">
 </div>
