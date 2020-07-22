@@ -1,5 +1,5 @@
 
-    <div class="container">
+<div class="container">
     <div class="row">
         <div class='col-md-4'><h3>{{labName}} </h3></div>
       
@@ -31,7 +31,8 @@
             <div class="col-md-6">
                 <div *ngIf="isNewNode">
                     <div>
-                        <label for="nodename">Enter Node name</label>
+                        <label *ngIf='!invalidInput' for="nodename">Enter Node name</label>
+                        <label *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
                         <input maxlength="15"
                                [(ngModel)]="nodeName"
                                type='text'
@@ -40,16 +41,51 @@
                         <button class='btn btn-primary'
                                 (click)="addNewNode()">Add New Node</button>
                     </div>
-                    <pm-nodelist (nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
+                    <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
                 </div>
                 <div *ngIf="!isNewNode">
                     <div class="row">
                         <h3>Node Name: {{nodeName}}</h3>
                         <button class='btn btn-primary'
-                                (click)="saveNode()">Save Node</button>
+                                (click)="nodeBackButton()">back</button>
                     </div>
 
-                    <tree-node></tree-node>
+                    <div class="card">
+                        <div class="card">
+                            <h1>(Node number)</h1>
+                            <textarea name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
+                            <button (click)="onClickDesc">Edit</button>
+                    
+                        </div>
+                        <div class="card">
+                            <div class="card">
+                                <h2>Behavior</h2>
+                                <select [(ngModel)]="nodeType">
+                                    <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+                                </select>
+                            </div>
+                    
+                            <!--This is where the appropriate behavior node will be loaded-->
+                            <div *ngIf="nodeType === 'Matching'">
+                                <matching-node></matching-node>
+                            </div>
+                            <div *ngIf="nodeType === 'Play video'">
+                                <video-node></video-node>
+                            </div>
+                            <div *ngIf="nodeType === 'Perform experiment'">
+                                <experiment-node></experiment-node>
+                            </div>
+                            <div  *ngIf="nodeType === 'Question / Answer'">
+                                <quiz-node [nodeId] = "nodeId" [labId]="labId" [labName]="labName" [nodeName]="nodeName" ></quiz-node>
+                            </div>
+                            
+                            <div class="card">
+                                <h2>Outgoing nodes:</h2>
+                                <!--Populate with list of outgoing nodes-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <tree-node></tree-node> -->
                 </div>
             </div>
             <div class="col-md-6">

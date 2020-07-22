@@ -1,3 +1,5 @@
+import { Node } from './labview/interfaces/NodeInterface';
+import { ILab } from './labview/interfaces/labInterface';
 
 //labs container for all labs
 export class LabsContainer {

@@ -22,6 +22,7 @@ export class LabService {
                 "labId": 1,
                 "labName": "Lab #1: First Project",
                 "labDescription": "A new lab",
+     
                 "publishDate": new Date(),
                 "course": "Immunohematology",
                 "nodeCount": 20,
@@ -29,6 +30,7 @@ export class LabService {
                     "nodeId": 1,
                     "description": "string",
                     "name": "string",
+                    "Question": "some question",
                     "answers":[{
                         "answer": new Object(),
                         "outGoingNodeID": 2
@@ -47,6 +49,7 @@ export class LabService {
                     "nodeId": 2,
                     "description": "string",
                     "name": "string",
+                    "Question": "some question",
                     "answers":[{
                         "answer": new Object(),
                         "outGoingNodeID": 2
@@ -58,6 +61,7 @@ export class LabService {
                 "labId": 3,
                 "labName": "Lab #3: The Third Lab",
                 "labDescription": "The third lab in the series",
+             
                 "publishDate": new Date(),
                 "course": "Immunohematology",
                 "nodeCount": 17,
@@ -65,6 +69,7 @@ export class LabService {
                     "nodeId": 3,
                     "description": "string",
                     "name": "string",
+                    "Question": "some question",
                     "answers":[{
                         "answer": new Object(),
                         "outGoingNodeID": 2

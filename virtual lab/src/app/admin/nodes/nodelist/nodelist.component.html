@@ -15,10 +15,10 @@
                 <tr *ngFor='let node of nodes'>
             
 
-                    <td>{{ node.nodeid}}</td>
+                    <td>{{ node.nodeId}}</td>
                     <td>{{ node.name }}</td>
                     <td>{{ node.description }}</td>
-                    <td> <button (click) = "editNode()" class="btn btn-primary"> Edit </button></td>
+                    <td> <button (click) = "editNode(node.nodeId, node.name)" class="btn btn-primary"> Edit </button></td>
                    
                   
 

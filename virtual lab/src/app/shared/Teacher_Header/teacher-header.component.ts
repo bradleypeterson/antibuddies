@@ -12,7 +12,7 @@ export class TeachHeaderComponent {
   isNewLab: boolean = true;
   labName: string = "";
 
-  labid = "1"
+  labId =  Math.floor(Math.random() * 200) + 1 
 
   constructor(private route: ActivatedRoute, 
               private router: Router){}
@@ -21,7 +21,8 @@ export class TeachHeaderComponent {
     console.log("clicked on button")
     if(this.labName !="")
     {
-      this.router.navigate(['/adminlab', '1', this.labName])
+      
+      this.router.navigate(['/adminlab', this.labId, this.labName])
       console.log("clicked on button")
       
     }

@@ -1,7 +1,7 @@
 <div>
     <form>
         <label for="questionText">Question Text</label><br>
-        <textarea name="questionText" id="questionText" cols="30" rows="10" maxlength="500"></textarea>
+        <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]= "Question" name="questionText" id="questionText" cols="30" rows="10" maxlength="500"></textarea>
         <br>
 
         <label>Question image (optional):</label>
@@ -18,21 +18,24 @@
         <label for="">Answer options</label><br>
 
         <!-- Display current input answer options if answerOptions array has values -->
-        <ul *ngIf="answerOptions.length > 0">
-            <li *ngFor="let answer of answerOptions">
+        <ul *ngIf="answers.length > 0">
+            <li *ngFor="let answer of answers">
                 {{ answer }}
             </li>
         </ul>
-        <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answerOptions.length < maxAnswerOptions">Add new answer option</button>
+        <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div *ngIf="newAnswer" >
             <label for="newAnswerVal">Answer text:</label>
-            <input [(ngModel)]="newAnswerVal" id="newAnswerVal" name="newAnswerVal" type="text" maxlength="250">
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="newAnswerVal" id="newAnswerVal" name="newAnswerVal" type="text" maxlength="250">
             <label for="outgoingNode">Outgoing node:</label>
-            <select id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
+            <select [ngModelOptions]="{standalone: true}" id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
                 <option *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
             </select>
             <br>
             <button (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
+         
+            
         </div>
+        <button (click)="saveNode()">Save Node</button>
     </form>
 </div>

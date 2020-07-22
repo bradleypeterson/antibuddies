@@ -26,6 +26,10 @@ import {HttpClientModule} from '@angular/common/http';
 import { LabHeaderComponent } from './shared/lab-header/lab-header.component';
 import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
 import { MatchingViewComponent } from './student/student-lab/matching-view/matching-view.component';
+import { ModalComponent } from './modal/modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -50,15 +54,20 @@ import { MatchingViewComponent } from './student/student-lab/matching-view/match
     QuizViewComponent,
     LabHeaderComponent,
     NodelistComponent,
-    MatchingViewComponent
+    MatchingViewComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatDialogModule
   ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {
