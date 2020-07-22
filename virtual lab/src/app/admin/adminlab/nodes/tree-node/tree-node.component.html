@@ -1,35 +1,37 @@
+<div class="node-column">
+    <!-- <h4>(Node number)</h4> -->
+    <label class="node-major-label" for="nodeDesc">Node Description:</label>
+    <textarea name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
+    <!-- <button (click)="onClickDesc">Edit</button> -->
+
+</div>
 <div class="card">
-    <div class="card">
-        <h1>(Node number)</h1>
-        <textarea name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
-        <button (click)="onClickDesc">Edit</button>
-
+    <div class="node-row">
+        <label class="node-major-label" for="behavior">Behavior:</label>
+        <select [(ngModel)]="nodeType" id="behavior">
+            <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+        </select>
     </div>
-    <div class="card">
-        <div class="card">
-            <h2>Behavior</h2>
-            <select [(ngModel)]="nodeType">
-                <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
-            </select>
-        </div>
 
-        <!--This is where the appropriate behavior node will be loaded-->
-        <div *ngIf="nodeType === 'Matching'">
-            <matching-node></matching-node>
-        </div>
-        <div *ngIf="nodeType === 'Play video'">
-            <video-node></video-node>
-        </div>
-        <div *ngIf="nodeType === 'Perform experiment'">
-            <experiment-node></experiment-node>
-        </div>
-        <div  *ngIf="nodeType === 'Question / Answer'">
-            <quiz-node ></quiz-node>
-        </div>
-        
-        <div class="card">
-            <h2>Outgoing nodes:</h2>
-            <!--Populate with list of outgoing nodes-->
+    <!--This is where the appropriate behavior node will be loaded-->
+    <div *ngIf="nodeType === 'Matching'">
+        <matching-node></matching-node>
+    </div>
+    <div *ngIf="nodeType === 'Play video'" class="node-row">
+        <video-node></video-node>
+    </div>
+    <div *ngIf="nodeType === 'Perform experiment'">
+        <experiment-node></experiment-node>
+    </div>
+    <div  *ngIf="nodeType === 'Question / Answer'">
+        <quiz-node ></quiz-node>
+    </div>
+    
+    <div class="node-row">
+        <h5>Outgoing nodes:</h5>
+        <!--Populate with list of outgoing nodes-->
+        <div>
+            (Nodes)
         </div>
     </div>
 </div>

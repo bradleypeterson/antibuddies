@@ -1,30 +1,30 @@
 <div id="matchingAdmin">
-    <div class="keys">
-        <h3>Keys: </h3>
-        <form action="#">
+    <div class="keys node-row">
+        <h5>Keys: </h5>
+        <div class="node-column">
             <label for="addKey" class="input" >Add Key: </label>
             <input type="text" name="addKey" id="addKey" placeholder="new key" ng-model="addKey" />
-            <button (click)="addKey(addKey)">Add Key</button>
-        </form>
+            <button class="btn btn-primary" (click)="addKey(addKey)">Add Key</button>
+        </div>
     </div>
-    <div class="values">
-        <h3>Values: </h3>
-        <form action="#">
+    <div class="values node-row">
+        <h5>Values: </h5>
+        <div class="node-column">
             <label for="addValue">Add Value: </label>
             <input type="text" name="addValue" id="addValue" placeholder="new value" [ngModel]="addValue" />
-            <button (click)="addValue(addValue)">Add Value</button>
-        </form>
+            <button class="btn btn-primary" (click)="addValue(addValue)">Add Value</button>
+        </div>
     </div>
 </div>
 <div id="matchingNode">
-    <h3>TEST !!!!</h3>
-    <div id="matchingLists">
-        <div class="keys">
+    <h5>TEST !!!!</h5>
+    <div id="matchingLists" class="node-row">
+        <div class="keys node-column">
             <ul>
                 <li *ngFor="let key of keys">{{ key }}</li>
             </ul>
         </div>
-        <div class="values">
+        <div class="values node-column">
             <ul>
                 <li *ngFor="let value of values">{{ value }}</li>
             </ul>

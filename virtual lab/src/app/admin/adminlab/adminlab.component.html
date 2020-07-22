@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div *ngIf="isNewNode">
                     <div>
-                        <label for="nodename">Enter Node name</label>
+                        <label class="node-major-label" for="nodename">Enter Node name</label>
                         <input maxlength="15"
                                [(ngModel)]="nodeName"
                                type='text'
@@ -31,12 +31,18 @@
                     <pm-nodelist (nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
                 </div>
                 <div *ngIf="!isNewNode">
-                    <div class="row">
-                        <h3>Node Name: {{nodeName}}</h3>
-                        <button class='btn btn-primary'
-                                (click)="saveNode()">Save Node</button>
+                    <div class="node-row">
+                        <div class="node-column">
+                            <!-- <h3>Node Name: {{nodeName}}</h3> -->
+                            <label class="node-major-label" for="nodeNameEdit">Node Name:</label>
+                            <input maxlength="15"
+                                    type='text'
+                                    id="nodeNameEdit"
+                                    value="(load current name)">
+                        </div>
+                        <button class="btn btn-primary"
+                                    (click)="saveNode()">Save Node</button>
                     </div>
-
                     <tree-node></tree-node>
                 </div>
             </div>
