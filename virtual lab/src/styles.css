@@ -48,13 +48,38 @@ body {
 }
 
 a {
-  color: #9800e0;
+  color: hsl(281, 100%, 74%);
+}
+
+a:hover {
+  color: #FFF;
 }
 
 input[type="text"] {
   border-radius: .25rem;
   border-style: none;
   padding: .25rem;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]::before {
+  content: 'select file';
+}
+
+select {
+  cursor: pointer;
+  color: #FFF;
+  background-color: #9800e0;
+  border: none;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border-radius: .25rem;
 }
 
 hr {
@@ -232,6 +257,28 @@ div.card {
   height: 8px;
   border-radius: 50%;
   background-color: #FFF;
+}
+
+
+/* Tree node component and children */
+.node-row, .node-column {
+  display: flex;
+}
+
+.node-row {
+  flex-flow: row;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+
+.node-column {
+  flex-flow: column;
+}
+
+.node-major-label {
+  color: hsl(281, 100%, 84%);
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .to-be-removed {
