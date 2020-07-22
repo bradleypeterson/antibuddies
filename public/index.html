@@ -24,20 +24,41 @@
     <!-- <script src="style/styleQuizCleanUp.css"></script> -->
   </head>
   <body>
-    <form method="post" onsubmit="submitForm(event, this)">
-      Username: <input type="text" name="username" /> <br />
-      First Name: <input type="text" name="firstName" /> <br />
-      Last Name: <input type="text" name="lastName" /> <br />
-      Password: <input type="password" name="password" /> <br />
-      Admin: <input type="checkbox" name="admin" id="admin" /><br />
-      <button type="submit" name="submit" style="background-color: primary;">
-        Sign Up
-      </button>
-      <br />
-      <textarea readonly="" id="output"></textarea>
-    </form>
-    <a href="/login"><button>Log In</button></a>
+    <img
+      src="wsulogo.png"
+      alt="Italian Trulli"
+      id="wsuloginlogo"
+      style="padding-top: 20px;"
+    />
 
+    <div style="padding-left: 705px;">
+      <form
+        method="post"
+        onsubmit="submitForm(event, this)"
+        style="padding-bottom: 50px; padding-top: 50px;"
+      >
+        Username:<br />
+        <input type="text" name="username" /> <br /><br />
+        First Name:<br />
+        <input type="text" name="firstName" /> <br /><br />
+        Last Name:<br />
+        <input type="text" name="lastName" /> <br /><br />
+        Password:<br />
+        <input type="password" name="password" /> <br /><br />
+        Admin:
+        <input type="checkbox" name="admin" id="admin" /><br />
+        <button type="submit" name="submit" style="background-color: primary;">
+          Sign Up
+        </button>
+        <br />
+        <br />
+        <a href="/login"><button>Log In</button></a>
+        <br />
+
+        <textarea readonly="" id="output" style="padding-left: 15px;"></textarea
+        ><br />
+      </form>
+    </div>
     <script>
       function submitForm(e, form) {
         e.preventDefault();
