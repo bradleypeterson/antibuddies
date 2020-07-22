@@ -1,23 +1,3 @@
-
-    <div class="container">
-    <div class="row">
-        <div class='col-md-4'><h3>{{labName}} </h3></div>
-      
-        <div class='col-md-2'>
-            <button (click)="labDetails()" class='btn btn-primary'>lab details</button>
-        </div>
-        <div class='col-md-2'>
-            <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button>
-        </div>
-        <div class='col-md-2'>
-            <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button>
-        </div>
-        <div class='col-md-2'>
-            <button (click) = "backButton()" class='btn btn-primary'>Back</button>
-        </div>
-    </div>
-</div>
-
 <!-- <ul>
     <li><h3>{{labName}} lab Name: </h3></li>
     <li>  <button (click)="labDetails()" class='btn btn-primary'>lab details</button> </li>
@@ -25,8 +5,16 @@
     <li>  <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button> </li>
     <li>  <button (click) = "backButton()" class='btn btn-primary'>Back</button> </li>
 </ul> -->
-<pm-analytics></pm-analytics>
-<div class="container">
+
+<div class="container card">
+    <div class="navigation">
+        <h3>{{labName}} </h3>
+        <button (click)="labDetails()" class='btn btn-primary'>lab details</button>
+        <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button>
+        <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button>
+        <button (click) = "backButton()" class='btn btn-primary'>Back</button>
+    </div>
+    <pm-analytics></pm-analytics>
         <div class="row">
             <div class="col-md-6">
                 <div *ngIf="isNewNode">

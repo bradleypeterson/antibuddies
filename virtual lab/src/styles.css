@@ -97,7 +97,7 @@ hr {
   flex: 1;
   justify-content: center;
   padding: 10px;
-  color: rgb(202, 98, 250);
+  color: hsl(281, 100%, 74%);
   text-decoration: none;
   border-radius: 10px 10px 0 0;
 }
@@ -117,9 +117,16 @@ hr {
   border-bottom: solid 1px #9800e0;
 }
 
-.toolbar, .navigation, .lab-list {
+.toolbar, .navigation, .lab-list, .card {
   color: #FFF;
   background-color: #000;
+}
+
+div.navigation {
+  display: flex;
+  flex-flow: row;
+  padding-top: .5rem;
+  justify-content: space-between;
 }
 
 .btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
@@ -180,7 +187,7 @@ div.card {
 }
 
 .radio-group-item label:active {
-  background-color: rgb(202, 98, 250);
+  background-color: hsl(281, 100%, 74%);
 }
 
 .radio-group-item input {
