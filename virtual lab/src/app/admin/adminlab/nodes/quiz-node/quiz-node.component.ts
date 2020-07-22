@@ -69,6 +69,7 @@ export class QuizNodeComponent implements OnInit {
   answers: Answer[]= [];
   selectedOutgoingNode: number = 0;
   outgoingNodes: number[] = [];
+ 
 
   Question = ""
   ngOnChanges(): void {

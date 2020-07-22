@@ -37,7 +37,6 @@
                 {{ answer }}
             </li>
         </ul>
-<<<<<<< HEAD
         <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div *ngIf="newAnswer" >
             <label for="newAnswerVal">Answer text:</label>
@@ -53,8 +52,7 @@
         </div>
         <button (click)="saveNode()">Save Node</button>
     </form>
-=======
-        <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answerOptions.length < maxAnswerOptions">Add new answer option</button>
+        <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div class="node-column" *ngIf="newAnswer">
             <div class="node-row">
                 <label for="newAnswerVal">Answer text:</label>
@@ -74,5 +72,4 @@
             </div>
             <button class="btn btn-primary" (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
         </div>
->>>>>>> 6a408c912ae5adb6ebcecf258ae7e75f1e20dd5f
 </div>

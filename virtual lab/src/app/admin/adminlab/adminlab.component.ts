@@ -93,7 +93,7 @@ export class AdminlabComponent implements OnInit {
   nodes: Node[] =[]
   invalidInput = false;
 
-  openModal(isDelete:boolean) : void {
+  openModal() : void {
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
@@ -154,7 +154,7 @@ export class AdminlabComponent implements OnInit {
   }
 
   deleteLab(): void{
-    this.openModal(true)
+    this.openModal()
   }
 
   onClickDesc(): void {
