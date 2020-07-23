@@ -59,6 +59,7 @@ export class QuizNodeComponent implements OnInit {
   @Input() nodeName: string;
   @Input() labId: number;
   @Input() nodeId: number;
+  @Input() Description: string;
 
   editNode = false;
   ilab: ILab  = this.dataService.getLab(0)
@@ -69,7 +70,7 @@ export class QuizNodeComponent implements OnInit {
   answers: Answer[]= [];
   selectedOutgoingNode: number = 0;
   outgoingNodes: number[] = [];
- 
+  
 
   Question = ""
   ngOnChanges(): void {
@@ -146,7 +147,7 @@ export class QuizNodeComponent implements OnInit {
       let defaultOutgoingNode: number[] = []
       let node: Node ={
       nodeId: this.nodeId,
-      description: "Node description",
+      description: this.Description,
       name: this.nodeName,
       Question: this.Question,
       answers: this.answers,
@@ -161,6 +162,7 @@ export class QuizNodeComponent implements OnInit {
       console.log("index of node "+ index)
       this.ilab.nodes[index].Question=this.Question
       this.ilab.nodes[index].answers=this.answers
+      this.ilab.nodes[index].description = this.Description
       
     }
     

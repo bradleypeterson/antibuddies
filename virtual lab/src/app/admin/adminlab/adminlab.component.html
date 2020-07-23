@@ -52,7 +52,7 @@
                     <div class="card">
                         <div class="card">
                             <h1>(Node number)</h1>
-                            <textarea name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
+                            <textarea  [(ngModel)]= "Description" name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
                             <button (click)="onClickDesc">Edit</button>
                     
                         </div>
@@ -75,7 +75,7 @@
                                 <experiment-node></experiment-node>
                             </div>
                             <div  *ngIf="nodeType === 'Question / Answer'">
-                                <quiz-node [nodeId] = "nodeId" [labId]="labId" [labName]="labName" [nodeName]="nodeName" ></quiz-node>
+                                <quiz-node [Description] = "Description" [nodeId] = "nodeId" [labId]="labId" [labName]="labName" [nodeName]="nodeName" ></quiz-node>
                             </div>
                             
                             <div class="card">

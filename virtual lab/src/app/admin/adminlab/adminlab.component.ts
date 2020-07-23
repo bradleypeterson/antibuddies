@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { isNullOrUndefined } from 'util';
@@ -92,6 +92,9 @@ export class AdminlabComponent implements OnInit {
   nodeId = 0
   nodes: Node[] =[]
   invalidInput = false;
+  
+ Description = ""
+
 
   openModal() : void {
     const dialogConfig = new MatDialogConfig();
