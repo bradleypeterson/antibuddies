@@ -16,7 +16,8 @@ body {
 
 label {
   padding: 10px;
- display: inline-block;
+ /*display: inline-block;*/
+ display: inline;
  font-size: 20px;
 }
 
@@ -64,7 +65,8 @@ input, button {
 }
 
 input {
-	background: #282828;
+  background: #282828;
+  display: inline;
 }
 
 button:hover {
