@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import { BackEndServiceService } from '../../../back-end-service.service'
 
 @Component({
   selector: 'pm-admintreepane',
@@ -8,27 +9,41 @@ import * as d3 from 'd3';
 })
 export class AdmintreepaneComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: BackEndServiceService) { }
 
   ngOnInit(): void {
 
+    // default example data
     let treeData = 
       {
-        "name": "Top Level",
+        "labname": "Top Level",
+        "description": "Learning the basic of antibodies of the immune system",
+        "size": "2MB",
+        "date": "March 19, 2019",
+        "class": "Immunohematology",
         "children": [
           { 
-            "name": "Level 2: A",
+            "labname": "Level 2: A",
             "children": [
-              { "name": "Son of A" },
-              { "name": "Daughter of A" }
+              { "labname": "Son of A" },
+              { 
+                "labname": "Daughter of A", 
+                "children": [
+                  { "labname": "Son of Daugter" },
+                  { "labname": "Daughter of Daughter" }
+                ]
+              }
             ]
           },
-          { "name": "Level 2: B" }
+          { "labname": "Level 2: B" }
         ]
       };
 
-    d3.select('#adminTreePane').append("span")
-    .text("Hello, world!");
+    let labID: number = 1; // set lab ID
+    let lab = this.data.getLabNo404(labID);
+    if(Object.keys(lab).length !== 0) {
+      // treeData = lab;
+    }
 
     // Set the dimensions and margins of the diagram
     let margin = {top: 20, right: 90, bottom: 30, left: 90},
@@ -109,7 +124,7 @@ export class AdmintreepaneComponent implements OnInit {
           .attr("text-anchor", function(d: any) {
               return d.children || d._children ? "end" : "start";
           })
-          .text(function(d: any) { return d.data.name; })
+          .text(function(d: any) { return d.data.labname; })
           .style('fill', '#FFF');
     
       // UPDATE
