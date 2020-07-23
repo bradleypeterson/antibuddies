@@ -37,7 +37,7 @@
     <pm-analytics></pm-analytics>
         <div class="row">
             <div class="col-md-6">
-                <div *ngIf="isNewNode">
+                <div  *ngIf="isNewNode">
                     <div>
                         <label *ngIf='!invalidInput' for="nodename">Enter Node name</label>
                         <label *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
@@ -94,8 +94,9 @@
                             </div>
                         </div>
                     </div>
+                
                     <!-- <tree-node></tree-node> -->
-                <div class="node-section" *ngIf="!isNewNode">
+                <div class="node-section" >
                     <div class="node-row">
                         <div class="node-column">
                             <!-- <h3>Node Name: {{nodeName}}</h3> -->
