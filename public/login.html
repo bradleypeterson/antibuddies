@@ -1,6 +1,5 @@
 <html>
   <head>
-    <script src="/js/api.js"></script>
     <script src="scripts/quizCleanUpScripts.js"></script>
     <style>
       textarea {
@@ -14,10 +13,13 @@
     <form method="post" onsubmit="submitForm(event, this)">
       Username: <input type="text" name="username" /> <br />
       Password: <input type="password" name="password" /> <br />
-      <button type="submit" name="submit">Log in</button> <br />
+      <button type="submit" name="submit" onclick="checkForAdim()">
+        Log in
+      </button>
+      <br />
       <textarea readonly="" id="output"></textarea>
     </form>
-    <a href="/"><button>Sign Up</button></a>
+    <a href="index.html"><button>Sign Up</button></a>
 
     <script>
       function submitForm(e, form) {
@@ -34,17 +36,9 @@
         api
           .authenticate(user)
           .then((data) => {
-            // show message in html
-            // if (data){
-            //   content = "Welcome " + data.user.firstName + ' ' + data.user.lastName;
-            // }
-            // else {
-            //   content = "Username or Password is incorrect. Please try again";
-            // }
-
             console.log(data);
             //outputbox.value = content + JSON.stringify(data);
-            window.location.href = "/logout?user=" + JSON.stringify(data.user);
+            // window.location.href = "/logout?user=" + JSON.stringify(data.user);
           })
           .catch((err) => {
             outputbox.value = err.error;

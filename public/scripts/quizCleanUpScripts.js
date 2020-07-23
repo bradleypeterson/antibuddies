@@ -3,9 +3,14 @@ function openNav() {
 }
 
 // check if checkbox is checked
-function redirect() {
-	if (document.getElementById('admin').checked == true) window.location.href = 'admin-quiz-add.html';
-	else if (document.getElementById('admin').checked == false) window.location.href = 'student-hone-page.html';
+function checkForAdmin() {
+	if (document.getElementById('admin').checked) {
+		alert('checked. You are creating an admin account.');
+		window.location.href = 'admin-quiz-add.html';
+	} else {
+		alert("You didn't check it! You are creating a student account");
+		window.location.href = 'student-home-page.html';
+	}
 }
 
 /* Set the width of the side navigation to 0 */

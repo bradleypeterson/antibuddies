@@ -31,11 +31,16 @@
       style="padding-top: 20px;"
     />
 
-    <div style="padding-left: 705px;">
+    <div>
       <form
         method="post"
         onsubmit="submitForm(event, this)"
-        style="padding-bottom: 50px; padding-top: 50px;"
+        style="
+          padding-bottom: 50px;
+          padding-top: 50px;
+          justify-content: center;
+          vertical-align: middle;
+        "
       >
         Username:<br />
         <input type="text" name="username" /> <br /><br />
@@ -52,12 +57,10 @@
         </button>
         <br />
         <br />
-        <a href="/login"><button>Log In</button></a>
-        <br />
-
-        <textarea readonly="" id="output" style="padding-left: 15px;"></textarea
-        ><br />
+        <textarea readonly="" id="output"></textarea><br />
       </form>
+      <a><button href="login.html" onclick="checkForAdmin()">Log In</button></a>
+      <br />
     </div>
     <script>
       function submitForm(e, form) {
@@ -84,7 +87,7 @@
 
             console.log(data);
             //outputbox.value = content;
-            window.location.href = "/logout?user=" + JSON.stringify(data);
+            window.location.href = "index.html=" + JSON.stringify(data);
           })
           .catch((err) => {
             outputbox.value = err.error;
