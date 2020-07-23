@@ -4,3 +4,7 @@
     border-bottom: solid 1px #9800e0;
     border-right: solid 1px #9800e0;
 }
+
+#adminTreePane {
+    overflow-x: scroll;
+}
