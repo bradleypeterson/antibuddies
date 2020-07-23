@@ -2,6 +2,12 @@ function openNav() {
 	document.getElementById('mySidenav').style.width = '450px';
 }
 
+// check if checkbox is checked
+function redirect() {
+	if (document.getElementById('admin').checked == true) window.location.href = 'admin-quiz-add.html';
+	else if (document.getElementById('admin').checked == false) window.location.href = 'student-hone-page.html';
+}
+
 /* Set the width of the side navigation to 0 */
 function closeNav() {
 	document.getElementById('mySidenav').style.width = '0';

@@ -282,3 +282,21 @@ a:visited{
 	margin-top: 20px;
 	margin-left: 0px;
 }
+
+/* login */
+input {
+	color: black;
+}
+
+textarea {
+	border: none;
+	resize: none;
+	color: red;
+}
+
+button {
+	width: 200px;
+	height: 50px;
+	border-radius: 20px;
+	background-color: #9800e0;
+ }

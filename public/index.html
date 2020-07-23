@@ -1,44 +1,147 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Login</title>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
 
-      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
-      <!-- <script data-main="scripts/main" src="require.js"></script> -->
-      <!-- <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script> -->
-      
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap.js"></script>
-      <link rel="stylesheet" href="style/login.css">
-      <script src="sha256.js"></script>
-      <script src="scripts/login.js"></script>
-      
-      </head>
-    <body>
-      <h1>Department of Medical Laboratory Sciences</h1>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+    <!-- <script data-main="scripts/main" src="require.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/node-forge@0.7.0/dist/forge.min.js"></script> -->
 
-    <!--main_div is login form-->
-    <div id="login_form" role="dialog" class="main-div">
-      <img src="wsulogo.png" alt="Italian Trulli" id="wsuloginlogo">
-	  
-			<span>Username<input type="email" id="email_field" /></span>
-			<span>Password<input type="password" id="password_field" /></span>
-			<button onclick="login()">Login</button>
-		  <div id="create_user">
-			<span>Not yet a member?</span>
-			<span>Create a new user!</span>
-		  </div>
-		  <button data-toggle="modal" data-target="#newuser_div">Create User</button>
-	    
-	  
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style/login.css" />
+    <script src="sha256.js"></script>
+    <!-- <script src="scripts/login.js"></script> -->
+    <script src="scripts/quizCleanUpScripts.js"></script>
+    <!-- <script src="style/styleQuizCleanUp.css"></script> -->
+  </head>
+  <body>
+    <img
+      src="wsulogo.png"
+      alt="Italian Trulli"
+      id="wsuloginlogo"
+      style="padding-top: 20px;"
+    />
+
+    <div style="padding-left: 705px;">
+      <form
+        method="post"
+        onsubmit="submitForm(event, this)"
+        style="padding-bottom: 50px; padding-top: 50px;"
+      >
+        Username:<br />
+        <input type="text" name="username" /> <br /><br />
+        First Name:<br />
+        <input type="text" name="firstName" /> <br /><br />
+        Last Name:<br />
+        <input type="text" name="lastName" /> <br /><br />
+        Password:<br />
+        <input type="password" name="password" /> <br /><br />
+        Admin:
+        <input type="checkbox" name="admin" id="admin" /><br />
+        <button type="submit" name="submit" style="background-color: primary;">
+          Sign Up
+        </button>
+        <br />
+        <br />
+        <a href="/login"><button>Log In</button></a>
+        <br />
+
+        <textarea readonly="" id="output" style="padding-left: 15px;"></textarea
+        ><br />
+      </form>
     </div>
+    <script>
+      function submitForm(e, form) {
+        e.preventDefault();
 
+        let user = {
+          username: form.username.value,
+          firstName: form.firstName.value,
+          lastName: form.lastName.value,
+          password: form.password.value,
+          isAdmin: form.admin.checked,
+        };
 
-    <!-- user_div is user is logged in -->
-    <div class="loggedin-div" id="user_div">
+        var outputbox = document.getElementById("output");
+        var content = outputbox.value;
+
+        api
+          .signup(user)
+          .then((data) => {
+            // show message in html
+            // if (data){
+            //   content = "Welcome " + data.user.firstName + ' ' + data.user.lastName;
+            // }
+
+            console.log(data);
+            //outputbox.value = content;
+            window.location.href = "/logout?user=" + JSON.stringify(data);
+          })
+          .catch((err) => {
+            outputbox.value = err.error;
+          });
+
+        //api.signup(user).then(console.log).catch(console.error);
+      }
+    </script>
+  </body>
+  <!-- </body> -->
+  <!--main_div is login form-->
+  <!-- <form method="post" onsubmit="submitForm(event, this)">
+      <div id="login_form" role="dialog" class="main-div">
+        <img src="wsulogo.png" alt="Italian Trulli" id="wsuloginlogo">
+      Username: <input type="text" name="username"> <br>
+      First Name: <input type="text" name="firstName"> <br>
+      Last Name: <input type="text" name="lastName"> <br>
+      Password: <input type="password" name="password"> <br>
+      Admin: <input type="checkbox" name="admin">
+      <button type="submit" name="submit">Sign Up</button> <br>
+      <textarea readonly="" id="output"></textarea>
+  </form>
+  <a href="/login"><button>Log In</button></a>
+  <script>
+    function submitForm(e, form){
+      e.preventDefault();
+      
+      let user = {
+        username: form.username.value,
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        password: form.password.value,
+        isAdmin: form.admin.checked
+      }
+      
+      var outputbox = document.getElementById('output');
+      var content = outputbox.value;
+      
+      api.signup(user).then((data) => { -->
+  <!-- // show message in html
+        // if (data){
+        //   content = "Welcome " + data.user.firstName + ' ' + data.user.lastName;
+        // }
+        
+        console.log(data)
+        //outputbox.value = content;
+        window.location.href = '/logout?user=' + JSON.stringify(data);
+      }).catch((err) => {
+        outputbox.value = err.error;
+      });
+      
+      //api.signup(user).then(console.log).catch(console.error);
+    }
+  </script> -->
+
+  <!-- user_div is user is logged in -->
+  <!-- <div class="loggedin-div" id="user_div">
       <h2 id="getUserFirst"></h2>
       <span id="user_para">Welcome to AntiBuddies!</span>
         <div class="user_div_button">
@@ -57,10 +160,10 @@
             </footer>
           </div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- newuser_div is create new user form -->
-    <div class="modal fade" id="newuser_div" role="dialog">
+  <!-- newuser_div is create new user form -->
+  <!-- <div class="modal fade" id="newuser_div" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
 
@@ -87,6 +190,6 @@
           </div>
         </div>
       </div>   
-    </div>
-  </body>
+    </div> -->
+  <!-- </body> -->
 </html>
