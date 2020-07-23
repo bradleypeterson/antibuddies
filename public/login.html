@@ -8,18 +8,35 @@
         color: red;
       }
     </style>
+    <link rel="stylesheet" href="style/styleQuizCleanUp.css" />
   </head>
-  <body>
-    <form method="post" onsubmit="submitForm(event, this)">
-      Username: <input type="text" name="username" /> <br />
-      Password: <input type="password" name="password" /> <br />
-      <button type="submit" name="submit" onclick="checkForAdim()">
-        Log in
-      </button>
-      <br />
-      <textarea readonly="" id="output"></textarea>
-    </form>
-    <a href="index.html"><button>Sign Up</button></a>
+  <body style="background-color: #310f41;">
+    <div class="row" style="background-color: grey; align-content: center;">
+      <img
+        src="wsulogo.png"
+        alt="Italian Trulli"
+        id="wsuloginlogo"
+        style="
+          padding-top: 20px;
+          height: 80px;
+          width: 80px;
+          align-content: center;
+        "
+      />
+    </div>
+    <hr />
+    <div style="background-color: grey;">
+      <form method="post" onsubmit="submitForm(event, this)">
+        Username: <input type="text" name="username" /> <br />
+        Password: <input type="password" name="password" /> <br />
+        <button type="submit" name="submit" onclick="checkForAdim()">
+          Log in
+        </button>
+        <br />
+        <textarea readonly="" id="output"></textarea>
+      </form>
+      <a href="index.html"><button>Sign Up</button></a>
+    </div>
 
     <script>
       function submitForm(e, form) {
