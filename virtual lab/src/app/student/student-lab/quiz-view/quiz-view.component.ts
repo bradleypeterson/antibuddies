@@ -18,7 +18,7 @@ export class QuizViewComponent implements OnInit {
     name: '',
   };
   @Output() answered: EventEmitter<number> = new EventEmitter<number>();
-  nextNodeAsSelected: number;
+  nodeAsSelected: number;
 
   constructor() {
   }
@@ -32,13 +32,13 @@ export class QuizViewComponent implements OnInit {
 
   determineNextNode(nextNodeAsSelected: number) {
     // pass event back to parent/toolbar, traverse to next node
-    this.answered.emit(this.nextNodeAsSelected);
-    console.log("next node:", this.nextNodeAsSelected);
+    this.answered.emit(this.nodeData.answers[this.nodeAsSelected].connectingNodeID);
+    console.log("next node:", this.nodeData.answers[this.nodeAsSelected].connectingNodeID);
     this.resetNext();
   }
 
   resetNext(): void {
-    this.nextNodeAsSelected = null;
+    this.nodeAsSelected = null;
   }
 
 }

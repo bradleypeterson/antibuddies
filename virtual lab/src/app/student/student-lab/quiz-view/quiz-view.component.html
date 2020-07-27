@@ -3,7 +3,7 @@
     <span class="to-be-removed">Node ID: {{ nodeData.nodeID }}</span>
     <div class="radio-group-item" *ngFor="let answer of nodeData.answers">
         <label for="answer_{{answer.answerID}}">
-            <input id="answer_{{answer.answerID}}" [value]='answer.connectingNodeID' type="radio" name="answers" [(ngModel)]="nextNodeAsSelected" (ngModelChange)="determineNextNode($event)">
+            <input id="answer_{{answer.answerID}}" [value]='answer.answerID' type="radio" name="answers" [(ngModel)]="nodeAsSelected" (ngModelChange)="determineNextNode($event)">
             <span class="radio-item"></span>
             {{answer.answerText}}
         </label>
