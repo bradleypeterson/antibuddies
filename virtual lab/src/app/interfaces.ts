@@ -12,7 +12,9 @@ export class LabsContainer {
     labs:lab[] = [];
 
     constructor(){
-        this.labs.push(new lab("Chemistry", 0));
+        this.createLab("Chemistry");
+
+        //this.labs.push(new lab("Chemistry", 0));
         this.labs[0].description = "Spring 2020 Chemistry"
         this.labs[0].createdDate = new Date()
         this.labs[0].course = "Chem 1010"
