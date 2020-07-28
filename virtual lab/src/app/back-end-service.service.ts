@@ -64,7 +64,7 @@ export class BackEndServiceService {
     //example to get all the nodes, the are in an array in lab: lab.nodes[]
     let leng = getLab.nodes.length
     for (let i = 0;i<leng;i++){
-      console.log("node name:",getLab.nodes[i].name)
+      console.log("Part of example: node name:",getLab.nodes[i].name)
     }
 
   }
