@@ -10,11 +10,12 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
 // student toolbar should listen for changes in quiz-view
 // so that the next node button is no longer greyed out,
 // allow for traversal to the next node
-@Input() isFinished: boolean;
+@Input() isEnd: boolean;
 @Input() allowNext: string;
 @Input() allowPrevious: string;
 @Output() traverseForwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 @Output() traverseBackwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+@Output() traverseFinalIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
 
 videoNode: boolean = false;
 
@@ -38,6 +39,10 @@ videoNode: boolean = false;
     console.log("Toggle play/pause of video");
   }
 
+  handleFinish(): void {
+    // when user clicks the final "Next" button, finishes lab.
+    this.traverseFinalIsOkay.emit(true);
+  }
   ngOnInit(): void {
   }
 

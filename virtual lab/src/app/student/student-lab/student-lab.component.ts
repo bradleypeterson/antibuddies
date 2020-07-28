@@ -15,13 +15,13 @@ export class StudentLabComponent implements OnInit {
   labDescription: string;
   isBegin: boolean = false;
   isEnd: boolean = false;
+  isFinished: boolean = false;
   currentNode: number = 0;
   nextNode: number;
   prevNode: number;
   disabledNext: string = "disabled";
   disabledPrevious: string = "disabled";
-  finalNode: number = 16;
-  // lab: lab;
+  finalNode: number;
   nodes: Quiznode[];
 
   constructor(private data: BackEndServiceService, private messages: MessageService) { 
@@ -31,6 +31,7 @@ export class StudentLabComponent implements OnInit {
     this.labName = lab.name;
     this.labDescription = lab.description;
     this.nodes = lab.nodes;
+    this.finalNode = lab.findNodeByName("Here is the final question. What is the answer?");
   }
 
   ngOnInit(): void {
@@ -53,8 +54,8 @@ export class StudentLabComponent implements OnInit {
   goNextNode(next: number): void {
 
     this.nextNode = next
-    // if there is no next node , close lab when button pressed
-    if (this.nextNode === this.finalNode) {
+    // if there is no next node , view ending screen when button pressed
+    if (this.currentNode === this.finalNode) {
       this.isEnd = true;
       return;
     }
@@ -90,6 +91,11 @@ export class StudentLabComponent implements OnInit {
     this.currentNode = this.prevNode;
     this.disabledNext = "disabled";
     this.disabledPrevious = "disabled";
+  }
+
+  // when the lab is completed, show end card to student.
+  handleLabEnd(): void {
+    this.isFinished = true;
   }
 
 }

@@ -3,9 +3,9 @@
         <div>
             <button class="btn btn-primary" (click)="handlePreviousNode()" [disabled]="allowPrevious">Previous node</button>
             <button class="btn btn-primary" *ngIf="videoNode" (click)="handlePlayPause()">Play/Pause</button>
-            <button class="btn btn-primary" (click)="handleNextNode()" [disabled]="allowNext">Next node</button>
-            <button class="btn btn-primary" routerLink="/labview" *ngIf="!isFinished">Exit Lab</button>
-            <button class="btn btn-primary" routerLink="/labview" *ngIf="isFinished">Finish</button>
+            <button class="btn btn-primary" (click)="handleNextNode()" [disabled]="allowNext" *ngIf="!isEnd">Next node</button>
+            <button class="btn btn-primary" (click)="handleFinish()" *ngIf="isEnd">Next</button>
+            <button class="btn btn-primary" routerLink="/labview">Exit Lab</button>
         </div>
     </div>
 </div>
