@@ -12,27 +12,27 @@ export class LabsContainer {
     labs:lab[] = [];
 
     constructor(){
-        this.createLab("Chemistry");
+        // this.createLab("Chemistry");
 
-        //this.labs.push(new lab("Chemistry", 0));
-        this.labs[0].description = "Spring 2020 Chemistry"
-        this.labs[0].createdDate = new Date()
-        this.labs[0].course = "Chem 1010"
-        let quiz1 = this.labs[0].createQuizNode("What is the answer to this?")
-        quiz1.createAnswer("Blah 1", 1);
-        quiz1.createAnswer("Blah 2", 3);
-        quiz1.createAnswer("Blah 3", 4);
-        quiz1.createAnswer("Blah 4", 5);
+        // //this.labs.push(new lab("Chemistry", 0));
+        // this.labs[0].description = "Spring 2020 Chemistry"
+        // this.labs[0].createdDate = new Date()
+        // this.labs[0].course = "Chem 1010"
+        // let quiz1 = this.labs[0].createQuizNode("What is the answer to this?")
+        // quiz1.createAnswer("Blah 1", 1);
+        // quiz1.createAnswer("Blah 2", 3);
+        // quiz1.createAnswer("Blah 3", 4);
+        // quiz1.createAnswer("Blah 4", 5);
 
-        let quiz2 = this.labs[0].createQuizNode("This is another question, with a longer string of text. What is the answer?")
-        quiz2.createAnswer("Number one", 2);
-        quiz2.createAnswer("Number two", 6);
-        quiz2.createAnswer("Number three", 7);
+        // let quiz2 = this.labs[0].createQuizNode("This is another question, with a longer string of text. What is the answer?")
+        // quiz2.createAnswer("Number one", 2);
+        // quiz2.createAnswer("Number two", 6);
+        // quiz2.createAnswer("Number three", 7);
 
-        let quiz3 = this.labs[0].createQuizNode("Here is the final question. What is the answer?");
-        quiz3.createAnswer("First answer", 8);
-        quiz3.createAnswer("Second answer", 9);
-        quiz3.createAnswer("Third answer", 10);
+        // let quiz3 = this.labs[0].createQuizNode("Here is the final question. What is the answer?");
+        // quiz3.createAnswer("First answer", 8);
+        // quiz3.createAnswer("Second answer", 9);
+        // quiz3.createAnswer("Third answer", 10);
      }
 
     //create lab from labname, checks if the lab already exists first, has to be unique
@@ -40,6 +40,7 @@ export class LabsContainer {
         //check if lab already exists
         if (this.findLabByName(labName) == -1) {
             let templab = new lab(labName,this.labs.length)
+            templab.createdDate = new Date()
             //add to labs array
             this.labs.push(templab)
             return templab

@@ -3,14 +3,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from "./message.service";
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { LabsContainer, lab } from "./interfaces"
+import { LabsContainer, lab, Quiznode } from "./interfaces"
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackEndServiceService {
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private messageService: MessageService) {
+    this.makeExample();
+   }
 
   private dataUrl = 'api/vlab';  // URL to web api
 
@@ -19,6 +21,30 @@ export class BackEndServiceService {
   };
 
   labsContainer = new LabsContainer()
+
+  makeExample() {
+
+    let newLab:lab = this.labsContainer.createLab("Chemistry");
+    newLab.description = "Spring 2020 Chemistry";
+    newLab.course = "Chem 1010";
+    
+    let quiz1:Quiznode = newLab.createQuizNode("What is the answer to this?")
+    quiz1.createAnswer("Blah 1", 1);
+    quiz1.createAnswer("Blah 2", 3);
+    quiz1.createAnswer("Blah 3", 4);
+    quiz1.createAnswer("Blah 4", 5);
+
+    let quiz2:Quiznode = newLab.createQuizNode("This is another question, with a longer string of text. What is the answer?")
+    quiz2.createAnswer("Number one", 2);
+    quiz2.createAnswer("Number two", 6);
+    quiz2.createAnswer("Number three", 7);
+
+    let quiz3:Quiznode = newLab.createQuizNode("Here is the final question. What is the answer?");
+    quiz3.createAnswer("First answer", 8);
+    quiz3.createAnswer("Second answer", 9);
+    quiz3.createAnswer("Third answer", 10);
+
+  }
 
   //local get all labs
   getLabsContainer(): Observable<LabsContainer> {
