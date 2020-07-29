@@ -201,6 +201,7 @@ div.card {
   cursor: pointer;
   padding: .5rem;
   margin-bottom: 0;
+  color: #FFF;
   background-color: #310f41;
   border-radius: .25rem;
   transition: 150ms;
