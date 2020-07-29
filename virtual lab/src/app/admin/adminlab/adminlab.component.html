@@ -11,7 +11,8 @@
 <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="navigation" *ngIf="isNewNode">
+                <div *ngIf="isNewNode">
+                    <div class="navigation">
                         <label class="node-major-label flex-label" *ngIf='!invalidInput' for="nodename">New node name</label>
                         <label class="node-major-label flex-label" *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
                         <div>
@@ -23,7 +24,9 @@
                             <button class='btn btn-primary'
                                 (click)="addNewNode()">Add New Node</button>
                         </div>
-                        <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
+                    </div>
+            
+                    <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
                 </div>
                 <div *ngIf="!isNewNode">
                     <div class="node-row navigation">
