@@ -1,27 +1,26 @@
-<div class='card container'>
+<div class='card container' *ngIf='nodes && nodes.length'>
     <div class='card-body'>
         <div class='table-responsive'>
-            <table class='table'*ngIf='nodes && nodes.length'>
+            <table class='table'>
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Description</th>
-               
-                 
+                    <th>Description</th>    
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor='let node of nodes'>
-            
-
                     <td>{{ node.nodeId}}</td>
                     <td>{{ node.name }}</td>
                     <td>{{ node.description }}</td>
-                    <td> <button (click) = "editNode(node.nodeId, node.name)" class="btn btn-primary"> Edit </button></td>
-                   
-                  
-
+                    <td> 
+                        <button 
+                            (click) = "editNode(node.nodeId, node.name)" 
+                            class="btn btn-primary"> 
+                                Edit 
+                        </button>
+                    </td>
                 </tr>
             </tbody>
             </table>

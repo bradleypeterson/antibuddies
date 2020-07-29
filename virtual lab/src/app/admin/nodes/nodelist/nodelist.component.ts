@@ -6,8 +6,6 @@ import { ILab } from '../../../labview/interfaces/labInterface';
 import { lab } from 'src/app/interfaces';
 import {  DataServiceService} from "src/app/data-service.service";
 
-
-
 @Component({
   selector: 'pm-nodelist',
   templateUrl: './nodelist.component.html',

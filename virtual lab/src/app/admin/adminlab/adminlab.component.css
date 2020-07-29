@@ -4,9 +4,6 @@ div.navigation {
     border-bottom: 1px solid #9800e0;
 }
 
-.node-section {
-}
-
 .btn {
     margin-right: .5rem;
 }
@@ -19,6 +16,7 @@ div {
     background-color: hsl(281, 62%, 8%);
 }
 
-.behavior-section {
+.new-section {
     margin-top: .5rem;
 }
+

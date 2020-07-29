@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { MessageService } from '../../message.service';
 import { LabsContainer, Quiznode, lab } from '../../interfaces';
-//import { labType, quizNode } from '../../interfaces';
 
 @Component({
   selector: 'student-lab',

@@ -1,69 +1,51 @@
 <div class="container">
-    <div class="row">
-        <div class='col-md-4'><h3>{{labName}} </h3></div>
-      
-        <div class='col-md-2'>
+    <div class="navigation">
+        <h3 class="flex-label">{{labName}}</h3>
             <button (click)="labDetails()" class='btn btn-primary'>lab details</button>
-        </div>
-        <div class='col-md-2'>
             <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button>
-        </div>
-        <div class='col-md-2'>
             <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button>
-        </div>
-        <div class='col-md-2'>
             <button (click) = "backButton()" class='btn btn-primary'>Back</button>
-        </div>
     </div>
 </div>
-
-<!-- <ul>
-    <li><h3>{{labName}} lab Name: </h3></li>
-    <li>  <button (click)="labDetails()" class='btn btn-primary'>lab details</button> </li>
-    <li>  <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button> </li>
-    <li>  <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button> </li>
-    <li>  <button (click) = "backButton()" class='btn btn-primary'>Back</button> </li>
-</ul> -->
 <pm-analytics></pm-analytics>
 <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div *ngIf="isNewNode">
-                    <div>
-                        <label *ngIf='!invalidInput' for="nodename">Enter Node name</label>
-                        <label *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
-                        <input maxlength="15"
+                <div class="navigation" *ngIf="isNewNode">
+                        <label class="node-major-label flex-label" *ngIf='!invalidInput' for="nodename">New node name</label>
+                        <label class="node-major-label flex-label" *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
+                        <div>
+                            <input maxlength="15"
                                [(ngModel)]="nodeName"
                                type='text'
                                id="nodename"
                                placeholder='New Node Name' />
-                        <button class='btn btn-primary'
+                            <button class='btn btn-primary'
                                 (click)="addNewNode()">Add New Node</button>
-                    </div>
-                    <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
+                        </div>
+                        <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
                 </div>
                 <div *ngIf="!isNewNode">
-                    <div class="row">
-                        <h3>Node Name: {{nodeName}}</h3>
+                    <div class="node-row navigation">
+                        <h3 class="node-major-label flex-label">Node Name: {{nodeName}}</h3>
                         <button class='btn btn-primary'
                                 (click)="nodeBackButton()">back</button>
                     </div>
 
                     <div class="card">
-                        <div class="card">
-                            <h1>(Node number)</h1>
+                        <div class="node-column">
+                            <h3 class="node-major-label">Description:</h3>
                             <textarea  [(ngModel)]= "Description" name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
                             <button (click)="onClickDesc">Edit</button>
                     
                         </div>
-                        <div class="card">
-                            <div class="card">
-                                <h2>Behavior</h2>
+                        <div class="node-column new-section">
+                            <div class="node-row">
+                                <h3 class="node-major-label">Behavior:</h3>
                                 <select [(ngModel)]="nodeType">
                                     <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
                                 </select>
                             </div>
-                    
                             <!--This is where the appropriate behavior node will be loaded-->
                             <div *ngIf="nodeType === 'Matching'">
                                 <matching-node></matching-node>
@@ -74,14 +56,13 @@
                             <div *ngIf="nodeType === 'Perform experiment'">
                                 <experiment-node></experiment-node>
                             </div>
-                            <div  *ngIf="nodeType === 'Question / Answer'">
+                            <div *ngIf="nodeType === 'Question / Answer'">
                                 <quiz-node [Description] = "Description" [nodeId] = "nodeId" [labId]="labId" [labName]="labName" [nodeName]="nodeName" ></quiz-node>
                             </div>
-                            
-                            <div class="card">
-                                <h2>Outgoing nodes:</h2>
-                                <!--Populate with list of outgoing nodes-->
-                            </div>
+                        </div>
+                        <div class="node-row new-section">
+                            <h3 class="node-major-label">Outgoing nodes:</h3>
+                            <!--Populate with list of outgoing nodes-->
                         </div>
                     </div>
                     <!-- <tree-node></tree-node> -->
@@ -91,5 +72,4 @@
                 <pm-admintreepane></pm-admintreepane>
             </div>
         </div>
-    
 </div>

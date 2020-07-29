@@ -1,6 +1,5 @@
 <div>
-    <form>
-        <label for="questionText">Question Text</label><br>
+        <label class="node-major-label" for="questionText">Question Text:</label><br>
         <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]= "Question" name="questionText" id="questionText" cols="30" rows="10" maxlength="500"></textarea>
         <br>
 
@@ -9,7 +8,7 @@
         <file-uploader></file-uploader>
 
         <div class="node-column">
-            <label class="node-major-label">Answer type</label>
+            <label class="node-major-label">Answer type:</label>
             <div class="radio-group-item">     
                 <label for="single-choice">
                     <input type="radio" id="single-choice" name="answer-type" value="single-choice" checked>
@@ -28,7 +27,7 @@
         </div>
 
 
-        <label class="node-major-label" for="">Answer options</label><br>
+        <label class="node-major-label" for="">Answer options:</label><br>
 
         <!-- Display current input answer options if answerOptions array has values -->
         <ul *ngIf="answers.length > 0">
@@ -50,7 +49,6 @@
             
         </div>
         <button (click)="saveNode()">Save Node</button>
-    </form>
         <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div class="node-column" *ngIf="newAnswer">
             <div class="node-row">
