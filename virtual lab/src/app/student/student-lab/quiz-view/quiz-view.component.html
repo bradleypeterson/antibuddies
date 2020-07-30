@@ -1,6 +1,7 @@
 <div>
     <h3>{{ nodeData.name }}</h3>
     <span class="to-be-removed">Node ID: {{ nodeData.nodeID }}</span>
+    <!--Answer choices displayed for the given node-->
     <div class="radio-group-item" *ngFor="let answer of nodeData.answers">
         <label for="answer_{{answer.answerID}}">
             <input id="answer_{{answer.answerID}}" [value]='answer.answerID' type="radio" name="answers" [(ngModel)]="nodeAsSelected" (ngModelChange)="determineNextNode($event)">

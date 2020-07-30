@@ -1,32 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 
-/* Styles as defined by quiz cleanup group -- modified/expanded for our use */
+/* additional colors as defined by quiz cleanup group */
 .red {
   /* cancel/no/delete  */
   color: #f20a0a;
-}
-
-.container-bg{
-  /* page background grey*/
-  background-color: #e5e5e5;
-}
-
-.menubar {
-  /* light grey used in menu  */
-  color: #c4c4c4;
-}
-
-.white {
-  /* regular white color  */
-  color: #fffdfd;
-}
-
-.numbered_button {
-  /* grey color of the text of question # button */
-  color: #7b7b7b;
 }
 
 .green {
@@ -35,10 +14,9 @@
 }
 
 
-
 /*********************************/
 
-/* Additional virtual lab styles */
+/* Virtual lab styles */
 body {
   display: flex;
   flex-flow: column;
@@ -91,6 +69,7 @@ hr {
   background: gray;
 }
 
+/* Global header of Virtual Labs */
 .page-header {
   font-weight: 500;
   flex: 1;
@@ -99,6 +78,7 @@ hr {
   background: black;
 }
 
+/* Main navigation bar styling */
 .main-nav ul {
   margin: 0;
   padding: 0;
@@ -132,6 +112,7 @@ hr {
   background-color:  #310f41;
 }
 
+/* reset/modify styles of containers/tables/cards (imported from bootstrap) */
 .container, .table {
   color: #FFF;
   background: none;
@@ -154,6 +135,7 @@ div.navigation {
   justify-content: space-between;
 }
 
+/* Overriding bootstrap button classes */
 .btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
   border: none;
   background-color: #9800e0;
@@ -174,13 +156,14 @@ div.card-header {
 }
 
 div.card {
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .table {
-  margin-top: 10px
+  margin-top: 10px;
 }
 
+/* Student lab simulation */
 .student-lab {
   display: flex;
   flex: 1;
@@ -188,6 +171,7 @@ div.card {
   background-color: #000;
 }
 
+/* Custom radio buttons group */
 .radio-group-item {
   display: flex;
   flex-flow: row;
@@ -266,6 +250,7 @@ div.card {
   display: flex;
 }
 
+/* Admin view node styles */
 .node-row {
   flex-flow: row;
   justify-content: space-between;
@@ -290,5 +275,3 @@ div.card {
 .to-be-removed {
   color: #FF0;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
