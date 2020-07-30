@@ -3,8 +3,8 @@
         <div>
             <button class="btn btn-primary" (click)="handlePreviousNode()" [disabled]="allowPrevious">Previous node</button>
             <button class="btn btn-primary" *ngIf="videoNode" (click)="handlePlayPause()">Play/Pause</button>
-            <button class="btn btn-primary" (click)="handleNextNode()" [disabled]="allowNext" *ngIf="!isEnd">Next node</button>
-            <button class="btn btn-primary" (click)="handleFinish()" *ngIf="isEnd">Next</button>
+            <button class="btn btn-primary" (click)="handleNextNode()" [disabled]="allowNext" *ngIf="!isFinal">Next node</button>
+            <button class="btn btn-primary" (click)="handleFinish()" [disabled]="allowNext" *ngIf="isFinal">Next</button>
             <button class="btn btn-primary" routerLink="/labview">Exit Lab</button>
         </div>
     </div>

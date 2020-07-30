@@ -9,21 +9,20 @@ import { LabsContainer, Quiznode, lab } from '../../interfaces';
   styleUrls: ['./student-lab.component.css']
 })
 
-
 export class StudentLabComponent implements OnInit {
 
   labName: string;
   labDescription: string;
-  isBegin: boolean = false;
-  isEnd: boolean = false;
+  isBegin: boolean = false; // check if student has begun lab
+  isFinal: boolean = false; // check if final answer selected before allowing finish of lab
   isFinished: boolean = false;
-  currentNode: number = 0;
-  nextNode: number;
-  prevNode: number;
-  disabledNext: string = "disabled";
+  currentNode: number = 0;  // track current node
+  nextNode: number;         // track next node
+  prevNode: number;         // track previous node
+  disabledNext: string = "disabled";      // set buttons to disabled (in child component: student-toolbar)
   disabledPrevious: string = "disabled";
   finalNode: number;
-  nodes: Quiznode[];
+  nodes: Quiznode[];        // the array of nodes (load from respective lab in constructor)
 
   constructor(private data: BackEndServiceService, private messages: MessageService) { 
     // Retrieve lab from service - test
@@ -57,15 +56,17 @@ export class StudentLabComponent implements OnInit {
     return this.nodes.findIndex((element) => element.nodeID === next)
   }
 
+  // determines whether a node traverses to another based on how user selects answer.
   goNextNode(next: number): void {
     this.nextNode = next
-    // if there is no next node , view ending screen when button pressed
+    // if they are on the final node, view ending screen when button pressed
     if (this.currentNode === this.finalNode) {
-      this.isEnd = true;
+      this.isFinal = true;
+      this.disabledNext = "";
       return;
     }
 
-    this.isEnd = false;
+    this.isFinal = false;
 
     // check that node exists before allowing traversal
     if (this.getNextIndex(next) !== -1) {
@@ -96,6 +97,7 @@ export class StudentLabComponent implements OnInit {
     this.currentNode = this.prevNode;
     this.disabledNext = "disabled";
     this.disabledPrevious = "disabled";
+    this.isFinal = false;
   }
 
   // when the lab is completed, show end card to student.

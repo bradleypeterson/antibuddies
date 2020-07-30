@@ -12,7 +12,7 @@ export class StudentToolbarComponent implements OnInit, OnChanges {
 // allow for traversal to the next/previous node.
 
 // student toolbar (child) emits data to the student-lab (parent).
-@Input() isEnd: boolean;
+@Input() isFinal: boolean;
 @Input() allowNext: string;
 @Input() allowPrevious: string;
 @Output() traverseForwardIsOkay: EventEmitter<Boolean> = new EventEmitter<Boolean>();
@@ -25,20 +25,20 @@ videoNode: boolean = false;
 
   handlePreviousNode(): void {
     // go to previous node -- load previous node view
-    console.log("Go to prev node");
+    // console.log("Go to prev node");
     this.traverseBackwardIsOkay.emit(true);
   }
 
   handleNextNode(): void {
     // go to next node -- load next node view
-    console.log("Go to next node");
+    // console.log("Go to next node");
     this.traverseForwardIsOkay.emit(true);
 
   }
 
   handlePlayPause(): void {
     // trigger pause/play video (not implemented -- for video nodes)
-    console.log("Toggle play/pause of video");
+    // console.log("Toggle play/pause of video");
   }
 
   handleFinish(): void {
