@@ -38,13 +38,13 @@ export class QuizViewComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    this.resetNext();
   }
 
   determineNextNode(nextNodeAsSelected: number) {
     // pass event back to parent/toolbar, traverse to next node
     this.answered.emit(this.nodeData.answers[this.nodeAsSelected].connectingNodeID);
     // console.log("next node:", this.nodeData.answers[this.nodeAsSelected].connectingNodeID);
-    this.resetNext();
   }
 
   // function to reset an answer selection from a revisited (previous) node
