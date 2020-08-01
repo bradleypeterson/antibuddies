@@ -5,6 +5,7 @@ import { Node } from '../../../labview/interfaces/NodeInterface';
 import { ILab } from '../../../labview/interfaces/labInterface';
 import { lab } from 'src/app/interfaces';
 import {  DataServiceService} from "src/app/data-service.service";
+import { Quiznode } from 'src/app/interfaces';
 
 @Component({
   selector: 'pm-nodelist',
@@ -19,15 +20,18 @@ export class NodelistComponent implements OnInit {
   ngOnInit(): void {
     //this.lab  = this.data.labsContainer.labs[this.data.labsContainer.findLabByName(this.labName)]
     //this.nodes = this.lab.nodes
-    this.ilab = this.dataService.getLab(this.labId)
-    console.log("lab id "+this.labId)
-    console.log(this.ilab.labDescription)
-    this.nodes =this.ilab.nodes
-    console.log(this.labName)
-    console.log(this.nodes.length)
+    // this.ilab = this.dataService.getLab(this.labId)
+    // console.log("lab id "+this.labId)
+    // console.log(this.ilab.labDescription)
+    // this.nodes =this.ilab.nodes
+    // console.log(this.labName)
+    // console.log(this.nodes.length)
+
+    this.lab = this.data.labsContainer.labs[this.labId]
+    this.nodes = this.lab.nodes
   }
 
-  nodes: Node[] = []
+  nodes: Quiznode[] = []
   lab: lab
   ilab: ILab
   @Input() labName: string;

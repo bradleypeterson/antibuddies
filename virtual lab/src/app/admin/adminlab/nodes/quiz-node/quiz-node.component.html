@@ -31,28 +31,17 @@
 
         <!-- Display current input answer options if answerOptions array has values -->
         <ul *ngIf="answers.length > 0">
-            <li *ngFor="let answer of answers">
-                {{ answer }}
+            <li class="node-major-label flex-label"  *ngFor="let answer of answers">
+                {{ answer.answerText}} outgoing: {{answer.connectingNodeID}}
             </li>
         </ul>
-        <button (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
-        <div *ngIf="newAnswer" >
-            <label for="newAnswerVal">Answer text:</label>
-            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="newAnswerVal" id="newAnswerVal" name="newAnswerVal" type="text" maxlength="250">
-            <label for="outgoingNode">Outgoing node:</label>
-            <select [ngModelOptions]="{standalone: true}" id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
-                <option *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
-            </select>
-            <br>
-            <button (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
-         
-            
+        
+        <div  class="node-column" style=" margin-top: .5rem ;  margin-bottom: .5rem;">
+            <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         </div>
-        <button (click)="saveNode()">Save Node</button>
-        <button class="btn btn-primary" (click)="handleNewAnswer()" *ngIf="!newAnswer && answers.length < maxAnswerOptions">Add new answer option</button>
         <div class="node-column" *ngIf="newAnswer">
-            <div class="node-row">
-                <label for="newAnswerVal">Answer text:</label>
+            <div class="node-column">
+                <label class="node-major-label" for="newAnswerVal">Answer text:</label>
                 <input 
                     [(ngModel)]="newAnswerVal" 
                     id="newAnswerVal" 
@@ -62,11 +51,14 @@
                 >
             </div>
             <div class="node-row">
-                <label for="outgoingNode">Outgoing node:</label>
+                <label class="node-major-label" for="outgoingNode">Outgoing node:</label>
                 <select id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
-                    <option *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
+                    <option style="color:aliceblue" *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
                 </select>
             </div>
-            <button class="btn btn-primary" (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
+            <button class="btn btn-primary" style=" margin-top: .5rem ;  margin-bottom: .5rem;" (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
+        </div>
+        <div class="node-column" style=" margin-top: .5rem ;  margin-bottom: .5rem;">
+            <button class="btn btn-primary" (click)="saveNode()">Save Node</button>
         </div>
 </div>

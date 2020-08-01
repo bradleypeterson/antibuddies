@@ -9,6 +9,7 @@ import { Node } from '../../../../labview/interfaces/NodeInterface';
 import { Answer } from '../../../../labview/interfaces/AnswerInterface';
 import {  DataServiceService} from "src/app/data-service.service";
 import { ILab } from 'src/app/labview/interfaces/labInterface';
+
 @Component({
   selector: 'quiz-node',
   templateUrl: './quiz-node.component.html',
@@ -38,12 +39,11 @@ export class QuizNodeComponent implements OnInit {
 
     //example pull nodes from chemistry
     // console.log("pull nodes from chemistry:",
-      this.lab  = this.data.labsContainer.labs[this.data.labsContainer.findLabByName(this.labName)]
+      this.lab  = this.data.labsContainer.labs[this.labId]
+      this.node = this.lab.nodes[this.nodeId]
       console.log(" lab name in quiz node" + this.labId)
-      this.ilab = this.dataService.getLab(this.labId)
-      console.log(this.ilab.labDescription)
-      console.log(this.dataService.getLabs().length)
-      console.log(this.dataService.getLabs().values.toString)
+     // this.ilab = this.dataService.getLab(this.labId)
+
       this.populateFields();
       this.populateOutgoingNodes();
       console.log("nodeId " +this.nodeId)
@@ -62,14 +62,15 @@ export class QuizNodeComponent implements OnInit {
   @Input() Description: string;
 
   editNode = false;
-  ilab: ILab  = this.dataService.getLab(0)
-  nodes: Node[] =[]
+  //ilab: ILab  = this.dataService.getLab(0)
+  node: Quiznode
   newAnswer: boolean;
   newAnswerVal: string;
   maxAnswerOptions: number = 5;
-  answers: Answer[]= [];
+  answers: answerClass[]= [];
   selectedOutgoingNode: number = 0;
   outgoingNodes: number[] = [];
+
   
 
   Question = ""
@@ -80,57 +81,45 @@ export class QuizNodeComponent implements OnInit {
 
   populateFields()
   {
-    if (this.ilab.nodes.some(e => e.nodeId === this.nodeId)) {
       /* vendors contains the element we're looking for */
-      this.editNode =true;
+      
       console.log("ilab nodes contain id" + this.nodeId)
-      let node = this.ilab.nodes.find(e => e.nodeId === this.nodeId)
-      this.Question = node.Question
-      this.answers = node.answers
+      
+      this.Question = this.node.question
+      this.answers = this.node.answers
       for(let value of this.answers)
       {
-        console.log("answer " + value.answer + " outgoingnode "+ value.outGoingNodeID)
+        console.log("answer " + value.answerText + " outgoingnode "+ value.connectingNodeID)
       }
- 
-    }
-    else
-    {
-      this.editNode = false
-      console.log("ilab nodes dont contain id ")
-    }
+
   }
   handleNewAnswer(): void {
     this.newAnswer = true;
   }
 
   saveNewAnswer(value: string): void {
-    let answer:Answer
+ 
+    console.log("this is the answer value when clicked "+ value)
+   
     if(this.selectedOutgoingNode==0)
     {
-      answer ={
-        answer: value,
-        outGoingNodeID: 1
+          this.node.createAnswer(value, 1)
     }
-  }
-  else
-  {
-     answer ={
-      answer: value,
-      outGoingNodeID: this.selectedOutgoingNode
+    else
+    {
+      this.node.createAnswer(value, this.selectedOutgoingNode)
     }
-  }
-    this.answers.push(answer);
-
+    this.answers = this.node.answers
     this.newAnswer = false;
   }
 
-  populateOutgoingNodes(): void {
+  populateOutgoingNodes(): void 
+  {
     // populate component with outgoing node options
-    console.log(this.ilab.labDescription)
-    let node = this.ilab.nodes
+
+    let nodes= this.lab.nodes
     
-    
-    for(let value of node)
+    for(let value of nodes)
     {this.outgoingNodes.push(value.nodeId)
       console.log("outgoingnode" + value.nodeId)
     }
@@ -140,32 +129,9 @@ export class QuizNodeComponent implements OnInit {
 
 
 
-  saveNode(): void {
-
-    if(!this.editNode)
-    {
-      let defaultOutgoingNode: number[] = []
-      let node: Node ={
-      nodeId: this.nodeId,
-      description: this.Description,
-      name: this.nodeName,
-      Question: this.Question,
-      answers: this.answers,
-      incomingNodes: defaultOutgoingNode}
-    
-      this.ilab.nodes.push(node)
-    }
-    else
-    {
-      let node = this.ilab.nodes.find(e => e.nodeId === this.nodeId)
-      let index = this.ilab.nodes.indexOf(node);
-      console.log("index of node "+ index)
-      this.ilab.nodes[index].Question=this.Question
-      this.ilab.nodes[index].answers=this.answers
-      this.ilab.nodes[index].description = this.Description
-      
-    }
-    
+  saveNode(): void 
+  {
+      this.node.question=this.Question
   }
 
 }

@@ -19,20 +19,20 @@ export class LabviewComponent implements OnInit {
   title = 'Angular: Getting Started';
   isNewLab: boolean = true;
   name: string = "";
+  description: string = "";
+  course: string =  "";
 
-  labId =  Math.floor(Math.random() * 200) + 1 
-  ilabs: ILab[]=[]
+ 
   labs: lab[] =[]
+  lab: lab
   isAdmin = 1
-  invalidInput = false;
+  invalidInputName = false;
+  invalidInputDescription = false;
+  invalidInputCourse = false;
 
   constructor(private dataService: DataServiceService, private route: ActivatedRoute, 
               private router: Router, private backendService: BackEndServiceService,  private messageService: MessageService){
-              //   let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
-              // let lab = this.backendService.labsContainer.labs[labNumber];
-              // this.labs = this.labs.concat(lab)
-
-                this.ilabs = dataService.getLabs();
+          
                 this.labs = this.backendService.labsContainer.labs
 
               }
@@ -40,15 +40,41 @@ export class LabviewComponent implements OnInit {
   addNewLab(): void{
     console.log("clicked on button")
     
-      if(this.name !="")
+      
+      if(this.name =="")
       {
-        this.invalidInput=false
-        this.router.navigate(['/adminlab', this.labId, this.name])
-        console.log("clicked on button")
-        
+        this.invalidInputName=true
       }
-      else{this.invalidInput=true}
+      else {this.invalidInputName=false}
+      if(this.description =="")
+      {
+        this.invalidInputDescription = true;
+      }
+      else {this.invalidInputDescription = false;}
+      if(this.course == "")
+      {
+        this.invalidInputCourse = true;
+      }
+      else{this.invalidInputCourse = false;}
+  
+  
+      if(this.invalidInputDescription == false &&
+        this.invalidInputCourse == false && 
+        this.invalidInputName == false)
+      {
+
+        this.lab = this.backendService.labsContainer.createLab(this.name);
+        this.lab.description = this.description;
+        this.lab.course = this.course;
+        console.log("this lab index"+ this.lab.labID)
+
+
+        this.router.navigate(['/adminlab', this.lab.labID, this.name])
+        console.log("clicked on button")
+      }
   }
+
+  
   ngOnInit(): void {
     this.messageService.add('Labview page loaded');
     for (let lab of this.labs) {

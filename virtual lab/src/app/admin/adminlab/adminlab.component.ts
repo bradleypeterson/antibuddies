@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { MessageService } from '../../message.service';
 import { BackEndServiceService } from '../../back-end-service.service';
 import { isNullOrUndefined } from 'util';
-import { lab } from 'src/app/interfaces';
+import { lab, Quiznode } from 'src/app/interfaces';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ILab } from 'src/app/labview/interfaces/labInterface';
 import {  DataServiceService} from "src/app/data-service.service";
@@ -46,20 +46,10 @@ export class AdminlabComponent implements OnInit {
     // quiz.createAnswer("blah 4",0)
    
     // this.ilab = this.dataService.getLab(this.labID)
-    this.labindex = this.data.labsContainer.findLabByName(this.labName)
    
-    if(this.labindex == -1)
-   {
-    console.log("created new lab id:" + this.labId + " name: " + this.labName)
-     this.createNewLab()
-     
-   }
-   else
-   {
-    console.log("edited lab "+ this.labId +" name "+ this.labName)
      this.editLab()
  
-   }
+   
     
     //example pull nodes from chemistry
     // console.log("pull nodes from chemistry:",
@@ -89,14 +79,13 @@ export class AdminlabComponent implements OnInit {
   isNewNode = true;
   labName = "";
   nodeName = "";
-  labindex = 0;
   labId= 0
-  ilab: ILab
   nodeId = 0
   nodes: Node[] =[]
   invalidInput = false;
   lab: lab
- Description = ""
+  Description = ""
+  quiznode: Quiznode
 
 
   openModal() : void {
@@ -115,16 +104,9 @@ export class AdminlabComponent implements OnInit {
     this.isNewLab = $event
   }
 
-  createNewLab(): void
-  {
-    this.lab = this.data.labsContainer.createLab(this.labName);
-    this.lab.description = "Basic Description hardcoded for now";
-    this.lab.course = "Badic Course Hardcoded";
-
-  }
   editLab(): void
   {
-    this.lab = this.data.labsContainer.labs[this.labindex]
+    this.lab = this.data.labsContainer.labs[this.labId]
     this.labId = this.lab.labID
     this.labName = this.lab.name
 
@@ -138,10 +120,8 @@ export class AdminlabComponent implements OnInit {
   {
     this.nodeId = $event
     console.log("node Id  event", this.nodeId)
-    if(this.nodeId!=0)
-    {
-      this.isNewNode =false
-    }
+    this.isNewNode =false
+    
   }
   labDetails(): void{
 
@@ -155,9 +135,7 @@ export class AdminlabComponent implements OnInit {
     this.openModal()
   }
 
-  onClickDesc(): void {
-    
-  }
+
   nodeType: string;
  
   ngOnChanges(): void {
@@ -170,17 +148,22 @@ export class AdminlabComponent implements OnInit {
     this.router.navigate(['/labview'])
   }
  
+ 
+
   addNewNode(): void {
-   
+    
     if(this.nodeName != "")
     {
       this.invalidInput = false;
-        if(this.isNewNode == true)
-        {
-          this.nodeId = Math.floor(Math.random() * 200) + 1 
-          this.isNewNode = false;
-        }
-        else{this.isNewNode = true;}
+      this.quiznode = this.lab.createQuizNode(this.nodeName)
+      this.quiznode.question = ""
+      this.quiznode.description = this.Description
+      this.nodeId = this.quiznode.nodeID
+      console.log("quiz node id from admin when adding new node:"+ this.quiznode.nodeID+"nameid: "+ this.quiznode.name)
+  
+      
+      this.isNewNode= false;
+      
     }
     else{
       this.invalidInput = true
@@ -189,7 +172,9 @@ export class AdminlabComponent implements OnInit {
     
   }
 
- 
+  saveDescription (): void{
+      this.quiznode.description = this.Description
+  }
   nodeBackButton(): void{
     this.isNewNode = true;
   }
