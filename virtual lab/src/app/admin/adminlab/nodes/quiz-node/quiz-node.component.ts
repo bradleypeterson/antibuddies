@@ -64,6 +64,7 @@ export class QuizNodeComponent implements OnInit {
   editNode = false;
   //ilab: ILab  = this.dataService.getLab(0)
   node: Quiznode
+  nodes:Quiznode[]=[]
   newAnswer: boolean;
   newAnswerVal: string;
   maxAnswerOptions: number = 5;
@@ -117,11 +118,11 @@ export class QuizNodeComponent implements OnInit {
   {
     // populate component with outgoing node options
 
-    let nodes= this.lab.nodes
+    this.nodes= this.lab.nodes
     
-    for(let value of nodes)
-    {this.outgoingNodes.push(value.nodeId)
-      console.log("outgoingnode" + value.nodeId)
+    for(let value of this.nodes)
+    {this.outgoingNodes.push(value.nodeID)
+      console.log("outgoingnode" + value.nodeID)
     }
     
   }

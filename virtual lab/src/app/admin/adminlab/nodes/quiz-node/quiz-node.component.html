@@ -53,7 +53,7 @@
             <div class="node-row">
                 <label class="node-major-label" for="outgoingNode">Outgoing node:</label>
                 <select id="outgoingNode" [(ngModel)]="selectedOutgoingNode">
-                    <option style="color:aliceblue" *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
+                    <option style="background-color:black" *ngFor="let outgoingNode of outgoingNodes" [ngValue]="outgoingNode" value=outgoingNode>{{ outgoingNode }}</option>
                 </select>
             </div>
             <button class="btn btn-primary" style=" margin-top: .5rem ;  margin-bottom: .5rem;" (click)="saveNewAnswer(newAnswerVal)">Save answer option</button>
