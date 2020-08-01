@@ -5,6 +5,7 @@ import { BackEndServiceService } from '../back-end-service.service';
 import { DataServiceService } from "src/app/data-service.service";
 import { ILab } from './interfaces/labInterface';
 import { tree } from 'd3';
+import { lab } from 'src/app/interfaces';
 
 
 @Component({
@@ -17,31 +18,32 @@ export class LabviewComponent implements OnInit {
 
   title = 'Angular: Getting Started';
   isNewLab: boolean = true;
-  labName: string = "";
-  labs: Object[] = [];
+  name: string = "";
+
   labId =  Math.floor(Math.random() * 200) + 1 
   ilabs: ILab[]=[]
+  labs: lab[] =[]
   isAdmin = 1
   invalidInput = false;
 
   constructor(private dataService: DataServiceService, private route: ActivatedRoute, 
               private router: Router, private backendService: BackEndServiceService,  private messageService: MessageService){
-                let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
-              let lab = this.backendService.labsContainer.labs[labNumber];
-              this.labs = this.labs.concat(lab)
+              //   let labNumber = this.backendService.labsContainer.findLabByName("Chemistry");
+              // let lab = this.backendService.labsContainer.labs[labNumber];
+              // this.labs = this.labs.concat(lab)
 
                 this.ilabs = dataService.getLabs();
-
+                this.labs = this.backendService.labsContainer.labs
 
               }
 
   addNewLab(): void{
     console.log("clicked on button")
     
-      if(this.labName !="")
+      if(this.name !="")
       {
         this.invalidInput=false
-        this.router.navigate(['/adminlab', this.labId, this.labName])
+        this.router.navigate(['/adminlab', this.labId, this.name])
         console.log("clicked on button")
         
       }

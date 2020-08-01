@@ -4,9 +4,9 @@
     <div class='navigation' *ngIf ='isAdmin == 1'>
         <label for="searchlab">Search Labs</label>
         <input id="searchlab" type='text' placeholder='search labs'/>
-        <label *ngIf='!invalidInput' for="labname">Enter Lab name</label>
+        <label *ngIf='!invalidInput' for="labnameinput">Enter Lab name</label>
         <label *ngIf='invalidInput'style="color:red; ">Invalin input try again</label>
-        <input maxlength="15" [(ngModel)] ="labName"  type='text'  id="labnameinput" placeholder='New Lab Name'/>
+        <input maxlength="15" [(ngModel)] ="name"  type='text'  id="labnameinput" placeholder='New Lab Name'/>
         <button (click) = "addNewLab()"class='btn btn-primary'>Add New Lab</button>
         
 
@@ -27,11 +27,11 @@
             </tr>
         </thead>
         <tbody *ngIf = 'isAdmin == 1'>
-            <tr *ngFor='let lab of ilabs'>
-                <td>{{ lab.labId}}</td>
-                <td> <a [routerLink] = "['/adminlab', lab.labId, lab.name]">{{ lab.labName }}</a></td>
-                <td>{{ lab.labDescription }}</td>
-                <td>{{ lab.publishDate}}</td>
+            <tr *ngFor='let lab of labs'>
+                <td>{{ lab.labID}}</td>
+                <td> <a [routerLink] = "['/adminlab', lab.labID, lab.name]">{{ lab.name }}</a></td>
+                <td>{{ lab.description }}</td>
+                <td>{{ lab.createdDate}}</td>
                 <td>{{ lab.course }}</td>
             </tr>
         </tbody>

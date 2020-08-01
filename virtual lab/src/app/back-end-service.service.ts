@@ -24,48 +24,48 @@ export class BackEndServiceService {
 
   makeExample() {
 
-    //make a new lab
-    let newLab:lab = this.labsContainer.createLab("Chemistry");
-    newLab.description = "Spring 2020 Chemistry";
-    newLab.course = "Chem 1010";
+    // //make a new lab
+    // let newLab:lab = this.labsContainer.createLab("Chemistry");
+    // newLab.description = "Spring 2020 Chemistry";
+    // newLab.course = "Chem 1010";
     
-    //add quiz node1
-    let quiz1:Quiznode = newLab.createQuizNode("What is the answer to this?")
-    quiz1.createAnswer("Blah 1", 1);
-    quiz1.createAnswer("Blah 2", 3);
-    quiz1.createAnswer("Blah 3", 4);
-    quiz1.createAnswer("Blah 4", 5);
+    // //add quiz node1
+    // let quiz1:Quiznode = newLab.createQuizNode("What is the answer to this?")
+    // quiz1.createAnswer("Blah 1", 1);
+    // quiz1.createAnswer("Blah 2", 3);
+    // quiz1.createAnswer("Blah 3", 4);
+    // quiz1.createAnswer("Blah 4", 5);
 
-    //add quiz node2
-    let quiz2:Quiznode = newLab.createQuizNode("This is another question, with a longer string of text. What is the answer?")
-    quiz2.createAnswer("Number one", 2);
-    quiz2.createAnswer("Number two", 6);
-    quiz2.createAnswer("Number three", 7);
+    // //add quiz node2
+    // let quiz2:Quiznode = newLab.createQuizNode("This is another question, with a longer string of text. What is the answer?")
+    // quiz2.createAnswer("Number one", 2);
+    // quiz2.createAnswer("Number two", 6);
+    // quiz2.createAnswer("Number three", 7);
 
-    //add quiz node3
-    let quiz3:Quiznode = newLab.createQuizNode("Here is the final question. What is the answer?");
-    quiz3.createAnswer("First answer", 8);
-    quiz3.createAnswer("Second answer", 9);
-    quiz3.createAnswer("Third answer", 10);
+    // //add quiz node3
+    // let quiz3:Quiznode = newLab.createQuizNode("Here is the final question. What is the answer?");
+    // quiz3.createAnswer("First answer", 8);
+    // quiz3.createAnswer("Second answer", 9);
+    // quiz3.createAnswer("Third answer", 10);
 
-    //example of getting a lab from the data structure:
-    let getLab:lab = this.labsContainer.labs[this.labsContainer.findLabByName("Chemistry")];
+    // //example of getting a lab from the data structure:
+    // let getLab:lab = this.labsContainer.labs[this.labsContainer.findLabByName("Chemistry")];
     
-    //set the description to something else:
-    getLab.description = "Fall 2020 Math"
+    // //set the description to something else:
+    // getLab.description = "Fall 2020 Math"
 
-    //example of getting nodes from a lab:
-    let tempQuizNode:Quiznode = getLab.nodes[getLab.findNodeByName("What is the answer to this?")]
-    tempQuizNode.description = "Chapter 1";
+    // //example of getting nodes from a lab:
+    // let tempQuizNode:Quiznode = getLab.nodes[getLab.findNodeByName("What is the answer to this?")]
+    // tempQuizNode.description = "Chapter 1";
 
-    //exmaple of getting an answer from a lab:
-    let tempAnswer:answerClass = tempQuizNode.answers[tempQuizNode.findAnswerByText("Blah 2")];
+    // //exmaple of getting an answer from a lab:
+    // let tempAnswer:answerClass = tempQuizNode.answers[tempQuizNode.findAnswerByText("Blah 2")];
 
-    //example to get all the nodes, the are in an array in lab: lab.nodes[]
-    let leng = getLab.nodes.length
-    for (let i = 0;i<leng;i++){
-      console.log("Part of example: node name:",getLab.nodes[i].name)
-    }
+    // //example to get all the nodes, the are in an array in lab: lab.nodes[]
+    // let leng = getLab.nodes.length
+    // for (let i = 0;i<leng;i++){
+    //   console.log("Part of example: node name:",getLab.nodes[i].name)
+    // }
 
   }
 

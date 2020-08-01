@@ -33,7 +33,7 @@ export class AdminlabComponent implements OnInit {
     
 
      this.labId  = +this.route.snapshot.paramMap.get('labid')
-     this.labName  = this.route.snapshot.paramMap.get('labname')
+     this.labName  = this.route.snapshot.paramMap.get('name')
     // console.log(" this lab name is " ,this.labName)
     // this.nodeType = this.nodeBehaviors[0];
     // //example
@@ -45,16 +45,18 @@ export class AdminlabComponent implements OnInit {
     // quiz.createAnswer("blah 3",0)
     // quiz.createAnswer("blah 4",0)
    
-    this.ilab = this.dataService.getLab(this.labId)
-    if(typeof this.ilab == "undefined")
+    // this.ilab = this.dataService.getLab(this.labID)
+    this.labindex = this.data.labsContainer.findLabByName(this.labName)
+   
+    if(this.labindex == -1)
    {
-    console.log("created new lab")
+    console.log("created new lab id:" + this.labId + " name: " + this.labName)
      this.createNewLab()
      
    }
    else
    {
-    console.log("edited lab ")
+    console.log("edited lab "+ this.labId +" name "+ this.labName)
      this.editLab()
  
    }
@@ -87,12 +89,13 @@ export class AdminlabComponent implements OnInit {
   isNewNode = true;
   labName = "";
   nodeName = "";
-  labId = 0
+  labindex = 0;
+  labId= 0
   ilab: ILab
   nodeId = 0
   nodes: Node[] =[]
   invalidInput = false;
-  
+  lab: lab
  Description = ""
 
 
@@ -114,24 +117,16 @@ export class AdminlabComponent implements OnInit {
 
   createNewLab(): void
   {
-    this.ilab=
-              {
-                labId: this.labId,
-                labName: this.labName,
-                labDescription: "basic description of a lab",
-                publishDate: new Date(),
-                course: "hemotology",
-                nodeCount: 3,
-                nodes: this.nodes
-              }
-              console.log("lab id adminlab "+ this.ilab.labId)
-              this.dataService.setLab(this.ilab)
+    this.lab = this.data.labsContainer.createLab(this.labName);
+    this.lab.description = "Basic Description hardcoded for now";
+    this.lab.course = "Badic Course Hardcoded";
+
   }
   editLab(): void
   {
-    
-    this.labId = this.ilab.labId
-    this.labName = this.ilab.labName
+    this.lab = this.data.labsContainer.labs[this.labindex]
+    this.labId = this.lab.labID
+    this.labName = this.lab.name
 
   }
   nodeNameMessage($event): void 

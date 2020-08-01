@@ -5,7 +5,7 @@ import { LabviewComponent } from './labview/labview.component';
 import { StudentLabComponent } from './student/student-lab/student-lab.component'
 
 const routes: Routes = [
-  { path: 'adminlab/:labid/:labname', component: AdminlabComponent },
+  { path: 'adminlab/:labid/:name', component: AdminlabComponent },
   { path: 'labview', component: LabviewComponent},
   { path: 'studentlab', component: StudentLabComponent },
   { path: '', redirectTo: '/labview', pathMatch: 'full' },
