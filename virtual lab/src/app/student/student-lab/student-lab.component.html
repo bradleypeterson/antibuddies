@@ -19,12 +19,12 @@
         </matching-view> -->
         <!--End Card-->
         <div *ngIf="isFinished">
-            Congratulations! You have finished the lab.
+            <h3 class="node-major-label">Congratulations! You have finished the lab.</h3>
             <button class="btn btn-primary" routerLink="/labview">Return to labs</button>
         </div>
         <student-toolbar
             *ngIf="!isFinished"
-            [isEnd]="isEnd"
+            [isFinal]="isFinal"
             [allowNext]="disabledNext"
             [allowPrevious]="disabledPrevious"
             (traverseForwardIsOkay) = "handleTraverseForward()"
