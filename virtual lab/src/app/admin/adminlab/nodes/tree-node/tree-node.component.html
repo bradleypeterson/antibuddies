@@ -1,0 +1,37 @@
+<div class="node-column">
+    <!-- <h4>(Node number)</h4> -->
+    <label class="node-major-label" for="nodeDesc">Node Description:</label>
+    <textarea name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
+    <!-- <button (click)="onClickDesc">Edit</button> -->
+
+</div>
+<div class="node-column behavior-section">
+    <div class="node-row">
+        <label class="node-major-label" for="behavior">Behavior:</label>
+        <select [(ngModel)]="nodeType" id="behavior">
+            <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+        </select>
+    </div>
+
+    <!--This is where the appropriate behavior node will be loaded-->
+    <div *ngIf="nodeType === 'Matching'">
+        <matching-node></matching-node>
+    </div>
+    <div *ngIf="nodeType === 'Play video'" class="node-row">
+        <video-node></video-node>
+    </div>
+    <div *ngIf="nodeType === 'Perform experiment'">
+        <experiment-node></experiment-node>
+    </div>
+    <div  *ngIf="nodeType === 'Question / Answer'">
+        <quiz-node ></quiz-node>
+    </div>
+    
+    <div class="node-row">
+        <h5 class="node-major-label">Outgoing nodes:</h5>
+        <!--Populate with list of outgoing nodes-->
+        <div>
+            (Nodes)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="card container student-lab">
+    <h2>{{ labName }}</h2>
+    <hr>
+    <div *ngIf="!isBegin">
+        <p>
+            {{ labDescription }}
+        </p>
+    
+        <button class="btn btn-primary" (click)="handleBegin()">Begin lab</button>
+    </div>
+    <div class="full-view" *ngIf="isBegin">
+        <quiz-view 
+            *ngIf="!isFinished"
+            [nodeData]="nodes[currentNode]"
+            (answered) = "goNextNode($event)"
+        ></quiz-view>
+        <!--End Card-->
+        <div *ngIf="isFinished">
+            <h3 class="node-major-label">Congratulations! You have finished the lab.</h3>
+            <button class="btn btn-primary" routerLink="/labview">Return to labs</button>
+        </div>
+        <student-toolbar
+            *ngIf="!isFinished"
+            [isFinal]="isFinal"
+            [allowNext]="disabledNext"
+            [allowPrevious]="disabledPrevious"
+            (traverseForwardIsOkay) = "handleTraverseForward()"
+            (traverseBackwardIsOkay) = "handleTraverseBackward()"
+            (traverseFinalIsOkay) = "handleLabEnd()"
+        ></student-toolbar>
+    </div>
+
+</div>

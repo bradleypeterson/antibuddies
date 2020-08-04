@@ -1,0 +1,27 @@
+div.navigation {
+  padding: .5rem 0;
+  justify-content: flex-end;
+  border-bottom: 1px solid #9800e0;
+}
+.btn {
+  margin-right: .5rem;
+}
+input
+{
+  margin-left: .5rem;
+  margin-right: .5rem; 
+}
+label{margin-left: .5rem;
+  margin-right: .5rem; }
+
+.btn:last-of-type {
+  margin-right: 0;
+}
+
+div {
+  background-color: hsl(281, 62%, 8%);
+}
+
+.new-section {
+  margin-top: .5rem;
+}

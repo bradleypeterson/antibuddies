@@ -1,0 +1,57 @@
+
+  
+<div class='container card lab-list'>
+    <div class='navigation' *ngIf ='isAdmin == 1'>
+        
+        <label *ngIf='!invalidInputName' for="labnameinput">Enter Lab name</label>
+        <label *ngIf='invalidInputName'style="color:red; ">Invalin input try again</label>
+        <input maxlength="15" [(ngModel)] ="name"  type='text'  id="labnameinput" placeholder='New Lab Name'/>
+        <label *ngIf='!invalidInputDescription' for="description">Lab Description</label>
+        <label *ngIf='invalidInputDescription'style="color:red; ">Invalin input try again</label>
+        <input id="description" [(ngModel)] ="description" type='text' placeholder='lab description'/>
+        <label *ngIf='!invalidInputCourse' for="course">Lab Course</label>
+        <label *ngIf='invalidInputCourse'style="color:red; ">Invalin input try again</label>
+        <input id="course" [(ngModel)] ="course" type='text' placeholder='lab course'/>
+        <button (click) = "addNewLab()"class='btn btn-primary'>Add New Lab</button>
+        
+
+    </div>
+
+    <div class='navigation' >
+        <label for="searchlab">Search Labs</label>
+        <input id="searchlab" type='text' placeholder='search labs'/>
+    </div>
+
+    <div class='table-responsive'>
+        <table class='table'*ngIf='labs'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Lab Name</th>
+                <th>Description</th>
+                <th>Published</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody *ngIf = 'isAdmin == 1'>
+            <tr *ngFor='let lab of labs'>
+                <td>{{ lab.labID}}</td>
+                <td> <a [routerLink] = "['/adminlab', lab.labID, lab.name]">{{ lab.name }}</a></td>
+                <td>{{ lab.description }}</td>
+                <td>{{ lab.createdDate}}</td>
+                <td>{{ lab.course }}</td>
+            </tr>
+        </tbody>
+
+        <tbody *ngIf = 'isAdmin == 0'> 
+            <tr *ngFor='let lab of labs'>
+                <td>{{ lab.labID}}</td>
+                <td> <a [routerLink] = "['/studentlab']">{{ lab.name }}</a></td>
+                <td>{{ lab.description }}</td>
+                <td>{{ lab.createdDate}}</td>
+                <td>{{ lab.course }}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
