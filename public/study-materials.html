@@ -1,107 +1,119 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <style type="text/css">
-         html, body { margin: 0; padding: 0; height: 100%; width: 100%; background-color: #310F41;  } 
-      </style>
-      <title>Student Home Page</title>
-      <link
-         href="https://fonts.googleapis.com/css?family=Roboto"
-         rel="stylesheet"
-         />
-      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
-      <link
-         rel="stylesheet"
-         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-         crossorigin="anonymous"
-         />
-      <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap.js"></script>
-      <link rel="stylesheet" href="style/panel.css" />
-      <link rel="stylesheet" href="style/styleQuizCleanUp.css" />
-      <link rel="stylesheet" href="style/style.css" />
-      <script src="scripts/login.js"></script>
-      <script src="scripts/quizCleanUpScripts.js"></script>
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-         />
-   </head>
-   <body  style="background-color: #310F41; padding: 15px;">
-      <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
-         <h1
-            style="text-align: left; padding-left: 15px; padding-bottom: 15px; text-decoration: underline; color: #310F41;"
-            >
-            Menu Options
-         </h1>
-         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-            >&times;</a
-            >
-         <a href="student-home-page.html" style="color: #310F41;">-- Home</a>
-         <a href="quiz-results.html" style="color: #310F41;">-- Quiz Results</a>
-         <a href="quiz-analytics.html" style="color: #310F41;">-- Quiz Analytics</a>
-         <a href="study-materials.html" style="color: #310F41;">-- Study Material</a>
-         <a href="index.html" style="color: #310F41;">-- Log Off</a>
-      </div>
-      <!-- Use any element to open the sidenav -->
-      <button style="background-color: grey; height: 84px; width: 80px; padding-left: 10px; padding-top: 12px;">
-         <div
-            class="fa fa-bars"
-            style="align-content: center; font-size: 42px; padding: 10px; color: white;"
-            onclick="openNav()"></div>
-      </button>
-      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page
+  <head>
+    <style type="text/css">
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #310f41;
+      }
+    </style>
+    <title>Study Material</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style/panel.css" />
+    <link rel="stylesheet" href="style/styleQuizCleanUp.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <script src="scripts/login.js"></script>
+    <script src="scripts/quizCleanUpScripts.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body style="background-color: #310f41; padding: 15px;">
+    <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
+      <h1
+        style="
+          text-align: left;
+          padding-left: 15px;
+          padding-bottom: 15px;
+          text-decoration: underline;
+          color: #310f41;
+        "
+      >
+        Menu Options
+      </h1>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <a href="student-home-page.html" style="color: #310f41;">-- Home</a>
+      <a href="quiz-results.html" style="color: #310f41;">-- Quiz Results</a>
+      <a href="quiz-analytics.html" style="color: #310f41;"
+        >-- Quiz Analytics</a
+      >
+      <a href="study-materials.html" style="color: #310f41;"
+        >-- Study Material</a
+      >
+      <a href="index.html" style="color: #310f41;">-- Log Off</a>
+    </div>
+    <!-- Use any element to open the sidenav -->
+    <button
+      style="
+        background-color: grey;
+        height: 84px;
+        width: 80px;
+        padding-left: 10px;
+        padding-top: 12px;
+      "
+    >
+      <div
+        class="fa fa-bars"
+        style="
+          align-content: center;
+          font-size: 42px;
+          padding: 10px;
+          color: white;
+        "
+        onclick="openNav()"
+      ></div>
+    </button>
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page
          <div id="main"> Add all page content here...</div> -->
-      <div class="rowz" style="align-content: center;">
-         <img
-            src="wsulogo.png"
-            alt="Italian Trulli"
-            id="wsupagelogo"
-            align="right"/>
-         <h3 class="header" style="padding-top: 50px; background-color: grey; padding-bottom: 100px;">Student Home</h3>
+    <div class="rowz" style="align-content: center;">
+      <img
+        src="wsulogo.png"
+        alt="Italian Trulli"
+        id="wsupagelogo"
+        align="right"
+      />
+      <h3
+        class="header"
+        style="
+          padding-top: 50px;
+          background-color: grey;
+          padding-bottom: 100px;
+        "
+      >
+        Student Home
+      </h3>
+    </div>
+    <div class="col">
+      <div class="row" style="justify-content: center;">
+        <button>study 1</button>
+        <button>study 2</button>
+        <button>study 3</button>
       </div>
-      <div class="col">
-         <div class="row">
-            <!-- if student has a picture in the system then pull it and add it to this box, otherwise place a wildcat image for weber state account  -->
-            <div class="square" style="text-align: center; justify-content: center; align-self: center;" >
-               <i class="fa fa-user" style="background-color: grey; font-size: 300px; padding-top: 80px; font-weight: normal;"></i>
-               <h4 style="background-color: black; text-align: center;">Name: Student Name</h4>
-            </div>
-            <div class="row" style="justify-content: center; align-content: center;">
-               <div class="col">
-                  <ul style="list-style: inside; list-style-position: inside;">
-                     <h3 style="text-decoration: underline;">Quiz Information</h3>
-                     <div style="padding-left: 50px;">
-                        <h4>Quizzes Taken: 5/10</h4>
-                     </div>
-               </div>
-               </ul>
-               <div class="row" style="justify-content: center; align-content: center;">
-                  <div class="col" style="justify-content: center; align-items: center; align-self: center; vertical-align:middle;">
-                     <h3 style="text-decoration: underline;">Mastered Progress</h3>
-                     <div style="padding-left: 50px;">
-                        <!-- pull the perlcentage mastered from the database for the student  -->
-                        <i class="fa fa-circle" style="font-size: 30px; color:  red;"> Blood: 10% </i><br>
-                        <i class="fa fa-circle" style="font-size: 30px; color:  green;"> Medical Aid: 1% </i><br>
-                        <i class="fa fa-circle" style="font-size: 30px; color:  yellow;"> Blood: 5% </i><br>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <br>
-         <!-- need to center this text  -->
-         <div class="col">
-            <h4>Weber State University</h4>
-            <h4>Senior</h4>
-            <h4>Bachelors of Science in Health Education</h4>
-         </div>
-      </div>
-      <div class="student-home-page-footer">
-         <footer>
-            <h6> CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
-         </footer>
-      </div>
-   </body>
+    </div>
+    <br />
+    <div class="student-home-page-footer">
+      <footer>
+        <h6>CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
+      </footer>
+    </div>
+  </body>
 </html>

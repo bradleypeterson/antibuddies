@@ -37,32 +37,5 @@
       </form>
       <a href="index.html"><button>Sign Up</button></a>
     </div>
-
-    <script>
-      function submitForm(e, form) {
-        e.preventDefault();
-
-        let user = {
-          username: form.username.value,
-          password: form.password.value,
-        };
-
-        var outputbox = document.getElementById("output");
-        var content = outputbox.value;
-
-        api
-          .authenticate(user)
-          .then((data) => {
-            console.log(data);
-            //outputbox.value = content + JSON.stringify(data);
-            // window.location.href = "/logout?user=" + JSON.stringify(data.user);
-          })
-          .catch((err) => {
-            outputbox.value = err.error;
-          });
-
-        //api.authenticate(user).then(console.log).catch(console.error);
-      }
-    </script>
   </body>
 </html>
