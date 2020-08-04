@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.500.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <title>Admin</title>
+  </head>
+  <link rel="stylesheet" href="style/login.css" />
+  <script src="scripts/login.js"></script>
+  <body>
+    <div class="head">
+      <h1>AntiBuddies Admin - Welcome Professor Rhees</h1>
+    </div>
+    <div class="outer" ; id="outer">
+      <div class="inner">
+        <button class="new" ; onclick="newPanel()">New Panel</button>
+      </div>
+      <div class="inner">
+        <button class="modify" onclick="newPanel()" ;>Modify Panel</button>
+      </div>
+      <div class="inner">
+        <button class="modify" onclick="editQuestion()" ;>Edit Quiz</button>
+      </div>
+      <div class="inner">
+        <button class="modify" onclick="newquiz()">Add Quiz</button>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <div class="nav">
+      <ul class="main-menu">
+        <li><a href="index.html">Logout</a></li>
+      </ul>
+    </div>
+  </footer>
+</html>

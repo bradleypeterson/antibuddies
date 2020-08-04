@@ -1,0 +1,319 @@
+/* our style */
+/* Colors */
+.primary {
+  /* background color purple */
+  color: #310f41;
+}
+.secondary {
+  /* text/button color purple */
+  color: #9800e0;
+}
+.red {
+  /* cancel/no/delete */
+  color: #f20a0a;
+}
+.background {
+  /* page background grey*/
+  color: #e5e5e5;
+}
+.menubar {
+  /* light grey used in menu */
+  color: #c4c4c4;
+}
+.white {
+  /* regular white color */
+  color: #fffdfd;
+}
+.black {
+  /* black */
+  color: #000000;
+}
+.numbered_button {
+  /* grey color of the text of question # button */
+  color: #7b7b7b;
+}
+.green {
+  /* used for catagory and for correct text */
+  color: #28df24;
+}
+/* Font Size */
+.xxsmall-text {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+.xsmall-text {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 27px;
+}
+.small-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 37px;
+}
+.medium-text {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 47px;
+}
+.large-text {
+  font-family: Robot;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 42px;
+  line-height: 57px;
+}
+.xlarge-text {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 77px;
+  line-height: 87px;
+}
+/* buttons */
+.small-button {
+  position: absolute;
+  width: 77px;
+  height: 38px;
+  left: 398px;
+  top: 606px;
+  border-radius: 20px;
+}
+.number-button {
+  position: absolute;
+  width: 60px;
+  height: 74px;
+  left: 487px;
+  top: 722px;
+  border-radius: 10px;
+}
+.large-button {
+  position: absolute;
+  width: 217px;
+  height: 74px;
+  left: 1121px;
+  top: 722px;
+  border-radius: 20px;
+}
+.add-button {
+  position: absolute;
+  width: 48px;
+  height: 41px;
+  left: 164.83px;
+  top: 483px;
+  background: #fffdfd;
+  border-radius: 10px;
+}
+/* text field */
+.text-field {
+  position: absolute;
+  width: 257px;
+  height: 83px;
+  left: 93px;
+  top: 259px;
+  border-radius: 20px;
+}
+.notification-box {
+  position: absolute;
+  width: 1192px;
+  height: 38px;
+  left: 132px;
+  top: 833px;
+  border-radius: 20px;
+}
+.catagory-red-bullet {
+  position: absolute;
+  width: 33.81px;
+  height: 34px;
+  left: 547px;
+  top: 630px;
+  background: #ff0000;
+}
+.catagory-green-bullet {
+  position: absolute;
+  width: 33.81px;
+  height: 34px;
+  left: 547px;
+  top: 676px;
+  background: #28df24;
+}
+.catagory-yellow-bullet {
+  position: absolute;
+  width: 33.81px;
+  height: 34px;
+  left: 547px;
+  top: 730px;
+  background: #e4dc09;
+}
+.catagory-bullet {
+  position: absolute;
+  width: 33.81px;
+  height: 34px;
+  left: 547px;
+  top: 730px;
+}
+/* profile shape */
+.profile-circle {
+  position: absolute;
+  width: 135px;
+  height: 130px;
+  left: 40px;
+  top: 56px;
+  background: #fffdfd;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.quiz-analytics-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+/* The side navigation menu */
+.sidenav {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: #111;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
+}
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+.square {
+  height: 400px;
+  width: 400px;
+  background-color: white;
+}
+.manage-quizzes-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.quiz-results-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.study-materails-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.student-home-page-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.admin-quiz-add-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.quiz-footer {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
+.footer {
+  /* position: absolute; */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  color: black;
+}
