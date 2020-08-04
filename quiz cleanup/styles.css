@@ -14,3 +14,19 @@ div.card {
 .table {
   margin-top: 10px
 }
+
+/*Pictures*/
+#wsuloginlogo {
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+#wsupagelogo{
+	width: 100px;
+	display: block;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	margin-top: 20px;
+	margin-left: 0px;
+}
