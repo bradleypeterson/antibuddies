@@ -3,9 +3,14 @@ function openNav() {
 }
 
 // check if checkbox is checked
-function redirect() {
-	if (document.getElementById('admin').checked == true) window.location.href = 'admin-quiz-add.html';
-	else if (document.getElementById('admin').checked == false) window.location.href = 'student-hone-page.html';
+function checkForAdmin() {
+	if (document.getElementById('admin').checked) {
+		alert('checked. You are creating an admin account.');
+		window.location.href = 'admin-quiz-add.html';
+	} else {
+		alert("You didn't check it! You are creating a student account");
+		window.location.href = 'student-home-page.html';
+	}
 }
 
 /* Set the width of the side navigation to 0 */
@@ -159,3 +164,70 @@ api.getQuestionResponses = (course, quiz, questionIndex) => {
 		`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}/responses`
 	);
 };
+
+function submitForm(e, form) {
+	e.preventDefault();
+
+	let user = {
+		username: form.username.value,
+		firstName: form.firstName.value,
+		lastName: form.lastName.value,
+		password: form.password.value,
+		isAdmin: form.admin.checked
+	};
+
+	var outputbox = document.getElementById('output');
+	var content = outputbox.value;
+
+	api
+		.signup(user)
+		.then((data) => {
+			// show message in html
+			// if (data){
+			//   content = "Welcome " + data.user.firstName + ' ' + data.user.lastName;
+			// }
+
+			console.log(data);
+			//outputbox.value = content;
+			window.location.href = 'index.html=' + JSON.stringify(data);
+		})
+		.catch((err) => {
+			outputbox.value = err.error;
+		});
+
+	//api.signup(user).then(console.log).catch(console.error);
+}
+
+function submitForm(e, form) {
+	e.preventDefault();
+
+	let user = {
+		username: form.username.value,
+		password: form.password.value
+	};
+
+	var outputbox = document.getElementById('output');
+	var content = outputbox.value;
+
+	api
+		.authenticate(user)
+		.then((data) => {
+			console.log(data);
+			//outputbox.value = content + JSON.stringify(data);
+			// window.location.href = "/logout?user=" + JSON.stringify(data.user);
+		})
+		.catch((err) => {
+			outputbox.value = err.error;
+		});
+
+	//api.authenticate(user).then(console.log).catch(console.error);
+}
+
+function openNav() {
+	document.getElementById('mySidenav').style.width = '450px';
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+	document.getElementById('mySidenav').style.width = '0';
+}
