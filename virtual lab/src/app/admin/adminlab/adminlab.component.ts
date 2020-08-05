@@ -104,6 +104,7 @@ export class AdminlabComponent implements OnInit {
     this.isNewLab = $event
   }
 
+  //when a lab link is clicked or when a lab is created
   editLab(): void
   {
     this.lab = this.data.labsContainer.labs[this.labId]
@@ -132,6 +133,7 @@ export class AdminlabComponent implements OnInit {
   }
 
   deleteLab(): void{
+    
     this.openModal()
   }
 
@@ -143,6 +145,7 @@ export class AdminlabComponent implements OnInit {
    
   }
 
+  //back button returns to labview page
   backButton(): void{
   
     this.router.navigate(['/labview'])
@@ -150,6 +153,7 @@ export class AdminlabComponent implements OnInit {
  
  
 
+  //adds a new node 
   addNewNode(): void {
     
     if(this.nodeName != "")
@@ -168,8 +172,6 @@ export class AdminlabComponent implements OnInit {
     else{
       this.invalidInput = true
     }
-
-    
   }
 
   saveDescription (): void{
