@@ -2,6 +2,7 @@ dependencies:
   bcrypt: 4.0.1
   body-parser: 1.19.0
   cookie-parser: 1.4.5
+  cors: 2.8.5
   express: 4.17.1
   jsonwebtoken: 8.5.1
   mongoose: 5.9.15
@@ -166,6 +167,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cors/2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -1058,6 +1068,7 @@ specifiers:
   bcrypt: ^4.0.1
   body-parser: ^1.19.0
   cookie-parser: ^1.4.5
+  cors: ^2.8.5
   express: ^4.17.1
   jsonwebtoken: ^8.5.1
   mongoose: ^5.9.15

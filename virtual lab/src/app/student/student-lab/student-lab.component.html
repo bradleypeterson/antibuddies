@@ -14,9 +14,6 @@
             [nodeData]="nodes[currentNode]"
             (answered) = "goNextNode($event)"
         ></quiz-view>
-        <!-- <matching-view>
-            
-        </matching-view> -->
         <!--End Card-->
         <div *ngIf="isFinished">
             <h3 class="node-major-label">Congratulations! You have finished the lab.</h3>

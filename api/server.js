@@ -9,6 +9,11 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
+
+app.options('*', cors());
+
+app.use(cors());
 
 app.use(cookieParser());
 

@@ -68,4 +68,9 @@ module.exports = (app) => {
     res.sendFile(__dirname + "/pages/api.html");
   });
   
+  //api page
+  app.get("/test/sdk", function(req, res){
+    res.sendFile(__dirname + "/pages/test/sdk.html");
+  });
+  
 };

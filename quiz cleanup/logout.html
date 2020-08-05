@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="styleQuizCleanUp.css"></script>
+    <script src="/js/api.js"></script>
+  </head>
+  <body>
+    <form method="post" onsubmit="submitForm(event, this)">
+      <button type="submit" name="logout">Logout</button>
+    </form>
+
+    <script>
+      function submitForm(e, form) {
+        e.preventDefault();
+
+        api.deauthenticate();
+        window.location.href = "/login";
+      }
+
+      let user = JSON.parse(
+        decodeURIComponent(window.location.search.substring(6))
+      );
+      //document.write(JSON.stringify(user));
+      document.write("Welcome " + user.firstName + " " + user.lastName);
+    </script>
+  </body>
+</html>

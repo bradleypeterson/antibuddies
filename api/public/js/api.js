@@ -49,70 +49,140 @@ api.del = del;
  */
 
 api.getTest = (data) => {
-  return get(`/api/test/${data}`); 
+  return get(`https://antibuddies-api.glitch.me/api/test/${data}`); 
 }
 
 api.signup = (user) => {
-  return post(`/api/signup`, user);
+  return post(`https://antibuddies-api.glitch.me/api/signup`, user);
 }
 
 api.authenticate = (user) => {
-  return post(`/api/authenticate`, user);
+  return post(`https://antibuddies-api.glitch.me/api/authenticate`, user);
 }
 
 api.deauthenticate = () => {
-  return get(`/api/deauthenticate`);
+  return get(`https://antibuddies-api.glitch.me/api/deauthenticate`);
 }
 
 api.getUsers = () => {
-  return get(`/api/users`);
+  return get(`https://antibuddies-api.glitch.me/api/users`);
+}
+
+api.getUser = (user) => {
+  return get(`https://antibuddies-api.glitch.me/api/users/${user}`);
+}
+
+api.deleteUser = (user) => {
+  return del(`https://antibuddies-api.glitch.me/api/users/${user}`);
 }
 
 api.getCourses = () => {
-  return get(`/api/courses`);
+  return get(`https://antibuddies-api.glitch.me/api/courses`);
 }
 
-api.addCourse = () => {
-  return post(`/api/courses`);
+api.addCourse = (course) => {
+  return post(`https://antibuddies-api.glitch.me/api/courses`, course);
 }
 
 api.getCourse = (course) => {
-  return get(`/api/courses/${course}`);
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}`);
 }
 
 api.getQuizzes = (course) => {
-  return get(`/api/courses/${course}/quizzes`);
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes`);
 }
 
 api.addQuiz = (course, quizData) => {
-  return post(`/api/courses/${course}/quizzes`, quizData);
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes`, quizData);
 }
 
 api.getQuiz = (course, quiz) => {
-  return get(`/api/courses/${course}/quizzes/${quiz}`);
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}`);
 }
 
 api.getQuizQuestions = (course, quiz) => {
-  return (`/api/courses/${course}/quizzes/{quiz}/questions`);
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions`);
 }
 
 api.getQuizQuestion = (course, quiz, questionIndex) => {
-  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
 }
 
+api.getQuizScores = (course) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizScores`);
+}
 
 api.addQuizQuestion = (course, quiz, questionData) => {
-  return (`/api/courses/:course/quizzes/:quiz/addQuestion`, questionData);
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/addQuestion`, questionData);
 }
 
 api.checkAnswer = (course, quiz, questionIndex, choice) => {
-  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}/checkAnswer`, choice);
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}/checkAnswer`, choice);
 }
 
 api.deleteQuiz = (course, quiz) => {
-  return (`/api/course/${course}/quizzes/${quiz}`);
+  return del(`https://antibuddies-api.glitch.me/api/course/${course}/quizzes/${quiz}`);
 }
 
 api.deleteQuestion = (course, quiz, questionIndex) => {
-  return (`/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
+  return del(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}`);
+}
+
+api.getPanels = (course) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/panels`);
+}
+
+api.getPanelByName = (course, panelName) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/panels/${panelName}`);
+}
+
+api.addPanel = (course, panelData) => {
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/panels`, panelData);
+};
+
+api.postPanelScore = (course, panelName, scoreData) => {
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/panels/${panelName}/score`, scoreData);
+};
+
+api.panelScore = (course, panelName) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/panels/${panelName}/score`);
+}
+
+api.getPanelDifficulty = (course, difficulty) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/panels/difficulty/${difficulty}`);
+};
+
+api.getQuizResponses = (course, data) => {
+  
+  let query = "";
+  if(data.quiz && data.user){
+    query = `?quiz=${data.quiz}&user=${data.user}`;
+  } else if(data.quiz){
+    query = `?quiz=${data.quiz}`;
+  } else if(data.user){
+    query = `?user=${data.user}`;
+  }
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizResponses${query}`);
+}
+
+api.submitQuiz = (course, quizData) => {
+  return post(`https://antibuddies-api.glitch.me/api/courses/${course}/quizResponses`, quizData);
+}
+
+api.getQuizUserResponseCount = (course, data) => {
+  
+  let query = "";
+  if(data.quiz && data.user){
+    query = `?quiz=${data.quiz}&user=${data.user}`;
+  } else if(data.quiz){
+    query = `?quiz=${data.quiz}`;
+  } else if(data.user){
+    query = `?user=${data.user}`;
+  }
+  
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizResponses/count${query}`);
+}
+
+api.getQuestionResponses = (course, quiz, questionIndex) => {
+  return get(`https://antibuddies-api.glitch.me/api/courses/${course}/quizzes/${quiz}/questions/${questionIndex}/responses`);
 }

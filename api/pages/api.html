@@ -75,7 +75,10 @@
       e.preventDefault();
       let req;
       let path = 'api/' + form.path.value,
-          body = JSON.parse(form.body.value);
+          body;
+      if(!form.method.value === 'GET' && form.body.value){
+        body = JSON.parse(form.body.value);
+      }
       if(form.method.value == 'GET'){
         req = api.get(path);
       } else if(form.method.value == 'POST'){
@@ -86,7 +89,7 @@
       req.then(response => {
         document.getElementById('response').textContent = JSON.stringify(response, null, 2);
       }).catch(err => {
-        document.getElementById('response').textContent = 'Error: ' + JSON.stringify(err, null, 2);
+        document.getElementById('response').textContent = 'Error: ' + JSON.stringify(err.error || err.toString(), null, 2);
       });
     }
     
