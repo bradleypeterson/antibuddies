@@ -1,0 +1,33 @@
+<div id="matchingAdmin" class="node-row">
+    <div class="keys node-column">
+        <h5 class="node-major-label">Keys: </h5>
+        <div class="node-column">
+            <label for="addKey" class="input" >Add Key: </label>
+            <input type="text" name="addKey" id="addKey" placeholder="new key" ng-model="addKey" />
+            <button class="btn btn-primary" (click)="addKey(addKey)">Add Key</button>
+        </div>
+    </div>
+    <div class="values node-column">
+        <h5 class="node-major-label">Values: </h5>
+        <div class="node-column">
+            <label for="addValue">Add Value: </label>
+            <input type="text" name="addValue" id="addValue" placeholder="new value" [ngModel]="addValue" />
+            <button class="btn btn-primary" (click)="addValue(addValue)">Add Value</button>
+        </div>
+    </div>
+</div>
+<div id="matchingNode">
+    <h5 class="node-major-label to-be-removed">TEST !!!!</h5>
+    <div id="matchingLists" class="node-row">
+        <div class="keys node-column">
+            <ul>
+                <li *ngFor="let key of keys">{{ key }}</li>
+            </ul>
+        </div>
+        <div class="values node-column">
+            <ul>
+                <li *ngFor="let value of values">{{ value }}</li>
+            </ul>
+        </div>
+    </div>
+</div>

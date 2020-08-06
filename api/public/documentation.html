@@ -1,0 +1,313 @@
+<html>
+  <head>
+    <title>Documentation</title>
+  </head>
+  <body>
+    <h2>Signup Endpoint: (POST request)</h2>
+    <p>
+      This will register a new user with a username, their first name and last name, a password, and the option of making them an 
+      administrator within the system. There are 6 different parameters within the Signup Endpoint. Those are the user object, 
+      the username, first name, last name, password, and the isAdmin option being on or off. 
+    </p>
+    <p>
+      The user object will store the information provided by the user within itself (i.e. username, first name, last name, etc.). 
+      The username, first name, last name, and password are all string values. The isAdmin is a boolean since it is a simple 
+      true/false button. 
+    </p>
+    <p>
+      When the user is registering a new account, if there is anything missing, i.e. one of the fields is empty, other than the 
+      isAdmin, then you will be given an error message saying that one or more of the fields is empty. Again, isAdmin will not 
+      affect the registering of the user and is completely optional. If there already is a user with the same username in the 
+      database already, it will return an error message telling you that the user already exists. If there are no issues, then 
+      the user will be created by using the “let newUser = new User(user)” line of code.
+    </p>
+    <p>
+      When the user creates their own password tied to the account, the endpoint will take that and hash the password so that it 
+      will then be encrypted to prevent hackers from getting in.
+    </p>
+    <p>
+      Once the user is registered and the password is hashed, the “newUser.save()” function will trigger and will save the user 
+      with all of their credentials into the database to be accessed at a later time. As long as the username and the hashed 
+      password match each other in the database, the user will be logged in and no errors will generate. If something were to go 
+      wrong, i.e. the username or password is incorrect or a field is empty, the appropriate error message will be displayed 
+      informing the user of what is wrong. 
+    </p>
+    
+    <h2>Authenticate Endpoint: (POST request)</h2>
+    <p>
+      If the credentials of the user are correct, then the Authenticate Endpoint will return true and the user will be 
+      authenticated into the system. There are 3 parameters within this endpoint. Those are the user object, the username and 
+      the password. 
+    </p>
+    <p>
+      The user object will take the username and password provided by the user and check the database to ensure that they are 
+      the same username and password that were offered during the Signup Endpoint. 
+    </p>
+    <p>
+      The username and password fields are still string values. It will be the same username and password that were used in the 
+      registering of the user. 
+    </p>
+    <p>
+      When the user goes to log in, it will check both of the string values that are provided by the user and will check the 
+      database for matching string values as well as hashed values. If there is a match, then the endpoint will return true and 
+      the user will be logged in using the credentials that they used. If there is a field that is empty, then an error message 
+      will be displayed informing the user of what is wrong. 
+    </p>
+    <p>
+      The User.findOne() function will check the database for the username that is specified. If the username is found, it will 
+      compare the hashed password to it as well and if they match,  the user will be logged in. If the username doesn’t match 
+      any in the database, or if the hashed password for the matched username is incorrect, then an error message will be 
+      displayed. 
+    </p>
+    <p>
+      The let token = jwt.sign() function will assign a JSON web token to the user that has an expiration time of 5 hours from 
+      the time that it was created. The console.log method will print out the JSON web token in the web console and will show 
+      what the actual token is.
+    </p>
+    
+    <h2>Deauthenticate Endpoint: (GET request)</h2>
+    <p>
+      The Deauthenticate Endpoint will make it so that the user session becomes invalid or the JSON web token becomes invalid. 
+      This will make the user have to sign in again. When they do, they will get another JSON web token assigned to the user. 
+    </p>
+    
+    <h2>Users Endpoint: (GET request)</h2>
+    <p>
+      This endpoint will grab the list of users from the database. 
+    </p>
+    <p>
+      Users.find({}) will find the user that is being requested by the user themself
+    </p>
+    
+    <h2>Course Endpoint: (GET request)</h2>
+    <p>
+      This endpoint will grab the list of courses from the database. 
+    </p>
+    <p>
+      Course.find({}) will find the course that is being requested by the user 
+    </p>
+    
+    <h2>Course Endpoint: (POST request)</h2>
+    <p>
+      This endpoint is used to post or add a course. There are 2 parameters with this endpoint. Those are the course data and 
+      the course name.
+    </p>
+    <p>
+      course data is the object that holds everything for that course inside it. courseName is a string variable that is used to 
+      find a course by the string that the user input. If anything else is put in, it will return an error message.
+    </p>
+    
+    <h2>Course Endpoint: (GET request)</h2>
+    <p>
+      This will get the course data that the user is requesting. There is only one parameter and that is the course object. 
+      The course object will contain a course ID and a course name. Depending on what the user inputs, the course object will 
+      identify the course based on ID or name. 
+    </p>
+    <p>
+      The api.getCourse() function will be the one that actually grabs the course that the user has specified. By checking on 
+      what the user has entered, it will either return the course or an error message. 
+    </p>
+    <p>
+      The course instanceOf method will check if the course is already there. If it is, the it will return it to the user. The 
+      mongoose.Types.ObjectId.isValid(course) will check the int value provided by the user to check for a course with the same 
+      ID. The typeof === ‘string’ will do the same thing as the ObjectId, except it will be checking for the course name instead. 
+    </p>
+    <p>
+      The Course.findOne() function will check the database for either the ID or the name that was specified. If anything else is 
+      put in that isn’t an int or a string, it will return an error telling you that it is an invalid id type.
+    </p>
+    <p>
+      If there is anything else wrong, like if a course isn’t in the database, then it will return a different error. Otherwise, 
+      it will return the course that the user requested. 
+    </p>
+    
+    <h2>Quiz Endpoint: (GET request)</h2>
+    <p>
+      This will get the quiz that the user is asking for. There are 2 parameters within the quiz object. Those are course and 
+      quiz. This pertain to the course ID or name and the quiz ID or name. 
+    </p>
+    <p>
+      The course is the object what holds the course ID and the course name. The quiz is the object is what holds the quiz ID 
+      and quiz name. 
+    </p>
+    <p>
+      The api.getQuiz() function will grab the quiz that was requested by the user. It will check the values that are entered 
+      by the user. 
+    </p>
+    <p>
+      The mongoose.Types.ObjectId.isValid(quiz) will check the int value provided by the user to check for a quiz with the same 
+      ID. The typeof === ‘string’ will do the same thing as the ObjectId, except it will be checking for the quiz name instead. 
+    </p>
+    <p>
+      The Quiz.findOne() function will check the database for either the ID or the name that was specified. If anything else is 
+      put in that isn’t an int or a string, it will return an error telling you that it is an invalid id type.
+    </p>
+    <p>
+      If there is anything else wrong, like if a quiz isn’t in the database, then it will return a different error. Otherwise, 
+      it will return the quiz that the user requested. 
+    </p>
+    
+    <h2>Quizzes Endpoint: (GET request)</h2>
+    <p>
+      This will get the list of quizzes that the user has asked for. This endpoint will wait for the courses endpoint to run so 
+      that the user has the course they were looking for. 
+    </p>
+    <p>
+      Once that is done, it will use the Quiz.find({}) to find all of the quizzes that are stored in that course.
+    </p>
+    
+    <h2>Quizzes Endpoint: (POST request)</h2>
+    <p>
+      This endpoint will add quizzes to the courses. There are 5 parameters that are in this endpoint. Those parameters are quiz 
+      data, quiz title, quiz questions, question text, and answers. 
+    </p>
+    <p>
+      The quiz data parameter is the object that will hold all of the other parameters within it. 
+    </p>
+    <p>
+      The quiz title parameter is a string variable that will hold the title of the new quiz.
+    </p>
+    <p>
+      The quiz questions parameter is an array of questions that will hold all of the questions that will be used for the new 
+      quiz that is created.
+    </p>
+    <p>
+      The question text parameter is a string variable that will hold the actual text of the quiz questions.
+    </p>
+    <p>
+      The answers parameter is an array of answers that will hold multiple choices for a single question.
+    </p>
+    
+    <h2>Quiz questions Endpoint: (GET request)</h2>
+    <p>
+      This will get the quiz questions that are in the quiz that was requested. There are 2 parameters within the quiz object. 
+      Those are course and quiz. This pertain to the course ID or name and the quiz ID or name. 
+    </p>
+    <p>
+      The course is the object what holds the course ID and the course name. The quiz is the object is what holds the quiz ID 
+      and quiz name. 
+    </p>
+    <p>
+      The api.getQuizQuestions() function will grab the questions that are associated with the quiz that the user specified. 
+    </p>
+    <p>
+      Within the api function, the api will grab the course by the ID or name specified and the quiz by the ID or name specified 
+      and will return the questions for that quiz to the user. 
+    </p>
+    
+    <h2>Quiz add question Endpoint: (POST request)</h2>
+    <p>
+      This will add questions to a quiz that was requested. There are 2 parameters within the quiz object. Those are course and 
+      quiz. This pertain to the course ID or name and the quiz ID or name. 
+    </p>
+    <p>
+      The course is the object what holds the course ID and the course name. The quiz is the object is what holds the quiz ID 
+      and quiz name. 
+    </p>
+    <p>
+      Once the user specifies the course and the quiz by ID or name, they will be able to add a question to the quiz. If the 
+      question they are trying to add is improper, it will return an error telling you that the question structure is invalid. 
+      If there are no issues, the new question will be pushed into questionData so that it can be accessed by the other users. 
+    </p>
+    <p>
+      The quiz.save() function will save the changes that were made to the quiz. So any questions that were added will be saved 
+      and won’t be removed at any time unless specified by the user. 
+    </p>
+    
+    <h2>Quiz add question Endpoint: (POST request)</h2>
+    <p>
+      This endpoint will allow the creation of a question within quizzes. There are 5 parameters for this endpoint. Those 
+      parameters are course identifier, quiz identifier, question data, question text, and answers. 
+    </p>
+    <p>
+      The course identifier is a string that can take the course name or id and have that find the specific course the user 
+      is looking for. 
+    </p>
+    <p>
+      The quiz identifier is a string that can take the quiz name or id and have that find the specific quiz the user is 
+      looking for. 
+    </p>
+    <p>
+      The question data is an object that will hold all of the data of for the questions that are being added. 
+    </p>
+    <p>
+      The question text is a string that will hold the actual text of the quiz questions.
+    </p>
+    <p>
+      The answers is an array of answers that will hold multiple choices for the new question. The first item will be marked as 
+      the correct answer.
+    </p>
+    <p>
+      This endpoint will wait until both the getCourse and getQuiz endpoints have both gone off to give the user what course and 
+      quiz they were looking for.
+    </p>
+    
+    <h2>Check Answer Endpoint: (POST request)</h2>
+    <p>
+      This endpoint will check the answer that the user selected to determine if the answer is right or wrong. There are 5 
+      parameters in this endpoint. Those parameters are course identifier, quiz identifier, questionIndex, choice data, and 
+      choice.
+    </p>
+    <p>
+      The course identifier is a string that can take the course name or id and have that find the specific course the user 
+      is looking for. 
+    </p>
+    <p>
+      The quiz identifier is a string that can take the quiz name or id and have that find the specific quiz the user is 
+      looking for. 
+    </p>
+    <p>
+      The questionIndex is the index of the question within the quiz itself.
+    </p>
+    <p>
+      The choice data is the object that will hold all of the data for the choices that the user can pick from.
+    </p>
+    <p>
+      The choice is the string of the chosen answer that the user has selected. 
+    </p>
+    <p>
+      Once the user has chosen an answer, it will then run an if statement to check if the choice is equal to the questions 
+      answer at the specified index. If it is, it will return true. Otherwise, it will return false. 
+    </p>
+    
+    <h2>Delete Quiz Endpoint: (DELETE request)</h2>
+    <p>
+      This endpoint will delete a quiz from a specified course. There are 2 parameters with this endpoint. Those parameters are 
+      course identifier and quiz identifier. 
+    </p>
+    <p>
+      The course identifier is a string that can take the course name or id and have that find the specific course the user is 
+      looking for. 
+    </p>
+    <p>
+      The quiz identifier is a string that can take the quiz name or id and have that find the specific quiz the user is 
+      looking for. 
+    </p>
+    <p>
+      Once both the getCourse and getQuiz endpoints have finished getting the user the course and the quiz that they were asking 
+      for, this endpoint will then delete the quiz that was specified.
+    </p>
+    
+    <h2>Delete Question Endpoint: (DELETE request)</h2>
+    <p>
+      This endpoint will delete a specific question in a specific quiz within a specific course. There are 3 parameters that 
+      are within this endpoint. Those are course identifier, quiz identifier, and questionIndex.
+    </p>
+    <p>
+      The course identifier is a string that can take the course name or id and have that find the specific course the user is 
+      looking for. 
+    </p>
+    <p>
+      The quiz identifier is a string that can take the quiz name or id and have that find the specific quiz the user is 
+      looking for. 
+    </p>
+    <p>
+      The questionIndex is the index of the question within the quiz itself.
+    </p>
+    <p>
+      Once both the getCourse and getQuiz endpoints have finished getting the user the course and the quiz that they were 
+      asking for, this will delete a question at a specified index. Once the question is deleted, the quiz will save the 
+      changes with quiz.save().
+    </p>
+  </body>
+</html>

@@ -1,0 +1,277 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+
+/* additional colors as defined by quiz cleanup group */
+.red {
+  /* cancel/no/delete  */
+  color: #f20a0a;
+}
+
+.green {
+  /* used for catagory and for correct text  */
+  color: #28df24;
+}
+
+
+/*********************************/
+
+/* Virtual lab styles */
+body {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  color: #FFF;
+  background: #310f41;
+}
+
+a {
+  color: hsl(281, 100%, 74%);
+}
+
+a:hover {
+  color: #FFF;
+}
+
+input[type="text"] {
+  border-radius: .25rem;
+  border-style: none;
+  padding: .25rem;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+input[type="file"]::before {
+  content: 'select file';
+}
+
+select {
+  cursor: pointer;
+  color: #FFF;
+  background-color: #9800e0;
+  border: none;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+  border-radius: .25rem;
+}
+
+hr {
+  margin-top: 0;
+  background-color: #9800e0;
+}
+
+.main-component {
+  background: gray;
+}
+
+/* Global header of Virtual Labs */
+.page-header {
+  font-weight: 500;
+  flex: 1;
+  margin-bottom: 30px;
+  color: #9800e0;
+  background: black;
+}
+
+/* Main navigation bar styling */
+.main-nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.main-nav li {
+  display: inherit;
+  list-style: none;
+  margin-right: 2px;
+  border-left: #9800e0 solid 1px;
+  border-radius: 10px 0 10px 0;
+}
+
+.main-nav li:last-of-type {
+  margin-right: 0;
+  border-right: none;
+}
+
+.main-nav a {
+  flex: 1;
+  justify-content: center;
+  padding: 10px;
+  color: hsl(281, 100%, 74%);
+  text-decoration: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.main-nav a:hover {
+  color: #FFF;
+  background-color:  #310f41;
+}
+
+/* reset/modify styles of containers/tables/cards (imported from bootstrap) */
+.container, .table {
+  color: #FFF;
+  background: none;
+}
+
+.card {
+  border-right: solid 1px #9800e0;
+  border-bottom: solid 1px #9800e0;
+}
+
+.toolbar, .navigation, .lab-list, .card {
+  color: #FFF;
+  background-color: #000;
+}
+
+div.navigation {
+  display: flex;
+  flex-flow: row;
+  padding-top: .5rem;
+  justify-content: space-between;
+}
+
+/* Overriding bootstrap button classes */
+.btn-primary, .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+  border: none;
+  background-color: #9800e0;
+}
+
+.btn-primary:hover {
+  color: #310f41;
+  background-color: #FFF;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #9800e0;
+  }
+
+div.card-header {
+ font-size: large;
+}
+
+div.card {
+  margin-top: 10px;
+}
+
+.table {
+  margin-top: 10px;
+}
+
+/* Student lab simulation */
+.student-lab {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  background-color: #000;
+}
+
+/* Custom radio buttons group */
+.radio-group-item {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 1rem;
+}
+
+.radio-group-item label {
+  display: inherit;
+  flex-flow: row;
+  flex: 1;
+  cursor: pointer;
+  padding: .5rem;
+  margin-bottom: 0;
+  color: #FFF;
+  background-color: #310f41;
+  border-radius: .25rem;
+  transition: 150ms;
+}
+
+.radio-group-item label:hover {
+  /* color: #FFF; */
+  background-color: #9800e0;
+}
+
+.radio-group-item label:active {
+  background-color: hsl(281, 100%, 74%);
+}
+
+.radio-group-item input {
+  position: absolute;
+  visibility: hidden;
+}
+
+/* Custom radio button */
+.radio-item {
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+  /* background-color: #9800e0; */
+  border: 1px solid #9800e0;
+  border-radius: 50%;
+}
+
+.radio-group-item label:hover input ~ .radio-item {
+  background-color: #FFF;
+}
+
+.radio-group-item input:checked ~ .radio-item {
+  background-color: #9800e0;
+}
+
+.radio-item:after {
+  content: "";
+  display: none;
+}
+
+.radio-group-item input:checked ~ .radio-item:after {
+  display: block;
+}
+
+.radio-group-item .radio-item:after {
+  position: relative;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FFF;
+}
+
+
+/* Tree node component and children */
+.node-row, .node-column {
+  display: flex;
+}
+
+/* Admin view node styles */
+.node-row {
+  flex-flow: row;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+}
+
+.node-column {
+  flex-flow: column;
+}
+
+.node-major-label {
+  color: hsl(281, 100%, 84%);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.flex-label {
+  flex: 1;
+  align-self: center;
+}
+
+.to-be-removed {
+  color: #FF0;
+}

@@ -1,0 +1,10 @@
+.content {
+    height: 500px;
+    background-color: hsl(281, 62%, 8%);
+    border-bottom: solid 1px #9800e0;
+    border-right: solid 1px #9800e0;
+}
+
+#adminTreePane {
+    overflow-x: scroll;
+}

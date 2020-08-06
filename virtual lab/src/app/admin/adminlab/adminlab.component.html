@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="navigation">
+        <h3 class="flex-label">{{labName}}</h3>
+            <button (click)="labDetails()" class='btn btn-primary'>lab details</button>
+            <button (click) = "saveLab()" class='btn btn-primary' >Save Lab</button>
+            <button (click) = "deleteLab()" class='btn btn-primary'>Delete Lab</button>
+            <button (click) = "backButton()" class='btn btn-primary'>Back</button>
+    </div>
+</div>
+<pm-analytics></pm-analytics>
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div *ngIf="isNewNode">
+                    <div class="navigation">
+                        <label class="node-major-label flex-label" *ngIf='!invalidInput' for="nodename">New node name</label>
+                        <label class="node-major-label flex-label" *ngIf='invalidInput'  style="color:red" for="nodename">Invalid input try again</label>
+                        <div>
+                            <input maxlength="15"
+                               [(ngModel)]="nodeName"
+                               type='text'
+                               id="nodename"
+                               placeholder='New Node Name' />
+                            <button class='btn btn-primary'
+                                (click)="addNewNode()">Add New Node</button>
+                        </div>
+                    </div>
+            
+                    <pm-nodelist  [labId]="labId" [labName]="labName" (nodeNameEvent) = "nodeNameMessage($event)"(nodeIdEvent) =  "nodeIdMessage($event)"></pm-nodelist>
+                </div>
+                <div *ngIf="!isNewNode">
+                    <div class="node-row navigation">
+                        <h3 class="node-major-label flex-label">Node Name: {{nodeName}}</h3>
+                        <button class='btn btn-primary'
+                                (click)="nodeBackButton()">back</button>
+                    </div>
+
+                    <div class="card">
+                        <div class="node-column">
+                            <h3 class="node-major-label">Description:</h3>
+                            <textarea  [(ngModel)]= "Description" name="nodeDesc" id="nodeDesc" cols="30" rows="5"></textarea>
+                            <button (click) = "saveDescription()">Save Description</button>
+                    
+                        </div>
+                        <div class="node-column new-section">
+                            <div class="node-row">
+                                <h3 class="node-major-label">Behavior:</h3>
+                                <select [(ngModel)]="nodeType">
+                                    <option *ngFor="let behavior of nodeBehaviors" [ngValue]="behavior" value=behavior>{{ behavior }}</option>
+                                </select>
+                            </div>
+                            <!--This is where the appropriate behavior node will be loaded-->
+                            <div *ngIf="nodeType === 'Matching'">
+                                <matching-node></matching-node>
+                            </div>
+                            <div *ngIf="nodeType === 'Play video'">
+                                <video-node></video-node>
+                            </div>
+                            <div *ngIf="nodeType === 'Perform experiment'">
+                                <experiment-node></experiment-node>
+                            </div>
+                            <div *ngIf="nodeType === 'Question / Answer'">
+                                <quiz-node [Description] = "Description" [nodeId] = "nodeId" [labId]="labId" [labName]="labName" [nodeName]="nodeName" ></quiz-node>
+                            </div>
+                        </div>
+                        <div class="node-row new-section">
+                            <h3 class="node-major-label">Outgoing nodes:</h3>
+                            <!--Populate with list of outgoing nodes-->
+                        </div>
+                    </div>
+                    <!-- <tree-node></tree-node> -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <pm-admintreepane></pm-admintreepane>
+            </div>
+        </div>
+</div>
