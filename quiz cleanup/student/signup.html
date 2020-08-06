@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../styles/login.css" />
+  <script src="../js/quizCleanUpScripts.js"></script>
+  <link rel="stylesheet" href="../styles/styleQuizCleanUp.css" />
+</head>
+
+<body>
+  <img src="../wsulogo.png" alt="Italian Trulli" id="wsuloginlogo" style="padding-top: 20px;" />
+
+  <div>
+    <h2>Already a member? <u><a href="login.html">Login!</a></u></h2>
+    <form style="
+          padding-bottom: 50px;
+          padding-top: 50px;
+          justify-content: center;
+          vertical-align: middle;
+        ">
+      Username:<br />
+      <input type="text" name="username" id="username" /> <br /><br />
+      First Name:<br />
+      <input type="text" name="firstName" id="firstName" /> <br /><br />
+      Last Name:<br />
+      <input type="text" name="lastName" id="lastName" /> <br /><br />
+      Password:<br />
+      <input type="password" name="password" id="password" /> <br /><br />
+      <button type="button" id="signup" name="signup" onclick="signUp();" style="background-color: primary;">
+        Sign Up
+      </button>
+    </form>
+  </div>
+  <script src="https://antibuddies-api.glitch.me/js/api.js"></script>
+  <script>
+    function signUp() {
+      var user = {
+        username: $("#username").val(),
+        firstName: $("#firstName").val(),
+        lastName: $("#lastName").val(),
+        password: $("#password").val()
+      };
+      var signup = api.signup(user);
+      var resolve = Promise.resolve(signup);
+      resolve.then(function (v) {
+        if (v.username) {
+          var authenticate = api.authenticate(user);
+          var resolve2 = Promise.resolve(authenticate);
+          resolve2.then(function (w) {
+            if (w.token) {
+              localStorage.setItem('token-time', Math.floor(Date.now() / 1000));
+              window.location.href = "index.html";
+            }
+          })
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
