@@ -1,5 +1,28 @@
-var quizName = "Sample Quiz #1";
+///////////////
+//Basic questions array structure
+///////////////
+// var myQuestion = [
+//     {
+//         question: "This string will be the question",
+//         answers: [
+//             'answer 0, which is always the correct answer',
+//             'answer 1, which is incorrect',
+//             'answer 2, which is incorrect',
+//             'answer 3, which is incorrect',
+//         ],
+//         correctAnswer: '', //This will be blank until the answers are randomly rearranged.
+//         displayAnswer: 'This will be an explanation of the answer'
+//     }
+// ]
 
+
+
+//////////////
+//This dummy array can be used to test the page
+//in the event that the api goes down.
+///////////// 
+/*
+//var quizName = "Sample Quiz #1";
 // var myQuestions = [
 //     {
 //         question: "1. Which of the following antibodies can be neutralized by pooled human plasma?",
@@ -24,108 +47,199 @@ var quizName = "Sample Quiz #1";
 //         displayAnswer: 'A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)'
 //     }
 // ];
+*/
+
+//Keeps track of the correct answers.
 var answerKey = [];
 
+//Course ID to use with api.getQuizQuestions.
+//Will need to be passed into the page for actual quizzes.
+var course = "CS4450";
+
+//Quiz ID to use with api.getQuizQuestions.
+//Will need to be passed into the page for actual quizzes.
+var quizId = "5efa978c92c1290235963112"
+
+
+//Student ID to use with api.submitQuiz
+//Will need to be passed into the page for actual quizzes.
+//This student ID corresponds to user JeffWinger
+var studentId = "5f18ec5df89e6b0bb1ed4d51"
+
+
+
+//onload async function that builds the quiz when the window is ready.
 window.onload = async function(){
+    
+    //This function will start retriving quiz information.
+    //It will return a promise that we wait for at the end of
+    //this function.
     function questionsPromise(){
-        return api.getQuizQuestions("CS4450", "5efa978c92c1290235963112");
+        return api.getQuizQuestions(course, quizId);
     }
+    //Id of the div that will be filled with quiz questions and answers.
     var quizContainer = document.getElementById('quiz');
+
+    //Id of the div that will be filled with quiz results(score).
     var resultsContainer = document.getElementById('results');
+
+    //Id of the submit button.
     var submitButton = document.getElementById('submit');
 
+    //Awaits completion of questionPromise. This is the quiz questions/answers array.
     myQuestions = await questionsPromise();
-    generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-    
+
+    //Calls generate quiz to build the page.
+    generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton); 
 }
 
 
-// generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
-
+//Generates the quiz page.
+//
+//questions = Array containing the quiz questions/answers.
+//quizContainer = Id of the div that the quiz will be built inside of.
+//resultsContainer = Id of the div that the quiz results will be displayed in.
+//submitButton = Id of the submit button.
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+
+    //Displays the title of the quiz.
     document.getElementById('quizName').innerHTML = "Quiz: " + quizName;
+
+    //Builds questions on the page.
     function showQuestions(questions, quizContainer){
+
+        //Array that holds the html that will be pushed onto the page.
         var output = [];
+
+        //TODO: Figure out if this variable is needed.
         var answers;
+
+        //Loops through the questions array to build the html for the page.
         for(var i=0; i<questions.length; i++){
+            
+            //HoldS the randomly arranged answers for the question.
             var ansArray = [];
+
+            //Holds the answer key.
             var key = [];
+
+            //Array holds available places to put the answers.
             var places = [0,1,2,3];
+
+            //Loops through possible answers.
             for(var j = 0; j < questions[i].answers.length; j++){
+                //Randomly selects an available answer position.
                 var ansNum = Math.floor(Math.random() * places.length);
+                //Stores the answers number.
                 key[j] = places[ansNum];
+                //Stores the randomly arranged answer.
                 ansArray[j] = questions[i].answers[places[ansNum]];
+
+                //If the answer is correct(answer 0) store it's new random number.
                 if(places[ansNum] == 0){
                     questions[i].correctAnswer = j;
                 }
+                //Splice the used position from places.
                 places.splice(ansNum, 1);
             }
-            console.log(key);
+
+            //This array will store the html string that will be eventually be put into the quiz container.
             answers = [];
+
+            //For each answer in the ansArray, generates its html.
+            //The use of 'letter' as a variable is left over from an earlier
+            //iteration of this file where answers were given a defined letter
+            //position instead of just an array position.
             for(letter in ansArray){
+
+                //Generates an html string and puts that string into the answers array.
                 answers.push('<label class="radio row" id="question' + i + '_' + letter +'">' + '<input type="radio" name="question' + i + '" value="'+key[letter]+'">' + ansArray[letter] );
+
+                //If the answer is the correct answer, generates the html for a hidden
+                //checkmark that will indicate that the answer is correct.
                 if(letter == questions[i].correctAnswer){
                     answers.push('<span class="correct" hidden>&nbsp<i class="fa fa-check" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
                 }
+                //Else, generate html for a hidden 'x' that will indicate that
+                //the answer is incorrect.
                 else{
                     answers.push('<span class="incorrect" id="question' + i + '_' + key[letter] + 'incorrect" hidden>&nbsp<i class="fa fa-times" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
                 }
             }
+            //Generates the div card that the question/answers will be held in
+            //with the question as the card header.
+            //Pushes that html into the output array.
             output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
-            // output.push('<div class="question row ">' + questions[i].question  + '<div class="answers">' + answers.join('') + '</div></div>');
         }
+        //Joins the combined output array to the innerHTML of the quiz container.
         quizContainer.innerHTML = output.join('');
     }
 
 
+    //Calculates and displays the results of the quiz.
+    //Triggered by pressing the submit button.
     function showResults(questions, quizContainer, resultsContainer){
         
+        //Holds answer containers to check contents.
         var answerContainers = quizContainer.querySelectorAll('.answers');
+        
+        //Will hold the users answer for a given question.
         var userAnswer;
+        
+        //Tracks how many correct answers have been selected.
         var numCorrect = 0;
+
+        //Array that will store which answers have been selected
+        //so that information can be sent to the database.
         var userAnswers = [];
         
-        //Displays correct label next correct answers.
+        //Stores the checkmark elements to display for correct answers.
         var cor = document.getElementsByClassName('correct');
+
+        //Removes 'hidden' from all checkmarks, to show the student
+        //which answers were correct.
         for(var j = 0; j < cor.length; j++){
             cor[j].hidden = false;
         }
 
-
+        //Analyzes each question, and displays 'x's next to incorrect guesses.
         for(var i=0; i<questions.length; i++){
-
+            //Stores the value of the selected radio button.
             userAnswer = parseInt((answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value);
+
+            //Stores the user's answer in the userAnswers array to submit to database.
             userAnswers[i] = userAnswer;
+
+            //If the user selected the correct answer, increment their score.
             if(userAnswer===questions[i].correctAnswer){
                 numCorrect++;
-                //answerContainers[i].style.color = 'lightgreen';
-                //console.log(i + "is correct")
-                //var z = document.getElementsByClassName('question' + i + 'Correct');
             }
-
+            //Else, remove 'hidden' from the 'x' next to the user's answer
+            //and display the explanation.
             else{
-                //answerContainers[i].style.color = 'red';
-                //if (userAnswer!==questions[i].correctAnswer) {
-                //var test = document.getElementById('question0c');
-                //console.log(test);
-
                 if(userAnswer != 0){
                     //document.getElementById('question' + i + '_' + userAnswer).style.color = 'red';
                     document.getElementById('question' + i + '_' + userAnswer+'incorrect').hidden = false;
                     console.log(i + " was incorrect");
                 }
                 document.getElementById('explanation'+i).hidden = false;
-                    //console.log(questions[i].displayAnswer);
-                //}
-                // if (userAnswer!==questions[i].correctAnswer) {
-                //     //window.alert("Correct response is C. A serological test to confirm the ABO on all RBC units and Rh on units labeled as Rh-negative must be performed prior to transfusion. Any errors in labeling must be reported to the collecting facility. (Source AABB Standards, Section...)");
-                //     document.getElementById('explanation'+i).hidden = false;
-                //     //console.log(questions[i].displayAnswer);
-                // }
             }
         }
+        //Shows the user's score in the innerHTML of the resultsContainer.
         resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
-        console.log(userAnswers);
+        
+        //TODO: Test if this successfully submits quiz to database.
+        //Submits quiz to database.
+        // var quizData = {
+        //     quiz_id: quizId,
+        //     user_id: studentId,
+        //     answers: userAnswers,
+        // }
+        // api.submitQuiz = (course, quizData)
+
+        //TODO: Add confirmation message.
+        //Disable the submit button to prevent double submissions.
+        submitButton.disabled = true;
     }
 
     showQuestions(questions, quizContainer);
