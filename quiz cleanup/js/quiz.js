@@ -66,6 +66,8 @@ var quizId = "5efa978c92c1290235963112"
 //This student ID corresponds to user JeffWinger
 var studentId = "5f18ec5df89e6b0bb1ed4d51"
 
+var quizTitle;
+
 
 
 //onload async function that builds the quiz when the window is ready.
@@ -75,7 +77,7 @@ window.onload = async function(){
     //It will return a promise that we wait for at the end of
     //this function.
     function questionsPromise(){
-        return api.getQuizQuestions(course, quizId);
+        return api.getQuiz(course, quizId);
     }
     //Id of the div that will be filled with quiz questions and answers.
     var quizContainer = document.getElementById('quiz');
@@ -87,8 +89,9 @@ window.onload = async function(){
     var submitButton = document.getElementById('submit');
 
     //Awaits completion of questionPromise. This is the quiz questions/answers array.
-    myQuestions = await questionsPromise();
-
+    var quiz = await questionsPromise();
+    myQuestions = quiz.questions;
+    quizTitle = quiz.title;
     //Calls generate quiz to build the page.
     generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton); 
 }
@@ -103,7 +106,7 @@ window.onload = async function(){
 function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
 
     //Displays the title of the quiz.
-    document.getElementById('quizName').innerHTML = "Quiz: " + quizName;
+    document.getElementById('quizName').innerHTML = "Quiz: " + quizTitle;
 
     //Builds questions on the page.
     function showQuestions(questions, quizContainer){
@@ -208,10 +211,10 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
             userAnswer = parseInt((answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value);
 
             //Stores the user's answer in the userAnswers array to submit to database.
-            userAnswers[i] = userAnswer;
+            userAnswers[i] = questions[i].answers[userAnswer];
 
             //If the user selected the correct answer, increment their score.
-            if(userAnswer===questions[i].correctAnswer){
+            if(userAnswer===0){
                 numCorrect++;
             }
             //Else, remove 'hidden' from the 'x' next to the user's answer
@@ -220,7 +223,6 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                 if(userAnswer != 0){
                     //document.getElementById('question' + i + '_' + userAnswer).style.color = 'red';
                     document.getElementById('question' + i + '_' + userAnswer+'incorrect').hidden = false;
-                    console.log(i + " was incorrect");
                 }
                 document.getElementById('explanation'+i).hidden = false;
             }
@@ -230,12 +232,12 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
         
         //TODO: Test if this successfully submits quiz to database.
         //Submits quiz to database.
-        // var quizData = {
-        //     quiz_id: quizId,
-        //     user_id: studentId,
-        //     answers: userAnswers,
-        // }
-        // api.submitQuiz = (course, quizData)
+        var quizData = {
+            quiz_id: quizId,
+            user_id: studentId,
+            answers: userAnswers,
+        }
+        api.submitQuiz = (course, quizData)
 
         //TODO: Add confirmation message.
         //Disable the submit button to prevent double submissions.
