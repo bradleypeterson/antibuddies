@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style type="text/css">
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #310f41;
+    }
+
+    .form-check-input {
+      right: 10px;
+    }
+  </style>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/styleQuizCleanUp.css" />
+  <script src="../js/quizCleanUpScripts.js"></script>
+  <link rel="stylesheet" href="../styles/styleQuizCleanUp.css" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body onstart="startQuiz()" style="background-color: #310f41; padding: 15px;">
+  <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
+    <h1 style="
+          text-align: left;
+          padding-left: 15px;
+          padding-bottom: 15px;
+          text-decoration: underline;
+          color: #310f41;
+        ">
+      Menu Options
+    </h1>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html" style="color: #310f41;">-- Home</a>
+    <a href="study-materials.html" style="color: #310f41;">-- Study Material</a>
+    <a href="#" onclick="logout();" style="color: #310f41;">-- Log Off</a>
+  </div>
+  <button style="
+        background-color: grey;
+        height: 84px;
+        width: 80px;
+        padding-left: 10px;
+        padding-top: 12px;
+      ">
+    <div class="fa fa-bars" style="
+          align-content: center;
+          font-size: 42px;
+          padding: 10px;
+          color: white;
+        " onclick="openNav()"></div>
+  </button>
+  <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page
+         <div id="main"> Add all page content here...</div> -->
+  <div class="rowz" style="align-content: center;">
+    <img src="../wsulogo.png" alt="Italian Trulli" id="wsupagelogo" align="right" />
+    <h3 class="header" style="
+          padding-top: 50px;
+          background-color: grey;
+          padding-bottom: 100px;
+        " id="quizName">
+    </h3>
+  </div>
+  <div class="container-fluid">
+    <div class="row" id="quizzes">
+
+    </div>
+
+    <div class="row" id="answers" style="display: none;">
+
+    </div>
+  </div>
+  <div class="quiz-footer" style="position: absolute; bottom: 0;">
+    <footer>
+      <h6>CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
+    </footer>
+  </div>
+  <script src="https://antibuddies-api.glitch.me/js/api.js"></script>
+  <script>
+    $(document).ready(function () {
+      var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {},
+        tmp;
+      for (var i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+      }
+      $("#quizName").html("Available quizzes for " + data.course);
+      var token = parseInt(localStorage.getItem('token-time'), 10);
+      if (isNaN(token) || ((token + 18000) < Math.floor(Date.now() / 1000))) {
+        window.location.href = "login.html";
+      } else {
+        var url = document.location.href,
+          params = url.split('?')[1].split('&'),
+          data = {},
+          tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+          tmp = params[i].split('=');
+          data[tmp[0]] = tmp[1];
+        }
+        var quizzes = api.getQuizzes(data.course);
+        var resolve = Promise.resolve(quizzes);
+        resolve.then(function (v) {
+          for (var i = 0; i < v.length; i++) {
+            var html = '<div class="col-4"><div class="card"><div class="card-body"><h5 class="card-title">' +
+              v[i]
+              .title + '</h5><a href="#" class="btn btn-primary take-quiz" data-quiz="' + i +
+              '">Take Quiz</a></div></div></div>';
+            $("#quizzes").append(html);
+          }
+        });
+      }
+
+      $(document).on('click', '.take-quiz', function () {
+        var url = document.location.href,
+          params = url.split('?')[1].split('&'),
+          data = {},
+          tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+          tmp = params[i].split('=');
+          data[tmp[0]] = tmp[1];
+        }
+        $("#quizzes").hide();
+        $("#answers").empty();
+        var quiz = $(this).attr("data-quiz");
+        var quizzes2 = api.getQuizzes(data.course);
+        var resolve2 = Promise.resolve(quizzes2);
+        resolve2.then(function (v) {
+          $("#quizName").html("Your are taking quiz: " + v[quiz].title);
+          for (var i = 0; i < v[quiz].questions.length; i++) {
+            var html =
+              '<div class="col-4"><div class="card"><div class="card-body"><h5 class="card-title">' +
+              v[quiz].questions[i].question +
+              '</h5></div><ul class="list-group list-group-flush"><li class="list-group-item">' + v[
+                quiz]
+              .questions[i].answers[0] +
+              ' <input class="form-check-input" type="radio" name="' +
+              v[quiz].questions[i]._id +
+              '" value="option1"></li><li class="list-group-item">' +
+              v[quiz].questions[i].answers[1] +
+              ' <input class="form-check-input" type="radio" name="' +
+              v[quiz].questions[i]._id +
+              '" value="option2"></li><li class="list-group-item">' +
+              v[quiz].questions[i].answers[2] +
+              ' <input class="form-check-input" type="radio" name="' +
+              v[quiz].questions[i]._id +
+              '" value="option3" ></li><li class="list-group-item">' +
+              v[quiz].questions[i].answers[3] +
+              ' <input class="form-check-input" type="radio" name="' +
+              v[quiz].questions[i]._id +
+              '" value="option4"></li></ul><div class="card-body"></div></div></div>';
+            $("#answers").append(html);
+          }
+        });
+        $("#answers").show();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

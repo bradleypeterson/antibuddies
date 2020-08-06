@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <style type="text/css">
+      html,
+      body {
+         margin: 0;
+         padding: 0;
+         height: 100%;
+         width: 100%;
+         background-color: #310F41;
+      }
+   </style>
+   <title>Student Home Page</title>
+   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+   <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+   <script type="text/javascript" src="../js/bootstrap.js"></script>
+   <link rel="stylesheet" href="../styles/styleQuizCleanUp.css" />
+   <link rel="stylesheet" href="../styles/style.css" />
+   <script src="../js/quizCleanUpScripts.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body style="background-color: #310F41; padding: 15px;">
+   <div id="mySidenav" class="sidenav" style="background-color: #e5e5e5;">
+      <h1
+         style="text-align: left; padding-left: 15px; padding-bottom: 15px; text-decoration: underline; color: #310F41;">
+         Menu Options
+      </h1>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="index.html" style="color: #310F41;">-- Home</a>
+      <a href="study-materials.html" style="color: #310F41;">-- Study Material</a>
+      <a href="#" onclick="logout();" style="color: #310F41;">-- Log Off</a>
+   </div>
+   <!-- Use any element to open the sidenav -->
+   <button style="background-color: grey; height: 84px; width: 80px; padding-left: 10px; padding-top: 12px;">
+      <div class="fa fa-bars" style="align-content: center; font-size: 42px; padding: 10px; color: white;"
+         onclick="openNav()"></div>
+   </button>
+   <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page
+         <div id="main"> Add all page content here...</div> -->
+   <div class="rowz" style="align-content: center;">
+      <img src="../wsulogo.png" alt="Italian Trulli" id="wsupagelogo" align="right" />
+      <h1 class="header" style="padding-top: 50px; background-color: grey; padding-bottom: 100px;">Courses</h1>
+   </div>
+   <div class="row" id="courses">
+
+   </div>
+   <div class="student-home-page-footer">
+      <footer>
+         <h6> CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
+      </footer>
+   </div>
+   <script src="https://antibuddies-api.glitch.me/js/api.js"></script>
+   <script>
+      $(document).ready(function () {
+         var token = parseInt(localStorage.getItem('token-time'), 10);
+         if (isNaN(token) || ((token + 18000) < Math.floor(Date.now() / 1000))) {
+            window.location.href = "login.html";
+         } else {
+            var courses = api.getCourses();
+            var resolve = Promise.resolve(courses);
+            resolve.then(function (v) {
+               for (var i = 0; i < v.length; i++) {
+                  var html =
+                     '<span class="col-sm"><div class="inner"><button class="immunology course" data-course="' +
+                     v[i].courseName + '">' + v[i].courseName + '</button></div></span>';
+                  $("#courses").append(html);
+               }
+            });
+         }
+
+         $(document).on('click', '.course', function () {
+            var course = $(this).attr("data-course"),
+               url = 'quiz.html?course=' + encodeURIComponent(course);
+            document.location.href = url;
+         });
+      });
+   </script>
+</body>
+
+</html>
