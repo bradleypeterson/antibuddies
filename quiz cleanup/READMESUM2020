@@ -1,16 +1,28 @@
 -OVERVIEW
 
-The admin files are as follows: manage-quizzes.html, quiz-analytics.html, quiz.html, index.html, login.html, admin-quiz.html, admin-quiz-add.html, quiz-results.html, styleQuizCleanUp.css, quizCleanUpScripts.js.
+The admin files are as follows: manage-quizzes.html, quiz-analytics.html, quiz.html, index.html, login.html, 
+admin-quiz.html, admin-quiz-add.html, quiz-results.html, styleQuizCleanUp.css, quizCleanUpScripts.js.
 The student files are as follows: study-materials.html, student-home-page.html, index.html, login.html, styleQuizCleanUp.css, quizCleanUpScripts.js.
-We were able to connect to the backend. I will include the links to the functionality of the backend. They are in the API document.
+We were able to connect to the backend. I will include the links to the functionality of the backend. 
+They are in the API document.
 We were able to clean up the project and maintain a constant theme throughout the website.
-We spent a lot of time cleaning up different button sizes and overall elements on the pages. We did add a few html pages and separate the files into respective groups. We have been able to successfully connect to the API and the login page works. However, it does need some work to ensure it is a secure login and the website tracks who is currently logged in.
-Student-home-page has the default outline of what we envision the layout to be. You can use this to lay out the rest of the html pages. As I mentioned before we worked mostly on the layout of the pages and cleaning up prior styles. The functionality of the buttons will be left to you. Most of the html pages should look similar to one another. The API connection should allow you to retrieve quiz results, user info, quizzes and anything that is in a database. If you have any questions about the database you should communicate with the group that took over the API/Database.
+We spent a lot of time cleaning up different button sizes and overall elements on the pages. 
+We did add a few html pages and separate the files into respective groups. 
+We have been able to successfully connect to the API and the login page works. 
+However, it does need some work to ensure it is a secure login and the website tracks who is currently logged in.
+Student-home-page has the default outline of what we envision the layout to be. You can use this to lay out the rest of the html pages. 
+As I mentioned before we worked mostly on the layout of the pages and cleaning up prior styles. 
+The functionality of the buttons will be left to you. Most of the html pages should look similar to one another. 
+The API connection should allow you to retrieve quiz results, user info, quizzes and anything that is in a database. 
+If you have any questions about the database you should communicate with the group that took over the API/Database.
 The footer in each page just allows for updating text here of how recent the last push is. It is up to you if you want to keep it or remove It once published.
-Right now, the menu link for study material is leading to the student home page. However, there should be two study material home pages. One for the admin to add the material and then another where the student can just access the material. The student home page should be a separate landing page.
+Right now, the menu link for study material is leading to the student home page. However, there should be two study material home pages. 
+One for the admin to add the material and then another where the student can just access the material. The student home page should be a separate landing page.
 For the index.html (log off/log on screen) the content should be in the center lined up underneath the picture.
-The login.html page is not necessary. You need to do the functionality of the API in the index.html page. The login.html page is just there to test the API connection.
-We used GitHub desktop and visual studios code for mac devices. And we just opened the html pages with the default or chose browser. Each group in the project created a repo but Brad ultimately created his own repo that we all worked off of with different branches.
+The login.html page is not necessary. You need to do the functionality of the API in the index.html page. 
+The login.html page is just there to test the API connection.
+We used GitHub desktop and visual studios code for mac devices. And we just opened the html pages with the default or chose browser. 
+Each group in the project created a repo but Brad ultimately created his own repo that we all worked off of with different branches.
 
 
 
