@@ -68,152 +68,118 @@ var studentId = "5f18ec5df89e6b0bb1ed4d51"
 
 var quizTitle;
 
+   
+//Builds questions on the page.
+//questions = Array containing the quiz questions/answers.
+//quizContainer = Id of the div that the quiz will be built inside of.
+function showQuestions(questions, quizContainer){
+    //Array that holds the html that will be pushed onto the page.
+    var output = [];
 
+    //TODO: Figure out if this variable is needed.
+    var answers;
 
-//onload async function that builds the quiz when the window is ready.
-window.onload = async function(){
-    
-    //This function will start retriving quiz information.
-    //It will return a promise that we wait for at the end of
-    //this function.
-    function questionsPromise(){
-        return api.getQuiz(course, quizId);
+    //Loops through the questions array to build the html for the page.
+    for(var i=0; i<questions.length; i++){
+        
+        //HoldS the randomly arranged answers for the question.
+        var ansArray = [];
+
+        //Holds the answer key.
+        var key = [];
+
+        //Array holds available places to put the answers.
+        var places = [0,1,2,3];
+
+        //Loops through possible answers.
+        for(var j = 0; j < questions[i].answers.length; j++){
+            //Randomly selects an available answer position.
+            var ansNum = Math.floor(Math.random() * places.length);
+            //Stores the answers number.
+            key[j] = places[ansNum];
+            //Stores the randomly arranged answer.
+            ansArray[j] = questions[i].answers[places[ansNum]];
+
+            //If the answer is correct(answer 0) store it's new random number.
+            if(places[ansNum] == 0){
+                questions[i].correctAnswer = j;
+            }
+            //Splice the used position from places.
+            places.splice(ansNum, 1);
+        }
+
+        //This array will store the html string that will be eventually be put into the quiz container.
+        answers = [];
+
+        //For each answer in the ansArray, generates its html.
+        //The use of 'letter' as a variable is left over from an earlier
+        //iteration of this file where answers were given a defined letter
+        //position instead of just an array position.
+        for(letter in ansArray){
+
+            // //Generates an html string and puts that string into the answers array.
+            answers.push('<label class="radio row" id="question' + i + '_' + letter +'">' + '<input type="radio" name="question' + i + '" value="'+key[letter]+'">' + ansArray[letter] );
+
+            // //If the answer is the correct answer, generates the html for a hidden
+            // //checkmark that will indicate that the answer is correct.
+            if(letter == questions[i].correctAnswer){
+                answers.push('<span class="correct" hidden>&nbsp<i class="fa fa-check" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
+            }
+            //Else, generate html for a hidden 'x' that will indicate that
+            //the answer is incorrect.
+            else{
+                answers.push('<span class="incorrect" id="question' + i + '_' + key[letter] + 'incorrect" hidden>&nbsp<i class="fa fa-times" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
+            }
+        }
+        //TODO: Answer explanations are not currently in the database. Ask infrastructure to add answer explanations to the api.
+        //Generates the div card that the question/answers will be held in
+        //with the question as the card header.
+        //Pushes that html into the output array.
+        output.push('<div class="card"><div class="card-body"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div></div>');
     }
-    //Id of the div that will be filled with quiz questions and answers.
-    var quizContainer = document.getElementById('quiz');
-
-    //Id of the div that will be filled with quiz results(score).
-    var resultsContainer = document.getElementById('results');
-
-    //Id of the submit button.
-    var submitButton = document.getElementById('submit');
-
-    //Awaits completion of questionPromise. This is the quiz questions/answers array.
-    var quiz = await questionsPromise();
-    myQuestions = quiz.questions;
-    quizTitle = quiz.title;
-    //Calls generate quiz to build the page.
-    generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton); 
+    //Joins the combined output array to the innerHTML of the quiz container.
+    quizContainer.append(output.join(''));
 }
 
 
-//Generates the quiz page.
-//
-//questions = Array containing the quiz questions/answers.
-//quizContainer = Id of the div that the quiz will be built inside of.
-//resultsContainer = Id of the div that the quiz results will be displayed in.
-//submitButton = Id of the submit button.
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
+//Calculates and displays the results of the quiz.
+//Triggered by pressing the submit button.
+function showResults(questions, quizContainer, resultsContainer, submitButton){
+//function showResults(v[quiz].questions, getElementById("quiz"), getElementById("results")){
+    //Holds answer containers to check contents.
+    //var answerContainers = quizContainer.querySelectorAll('.answers');
+    var answerContainers = $(".answers");
+    
+    //Will hold the users answer for a given question.
+    var userAnswer;
+    
+    //Tracks how many correct answers have been selected.
+    var numCorrect = 0;
 
-    //Displays the title of the quiz.
-    document.getElementById('quizName').innerHTML = "Quiz: " + quizTitle;
+    //Array that will store which answers have been selected
+    //so that information can be sent to the database.
+    var userAnswers = [];
+    
+    //Stores the checkmark elements to display for correct answers.
+    var cor = document.getElementsByClassName('correct');
 
-    //Builds questions on the page.
-    function showQuestions(questions, quizContainer){
-
-        //Array that holds the html that will be pushed onto the page.
-        var output = [];
-
-        //TODO: Figure out if this variable is needed.
-        var answers;
-
-        //Loops through the questions array to build the html for the page.
-        for(var i=0; i<questions.length; i++){
-            
-            //HoldS the randomly arranged answers for the question.
-            var ansArray = [];
-
-            //Holds the answer key.
-            var key = [];
-
-            //Array holds available places to put the answers.
-            var places = [0,1,2,3];
-
-            //Loops through possible answers.
-            for(var j = 0; j < questions[i].answers.length; j++){
-                //Randomly selects an available answer position.
-                var ansNum = Math.floor(Math.random() * places.length);
-                //Stores the answers number.
-                key[j] = places[ansNum];
-                //Stores the randomly arranged answer.
-                ansArray[j] = questions[i].answers[places[ansNum]];
-
-                //If the answer is correct(answer 0) store it's new random number.
-                if(places[ansNum] == 0){
-                    questions[i].correctAnswer = j;
-                }
-                //Splice the used position from places.
-                places.splice(ansNum, 1);
-            }
-
-            //This array will store the html string that will be eventually be put into the quiz container.
-            answers = [];
-
-            //For each answer in the ansArray, generates its html.
-            //The use of 'letter' as a variable is left over from an earlier
-            //iteration of this file where answers were given a defined letter
-            //position instead of just an array position.
-            for(letter in ansArray){
-
-                //Generates an html string and puts that string into the answers array.
-                answers.push('<label class="radio row" id="question' + i + '_' + letter +'">' + '<input type="radio" name="question' + i + '" value="'+key[letter]+'">' + ansArray[letter] );
-
-                //If the answer is the correct answer, generates the html for a hidden
-                //checkmark that will indicate that the answer is correct.
-                if(letter == questions[i].correctAnswer){
-                    answers.push('<span class="correct" hidden>&nbsp<i class="fa fa-check" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
-                }
-                //Else, generate html for a hidden 'x' that will indicate that
-                //the answer is incorrect.
-                else{
-                    answers.push('<span class="incorrect" id="question' + i + '_' + key[letter] + 'incorrect" hidden>&nbsp<i class="fa fa-times" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
-                }
-            }
-            //Generates the div card that the question/answers will be held in
-            //with the question as the card header.
-            //Pushes that html into the output array.
-            output.push('<div class="card>"><div class="question card-header">' + questions[i].question + '</div>' + '<div class="answers card-text">' + answers.join('') + '</div> <div id="explanation' + i + '" hidden>' + questions[i].displayAnswer + '</div></div><hr>');
-        }
-        //Joins the combined output array to the innerHTML of the quiz container.
-        quizContainer.innerHTML = output.join('');
+    //Removes 'hidden' from all checkmarks, to show the student
+    //which answers were correct.
+    for(var j = 0; j < cor.length; j++){
+        cor[j].hidden = false;
     }
 
+    //Analyzes each question, and displays 'x's next to incorrect guesses.
+    for(var i=0; i<questions.length; i++){
+        //Stores the value of the selected radio button.
+        userAnswer = parseInt((answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value);
 
-    //Calculates and displays the results of the quiz.
-    //Triggered by pressing the submit button.
-    function showResults(questions, quizContainer, resultsContainer){
-        
-        //Holds answer containers to check contents.
-        var answerContainers = quizContainer.querySelectorAll('.answers');
-        
-        //Will hold the users answer for a given question.
-        var userAnswer;
-        
-        //Tracks how many correct answers have been selected.
-        var numCorrect = 0;
+        //Stores the user's answer in the userAnswers array to submit to database.
+        userAnswers[i] = questions[i].answers[userAnswer];
 
-        //Array that will store which answers have been selected
-        //so that information can be sent to the database.
-        var userAnswers = [];
-        
-        //Stores the checkmark elements to display for correct answers.
-        var cor = document.getElementsByClassName('correct');
-
-        //Removes 'hidden' from all checkmarks, to show the student
-        //which answers were correct.
-        for(var j = 0; j < cor.length; j++){
-            cor[j].hidden = false;
-        }
-
-        //Analyzes each question, and displays 'x's next to incorrect guesses.
-        for(var i=0; i<questions.length; i++){
-            //Stores the value of the selected radio button.
-            userAnswer = parseInt((answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value);
-
-            //Stores the user's answer in the userAnswers array to submit to database.
-            userAnswers[i] = questions[i].answers[userAnswer];
-
-            //If the user selected the correct answer, increment their score.
+        //If the user selected the correct answer, increment their score.
+        //Else display 'x' next to their guess.
+        if(userAnswer !=null){
             if(userAnswer===0){
                 numCorrect++;
             }
@@ -227,30 +193,23 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton){
                 document.getElementById('explanation'+i).hidden = false;
             }
         }
-        //Shows the user's score in the innerHTML of the resultsContainer.
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
-        
-        //TODO: Test if this successfully submits quiz to database.
-        //Submits quiz to database.
-        var quizData = {
-            quiz_id: quizId,
-            user_id: studentId,
-            answers: userAnswers,
-        }
-        api.submitQuiz = (course, quizData)
-
-        //TODO: Add confirmation message.
-        //Disable the submit button to prevent double submissions.
-        submitButton.disabled = true;
     }
-
-    showQuestions(questions, quizContainer);
-
-    submitButton.onclick = function(){
-        showResults(questions, quizContainer, resultsContainer);
+    //Shows the user's score in the innerHTML of the resultsContainer.
+    resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
+    
+    //TODO: Test if this successfully submits quiz to database.
+    //Submits quiz to database.
+    var quizData = {
+        quiz_id: quizId,
+        user_id: studentId,
+        answers: userAnswers,
     }
+    //api.submitQuiz = (course, quizData)
+
+    //TODO: Add confirmation message.
+    //Disable the submit button to prevent double submissions.
+    submitButton.prop('disabled', true);
 }
-
 
 
 ////////////////////////////
