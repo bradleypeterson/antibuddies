@@ -40,6 +40,7 @@ function submitQuiz(){
         questions:[]
     }
 
+    //TODO: Add answer explanation once explanations are implemented
     //For each question input, generate data in the questions array.
     for(var i = 0; i <= questions; i++)
     {
@@ -56,6 +57,8 @@ function submitQuiz(){
     //TODO: Create a confirmation message and redirect page to course quiz index.
     document.getElementById("submit").disabled = true;
 
+
+    console.log(quiz);
     //Api call that stores the quiz in the database.
     api.addQuiz(course, quiz);
 }
