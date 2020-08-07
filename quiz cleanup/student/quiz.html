@@ -83,11 +83,11 @@
     </div>
   </div>
   <!-- <div class="quiz-footer" style="position: absolute; bottom: 0;"> -->
-    <div class="quiz-footer"></div>
-    <footer>
+    <!-- <div class="quiz-footer"></div> -->
+    <footer class="quiz-footer">
       <h6>CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
     </footer>
-  </div>
+  <!-- </div> -->
   <script src="https://antibuddies-api.glitch.me/js/api.js"></script>
   <script type="text/javascript" src="../js/quiz.js"></script>
   <script>
@@ -142,6 +142,7 @@
         var quizzes2 = api.getQuizzes(data.course);
         var resolve2 = Promise.resolve(quizzes2);
         resolve2.then(function (v) {
+          quizId = v[quiz]._id;
           quizdata = v[quiz];
           $("#quizName").html("Your are taking quiz: " + v[quiz].title);
           var html = '<div id="quiz"></div><div id="results"></div><div><input class="btn btn-primary" type="submit" id="submit" onclick="submitQuiz()"></div>';

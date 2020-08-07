@@ -53,18 +53,17 @@
 var answerKey = [];
 
 //Course ID to use with api.getQuizQuestions.
-//Will need to be passed into the page for actual quizzes.
-var course = "CS4450";
+var course;
 
 //Quiz ID to use with api.getQuizQuestions.
 //Will need to be passed into the page for actual quizzes.
-var quizId = "5efa978c92c1290235963112"
-
+//var quizId = "5efa978c92c1290235963112"
+var quizId
 
 //Student ID to use with api.submitQuiz
 //Will need to be passed into the page for actual quizzes.
-//This student ID corresponds to user JeffWinger
-var studentId = "5f18ec5df89e6b0bb1ed4d51"
+//This student ID corresponds to user waceyts
+var studentId = "5f2b63b0f669980959c93500"
 
 var quizTitle;
 
@@ -195,7 +194,7 @@ function showResults(questions, quizContainer, resultsContainer, submitButton){
         }
     }
     //Shows the user's score in the innerHTML of the resultsContainer.
-    resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
+    resultsContainer.html('<div class="card"><div class="card-body">' + numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)</div></div>');
     
     //TODO: Test if this successfully submits quiz to database.
     //Submits quiz to database.
@@ -204,7 +203,8 @@ function showResults(questions, quizContainer, resultsContainer, submitButton){
         user_id: studentId,
         answers: userAnswers,
     }
-    //api.submitQuiz = (course, quizData)
+    //console.log(quizData);
+    api.submitQuiz = (course, quizData)
 
     //TODO: Add confirmation message.
     //Disable the submit button to prevent double submissions.

@@ -1,3 +1,6 @@
+//TODO: Use login to check if the user has permission to add
+//      a quiz to this course.
+
 //Keeps track of the number of questions for display.
 var questions = 0;
 
@@ -40,7 +43,9 @@ function submitQuiz(){
         questions:[]
     }
 
-    //TODO: Add answer explanation once explanations are implemented
+    //TODO: Add answer explanation once explanations are implemented.
+    //TODO: Only add questions that are completely filled in.
+
     //For each question input, generate data in the questions array.
     for(var i = 0; i <= questions; i++)
     {
