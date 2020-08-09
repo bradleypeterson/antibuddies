@@ -69,11 +69,12 @@ export class BackEndServiceService {
 
   }
 
+  /*
   //local get all labs
   getLabsContainer(): Observable<LabsContainer> {
     return of(this.labsContainer);
   }
-
+*/
   // http put lab
   putLab(lab: lab): Observable<lab> {
     return this.http.post<lab>(this.dataUrl, lab, this.httpOptions).pipe(
@@ -93,11 +94,12 @@ export class BackEndServiceService {
   //
   //get labs container, updates global labsContainer
   //
+  /*
   getlabsContainer() {
     this.getHTTPLabsContainer().subscribe(labsBox => this.labsContainer = labsBox);
     return this.labsContainer;
   }
-
+*/
   //http get all labs container
   getHTTPLabsContainer(): Observable<LabsContainer> {
     return this.http.get<LabsContainer>(this.dataUrl)
@@ -121,8 +123,10 @@ export class BackEndServiceService {
       );
   }
 
+
   //get node by id
   /** GET node by id. Return `undefined` when id not found */
+  /*
   getNuizNo404(id: number): Observable<any> { 
     const url = `${this.dataUrl}/nodes/?id=${id}`;
     return this.http.get<any[]>(url)
@@ -135,10 +139,10 @@ export class BackEndServiceService {
         catchError(this.handleError<lab>(`getNode id=${id}`))
       );
   }
-  
+  */
 
   //examples:
-
+/*
   getUsers(): Observable<any> {
     const options = {
       responseType: 'text' as const,
@@ -160,7 +164,7 @@ export class BackEndServiceService {
     return of(sampleString);
   }
 
-
+*/
   /**
  * Handle Http operation that failed.
  * Let the app continue.
