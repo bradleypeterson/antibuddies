@@ -1,4 +1,4 @@
--OVERVIEW
+-OVERVIEW-
 
 The admin files are as follows: manage-quizzes.html, quiz-analytics.html, quiz.html, index.html, login.html, 
 admin-quiz.html, admin-quiz-add.html, quiz-results.html, styleQuizCleanUp.css, quizCleanUpScripts.js.
@@ -25,8 +25,10 @@ We used GitHub desktop and visual studios code for mac devices. And we just open
 Each group in the project created a repo but Brad ultimately created his own repo that we all worked off of with different branches.
 
 
+---------------------------------------------------------------
 
--API functionality
+
+-API functionality-
 
 The infrastructure group in this project were able to put together a great and easy API connection with different functionalities. 
 Attached are the links that they gave us. The documentation link has an explanation of how everything works. 
@@ -36,7 +38,11 @@ https://antibuddies-api.glitch.me/
 https://antibuddies-api.glitch.me/js/api.js
 https://antibuddies-api.glitch.me/documentation.html
 
--FIGMA
+
+---------------------------------------------------------------
+
+
+-FIGMA-
 Attached are the Figma’s that our group presented to Justin (the client). He approved these layouts.
 Admin add quiz -- https://www.figma.com/proto/bjSXwTTamb4brN5hZnBFPR/AdminAddQuiz?node-id=0%3A1
 
@@ -49,3 +55,35 @@ Figma is a program used to lay out what the possible user interfaces would look 
 If you would like to learn how to use Figma please just google Figma tutorials. It is a pretty easy program to learn.  
 Please keep in mind that in order to maintain a constant theme you will have to communicate with the other groups of this project. 
 The main layout colors/styles/fonts and everything are kept in the css file called ‘ styleQuizCleanUp.css’.
+
+
+---------------------------------------------------------------
+
+
+-Future tasks-
+
+quiz.html:
+    -Consider finding a more efficient submit quiz function.
+
+quiz.js:
+    -Retrieve course, quizId, and studentId to fill variables.
+    -Implement answer explanations after they have been added to the database.
+    -Fix student quiz submission.
+    -Add confirmation message on success.
+
+quiz-add.html:
+    -Add answer 1 explanation once they are in the database.
+    -Add buttons for images on question 1 and its answers.
+
+
+quiz-add.js:
+    -Use login to check user permissions.
+    -Add answer explanations once they are in the database.
+    -Add validation so only complete answers are submitted to the database.
+    -Add a remove question functionality.
+    -Add confirmation message and redirect on successful submission.
+    -Add funtionality to use images in questions and answers once those features are complete on the backend.
+
+quiz-analytics.js:
+    -Retrieve actual analytics and questions.
+    -Fix text color inside question/answer cards.
