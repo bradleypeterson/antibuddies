@@ -25,28 +25,28 @@ export class BackEndServiceService {
   makeExample() {
 
     // //make a new lab
-    // let newLab:lab = this.labsContainer.createLab("Chemistry");
-    // newLab.description = "Spring 2020 Chemistry";
-    // newLab.course = "Chem 1010";
+    let newLab:lab = this.labsContainer.createLab("Chemistry");
+    newLab.description = "Spring 2020 Chemistry";
+    newLab.course = "Chem 1010";
     
     // //add quiz node1
-    // let quiz1:Quiznode = newLab.createQuizNode("What is the answer to this?")
-    // quiz1.createAnswer("Blah 1", 1);
-    // quiz1.createAnswer("Blah 2", 3);
-    // quiz1.createAnswer("Blah 3", 4);
-    // quiz1.createAnswer("Blah 4", 5);
+    let quiz1:Quiznode = newLab.createQuizNode("What is the answer to this?")
+    quiz1.createAnswer("Blah 1", 1);
+    quiz1.createAnswer("Blah 2", 3);
+    quiz1.createAnswer("Blah 3", 4);
+    quiz1.createAnswer("Blah 4", 5);
 
     // //add quiz node2
-    // let quiz2:Quiznode = newLab.createQuizNode("This is another question, with a longer string of text. What is the answer?")
-    // quiz2.createAnswer("Number one", 2);
-    // quiz2.createAnswer("Number two", 6);
-    // quiz2.createAnswer("Number three", 7);
+    let quiz2:Quiznode = newLab.createQuizNode("This is another question, with a longer string of text. What is the answer?")
+    quiz2.createAnswer("Number one", 2);
+    quiz2.createAnswer("Number two", 6);
+    quiz2.createAnswer("Number three", 7);
 
     // //add quiz node3
-    // let quiz3:Quiznode = newLab.createQuizNode("Here is the final question. What is the answer?");
-    // quiz3.createAnswer("First answer", 8);
-    // quiz3.createAnswer("Second answer", 9);
-    // quiz3.createAnswer("Third answer", 10);
+    let quiz3:Quiznode = newLab.createQuizNode("Here is the final question. What is the answer?");
+    quiz3.createAnswer("First answer", 8);
+    quiz3.createAnswer("Second answer", 9);
+    quiz3.createAnswer("Third answer", 10);
 
     // //example of getting a lab from the data structure:
     // let getLab:lab = this.labsContainer.labs[this.labsContainer.findLabByName("Chemistry")];
@@ -69,11 +69,12 @@ export class BackEndServiceService {
 
   }
 
+  /*
   //local get all labs
   getLabsContainer(): Observable<LabsContainer> {
     return of(this.labsContainer);
   }
-
+*/
   // http put lab
   putLab(lab: lab): Observable<lab> {
     return this.http.post<lab>(this.dataUrl, lab, this.httpOptions).pipe(
@@ -93,11 +94,12 @@ export class BackEndServiceService {
   //
   //get labs container, updates global labsContainer
   //
+  /*
   getlabsContainer() {
     this.getHTTPLabsContainer().subscribe(labsBox => this.labsContainer = labsBox);
     return this.labsContainer;
   }
-
+*/
   //http get all labs container
   getHTTPLabsContainer(): Observable<LabsContainer> {
     return this.http.get<LabsContainer>(this.dataUrl)
@@ -121,8 +123,10 @@ export class BackEndServiceService {
       );
   }
 
+
   //get node by id
   /** GET node by id. Return `undefined` when id not found */
+  /*
   getNuizNo404(id: number): Observable<any> { 
     const url = `${this.dataUrl}/nodes/?id=${id}`;
     return this.http.get<any[]>(url)
@@ -135,10 +139,10 @@ export class BackEndServiceService {
         catchError(this.handleError<lab>(`getNode id=${id}`))
       );
   }
-  
+  */
 
   //examples:
-
+/*
   getUsers(): Observable<any> {
     const options = {
       responseType: 'text' as const,
@@ -160,7 +164,7 @@ export class BackEndServiceService {
     return of(sampleString);
   }
 
-
+*/
   /**
  * Handle Http operation that failed.
  * Let the app continue.

@@ -21,7 +21,6 @@ import { QuizViewComponent } from './student/student-lab/quiz-view/quiz-view.com
 
 import {HttpClientModule} from '@angular/common/http';
 import { NodelistComponent } from './admin/nodes/nodelist/nodelist.component';
-import { MatchingViewComponent } from './student/student-lab/matching-view/matching-view.component';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +45,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     StudentLabComponent,
     QuizViewComponent,
     NodelistComponent,
-    MatchingViewComponent,
     ModalComponent
   ],
   imports: [

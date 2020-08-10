@@ -26,8 +26,7 @@ export class StudentLabComponent implements OnInit {
 
   constructor(private data: BackEndServiceService, private messages: MessageService) { 
     // Retrieve lab from service - test
-    // let labNumber = this.data.labsContainer.findLabByName("Chemistry");
-    let labNumber = 0;
+    let labNumber = this.data.labsContainer.findLabByName("Chemistry");
     let lab = this.data.labsContainer.labs[labNumber];
     this.labName = lab.name;
     this.labDescription = lab.description;
