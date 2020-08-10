@@ -20,14 +20,16 @@ function addQuestion(){
     var newquestion = document.createElement('div');
 
     //A series of concatenations of html generated for new question field.
-    //Could be done as a single long string but would be more difficult to read.
-    newquestion.innerHTML += '<hr><div class="card>"><div class="question card-header"> Question ' + (questions+1) + '</div>';
-    newquestion.innerHTML += '<div><label>Question :</label><input id="question' + questions + '" class="form-control" /></div>';
-    newquestion.innerHTML += '<div><label>Correct answer: </label><input id="answer'+ questions + '_0" class="form-control" /></div>';
-    newquestion.innerHTML += '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_1" class="form-control" /></div>';
-    newquestion.innerHTML += '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_2" class="form-control" /></div>';
-    newquestion.innerHTML += '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_3" class="form-control" /></div></div>';
+    var html = '<hr><div class="card>"><div class="question card-header"> Question ' + (questions+1) + '</div>'+
+        '<div><label>Question :</label><input id="question' + questions + '" class="form-control" /></div>' +
+        '<div><label>Correct answer: </label><input id="answer'+ questions + '_0" class="form-control" /></div>' +
+        '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_1" class="form-control" /></div>' +
+        '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_2" class="form-control" /></div>' +
+        '<div><label>Inorrect answer: </label><input id="answer'+ questions + '_3" class="form-control" /></div></div>';
     
+    //Set the newquestion's innerHTML to the html string.aw
+    newquestion.innerHTML(html);
+
     //appendChild used instead of innerHTML to prevent destruction of
     //information entered before pressing the Add Question button.
     container.appendChild(newquestion);
@@ -58,12 +60,13 @@ function submitQuiz(){
                 ]
             };
     }
+    //TODO: Create a confirmation message or redirect page to course quiz index.
     //Disables the submit button to prevent creating duplicate quizzes.
-    //TODO: Create a confirmation message and redirect page to course quiz index.
     document.getElementById("submit").disabled = true;
 
 
-    console.log(quiz);
     //Api call that stores the quiz in the database.
     api.addQuiz(course, quiz);
 }
+
+//TODO: Add a function to remove questions.

@@ -1,7 +1,7 @@
 ///////////////
 //Basic questions array structure
 ///////////////
-// var myQuestion = [
+// var myQuestions = [
 //     {
 //         question: "This string will be the question",
 //         answers: [
@@ -13,7 +13,7 @@
 //         correctAnswer: '', //This will be blank until the answers are randomly rearranged.
 //         displayAnswer: 'This will be an explanation of the answer'
 //     }
-// ]
+// ];
 
 
 
@@ -52,16 +52,17 @@
 //Keeps track of the correct answers.
 var answerKey = [];
 
+//TODO: Retrieve chosen course to fill this variable.
 //Course ID to use with api.getQuizQuestions.
 var course;
 
+//TODO: Retrieve chosen quiz to fill this variable.
 //Quiz ID to use with api.getQuizQuestions.
-//Will need to be passed into the page for actual quizzes.
 //var quizId = "5efa978c92c1290235963112"
 var quizId
 
+//TODO: Retrieve logged in user ID to fill this variable.
 //Student ID to use with api.submitQuiz
-//Will need to be passed into the page for actual quizzes.
 //This student ID corresponds to user waceyts
 var studentId = "5f2b63b0f669980959c93500"
 
@@ -75,8 +76,8 @@ function showQuestions(questions, quizContainer){
     //Array that holds the html that will be pushed onto the page.
     var output = [];
 
-    //TODO: Figure out if this variable is needed.
-    var answers;
+    
+    var answers = [];
 
     //Loops through the questions array to build the html for the page.
     for(var i=0; i<questions.length; i++){
@@ -196,7 +197,7 @@ function showResults(questions, quizContainer, resultsContainer, submitButton){
     //Shows the user's score in the innerHTML of the resultsContainer.
     resultsContainer.html('<div class="card"><div class="card-body">' + numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)</div></div>');
     
-    //TODO: Test if this successfully submits quiz to database.
+    //TODO: Fix quiz submission to the database.
     //Submits quiz to database.
     var quizData = {
         quiz_id: quizId,
@@ -204,7 +205,7 @@ function showResults(questions, quizContainer, resultsContainer, submitButton){
         answers: userAnswers,
     }
     //console.log(quizData);
-    api.submitQuiz = (course, quizData)
+    //api.submitQuiz = (course, quizData)
 
     //TODO: Add confirmation message.
     //Disable the submit button to prevent double submissions.
