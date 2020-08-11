@@ -55,6 +55,10 @@ button {
   width: 200px;
 }
 
+.card {
+  color: black;
+}
+
 input,
 button {
   font-family: "segoe-ui", "open-sans", tahoma, arial;
