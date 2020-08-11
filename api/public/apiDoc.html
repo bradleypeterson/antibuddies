@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>API Call Documentation</title>
+    <style>
+      li {
+        list-style-type: none;
+      }
+      #g{
+        color: #00e600;
+      }
+      #p{
+        color: #fcdb00;
+      }
+      #d{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="sub" id="o">Overall</h2>
+    <p>
+      When you are making an API call, through the use of glitch.com that we are currently using, we have set up a page that 
+      will demonstrate how to GET, POST, and DELETE with the API. On the page that we have set up, you will see a dropdown box 
+      that has those 3 options. Next you will see “<strong>api/</strong>“ and then a text box for the user to input what they are 
+      searching for. There will also be a button to submit your request. Below is a text box that you use when you are going to 
+      POST information. The shaded area below will print all of the results that you asked for using GET. When you DELETE, it 
+      will return the object with all of its data to the shaded output area. 
+    </p>
+    
+    <h2 class="sub" id="g">GET</h2>
+    <p>
+      When making a GET request, all you have to do on this setup that we have, you need to make sure that the GET option is 
+      selected (this is the default setting). After you have GET selected, then you can type in the text field the item you are 
+      looking for. For example, if you want to find the courses, you will need to have “<strong>api/courses</strong>" written 
+      before you hit enter or the submit button. Remember, “api/“ is already written. All you need to do is write 
+      “<strong>courses</strong>” if you want to find the course list.<br>
+      If you want to find the quizzes in a course, you need to add a little bit more to what was already written. You need to 
+      search for the courses first. After that, you need to pick a course you want to go into before you can find the quizzes. 
+      After you picked a course, you will search for the quizzes. This will be written as 
+      “<strong>api/courses/CS4450/quizzes</strong>”. This will give you all the quizzes within the CS4450 class. If you want to 
+      pick a different class, just change the “<strong>CS4450</strong>” part but leave everything else the same. To access the quiz itself and 
+      to get the questions, you need to add even more to the end of the API call. Once you have the courses list, the specified 
+      course, and the list of quizzes, you can type in the quiz id followed by questions to get all of the questions from that 
+      specific quiz. For example, “<strong>api/courses/CS4450/quizzes/5efa978c92c1290235963112/questions</strong>” will give you 
+      the questions to the test quiz that are in the CS4450 course.
+    </p>
+    
+    <h2 class="sub" id="p">POST</h2>
+    <p>
+      When making a POST request, you do a lot of the same things that you do when making a GET request. You need to make sure 
+      that you are specifying where you want to go. So if you want to create a new course, you need to have 
+      “<strong>api/courses</strong>" written out first. Once you have that, within the body text field with the brackets, you 
+      need to be careful about how to insert the data for the new course. For example, with adding a course, you must have POST 
+      selected instead of GET, and then you would write out <strong>{“courseName”: “name of course”}</strong>.<br> 
+      Once you are done with that, you will hit the submit button or press Enter and it will activate POST and then will put the 
+      new course in with the list of courses. To create a new quiz, the process is almost the exact same. The differences are 
+      that you need to specify which course you want and then access the quizzes. So have 
+      “<strong>api/courses/CS4450/quizzes</strong>” written out. Once that is written, then you can start to add the data into 
+      the quiz. So you would have: 
+      <strong>
+      <ul>
+        <li>
+          {“title”: “quiz title”,<br> 
+          “questions”: [
+          <ul>
+            <li>
+              {
+              <ul>
+                <li>
+                  “question”: “some question”,<br>
+                  “answers”: [
+                  <ul>
+                    <li>
+                      “answer 1”,<br>
+                      “answer 2”
+                    </li>
+                  </ul>
+                  ]
+                </li>
+              </ul>
+              },<br>
+              {
+              <ul>
+                <li>
+                  repeat the process for however many questions and answers you want
+                </li>
+              </ul>
+              }
+            </li>
+          </ul>
+          ]
+        </li>
+        }
+      </ul>
+      </strong>
+    This is what you would write to make a new quiz. You would just need to change the values to be what you need them to be.
+    So anything after the colons is what you would change.
+    </p>
+    
+    <h2 class="sub" id="d">DELETE</h2>
+    <p>
+      When it comes to deleting, this process needs to be very careful. If you want to delete a specific quiz, then you need to 
+      make sure that you are targeting the correct one. Make sure all spelling is correct. If you wanted to delete a specific 
+      question within a quiz, you would need to specify the course, quiz id, and the question index that needs to be deleted. 
+      For example, “<strong>/api/courses/CS4450/quizzes/5efa978c92c1290235963112/questions/1</strong>” will grab the very first 
+      question within the quiz whose id that you specified.<br>
+      Once that is in place, you will make sure DELETE is selected and then hit Enter or press submit. If you did a GET request 
+      first to make sure that you are going to delete the correct thing, you would have the results within the shaded area. If 
+      that is the correct thing that you want to get rid of, you would have the same thing written down and then have DELETE 
+      selected. Once you hit submit or Enter, what is displayed in the shaded area will show you what was deleted. If you didn’t 
+      change anything after the GET request, then nothing will change. If you have all of the quizzes pulled up before you delete 
+      that question, it will then display the question that was deleted. If you wanted to delete a specific course, then you 
+      would write “<strong>api/courses/CS4450</strong>” and then ave DELETE selected.<br>
+      If you deleted the entire course, all of the contents would be displayed within the shaded area. Same rules apply if you 
+      wanted to delete a quiz. If you wanted to delete a specific quiz, then you would have something like 
+      “<strong>/api/courses/CS4450/quizzes/5efa978c92c1290235963112</strong>” to pull that specific quiz so then you can delete 
+      it from the database.
+    </p>
+    
+  </body>
+</html>

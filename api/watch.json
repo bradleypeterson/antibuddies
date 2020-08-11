@@ -1,0 +1,10 @@
+{
+  "install": {
+    "include": [
+      "^.torc-update$",
+      "\\.js",
+      "\\.html"
+    ]
+  },
+  "throttle": 10
+}

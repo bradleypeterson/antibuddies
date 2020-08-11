@@ -1,0 +1,373 @@
+<!-- Unit test -->
+
+<html>
+  <head>
+    <script src="/js/api.js"></script>
+  </head>
+  <body>
+    <div class="top">
+      <button onclick="runAll()">run all tests</button>
+    </div>
+    <div id="results"></div>
+  </body>
+  <style>
+    .top {
+      height: 200px;
+      width: 50%;
+      position: relative;
+    }
+    .top > button {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 100px;
+      height: 30px;
+    }
+    #results {
+      width: 50%;
+    }
+    .result {
+      width: 100%;
+      height: 60px;
+      border: 2px solid #000;
+      margin: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .result[status="idle"] {
+      border: 2px solid #333;
+    }
+    .result[status="running"] {
+      border: 2px solid #67a5f3;
+      background-color: #67a5f350;
+    }
+    .result[status="pass"] {
+      border: 2px solid #69f367;
+      background-color: #69f36750;
+    }
+    .result[status="fail"] {
+      border: 2px solid #f94c5c;
+      background-color: #f94c5c50;
+    }
+    .result > * {
+      margin-right: 20px !important;
+    }
+    .result > h2 {
+      margin: 0;
+    }
+    .result .message {
+      
+    }
+  </style>
+  <script>
+    
+    //Unit tests: (reference: all models and "/js/api.js")
+    let tests = {
+      async getUsers(){
+        let users = await api.getUsers();
+        if(!users || users.length === 0){
+          throw Error('No users returned');
+        }
+        users.forEach(u => {
+          if(!u._id || !u.username || !u.password){
+            throw Error('invalid User object: ' + u._id);
+          }
+        });
+        return true;
+      },
+      async getUser(){
+        let user = await api.getUser('test2');
+        if(!user){
+          throw Error('No user returned');
+        }
+        if(!user._id || !user.username || !user.password){
+          throw Error('invalid User object: ' + user._id);
+        }
+        return true;
+      },
+      async getCourses(){
+        let courses = await api.getCourses();
+        if(!courses || courses.length === 0){
+          throw Error('No courses returned');
+        }
+        courses.forEach(c => {
+          if(!c._id || !c.courseName){
+            throw Error('invalid Course object: ' + c._id);
+          }
+        });
+        return true;
+      },
+      
+      async getCourse(){
+        let course = await api.getCourse('TEST');
+        if(!course){
+          throw Error('No course returned');
+        }
+        if(!course._id || !course.courseName){
+          throw Error('invalid Course object: ' + course._id);
+        }
+        return true;
+      },
+      
+      
+      //TODO: addCourse,
+      
+      async getQuizzes(){
+        let quizzes = await api.getQuizzes('CS4450');
+        if(!quizzes || quizzes.length === 0){
+          throw Error('No quizzes returned');
+        }
+        quizzes.forEach(q => {
+          if(!q._id || !q.title){
+            throw Error('invalid Quiz object: ' + q._id);
+          }
+        });
+        return true;
+      },
+      
+       async getQuiz(){
+         let quiz = await api.getQuiz("CS4450", 'test quiz 1');
+         if(!quiz){
+           throw Error('No quiz returned');
+         }
+         if(!quiz._id || !quiz.title){
+           throw Error('invalid Quiz object: ' + quiz._id);
+         }
+         return true;
+       },
+      
+      
+      //TODO: addQuiz,
+      
+      async getQuizQuestions(){
+        let quizQuestions = await api.getQuizQuestions("CS4450", "test quiz 1");
+        if(!quizQuestions || quizQuestions.length === 0){
+          throw Error('No quiz questions returned');
+        }
+        quizQuestions.forEach(q => {
+          if(!q._id ){
+            throw Error('invalid quiz Questions object: '+ q._id);
+          }
+        });
+        return true;
+      },
+      
+      //Get quiz questions Index
+      async getQuizQuestion(){
+        let quizQuestion = await api.getQuizQuestion("CS4450", "test quiz 1", 1);
+        if(!quizQuestion){
+          throw Error('No quiz question returned');
+        }
+        if(!quizQuestion.question){
+          throw Error('invalid Quiz question object' + quizQuestion.question);
+        }
+        return true;
+      },
+      
+      // TODO: addQuizQuestion,
+      /*
+      async addQuizQuestion() {
+        throw Error("not setup 💁🏼");  
+      },
+      
+      // TODO: checkAnswer,
+//       async checkAnswer(){
+//         let answer = await api.checkQuizAnswer("CS4450", "test quiz 1", 1);
+//         if(answer){
+          
+//         }
+//         return true;
+      // },
+      
+      // TODO: deleteQuiz,
+      async deleteQuiz() {
+        throw Error("not setup 💁🏼");  
+      },
+      // TODO: deleteQuestion,
+      async deleteQuestion() {
+        throw Error("not setup 💁🏼");  
+      },
+      */
+      async getQuizResponses(){
+        let response1 = await api.getQuizResponses("CS4450", {});
+        let response2 = await api.getQuizResponses("CS4450", {quiz: "5efa978c92c1290235963112"});
+        let response3 = await api.getQuizResponses("CS4450", {user: '5ec5ec26ad9c8065048da74e'});
+        let response4 = await api.getQuizResponses("CS4450", {quiz: "5efa978c92c1290235963112", user: '5ec5ec26ad9c8065048da74e'});
+        //console.log(response4);
+      
+        if (!response4 || !response1 || !response2 || !response3){
+         throw Error("No quiz responses returned");
+        }
+        
+        response4.forEach(r4 => {
+          if(!r4.quiz_id || !r4.user_id){
+            throw Error("Invalid Object" + r4.quiz_id + ' & ' + r4.user_id);
+          }
+        })    
+          return true;
+      },
+        
+      // TODO: submitQuiz,
+      async submitQuiz() { // - Chase
+        let quizData = { quiz_id: "5efa978c92c1290235963112", course_id: "5ef40c81310c490f756ddab8", user_id: "5ec5ec26ad9c8065048da74e" };
+        api.submitQuiz("5ef40c81310c490f756ddab8", quizData);
+        let response = api.getQuizResponses("CS4450", "test quiz 1", "Testing");
+        console.log("res", response);
+        if(!response) {
+          throw Error("Quiz didn't submit");
+        }
+        // Delete Quiz
+        return true;
+      },
+
+      // TODO: getQuizUserResponseCount,
+      async getQuizUserResponseCount() {
+        
+        let count1 = await api.getQuizUserResponseCount("CS4450", {});
+        let count2 = await api.getQuizUserResponseCount("CS4450", {quiz: "5efa978c92c1290235963112"});
+        let count3 = await api.getQuizUserResponseCount("CS4450", {user: '5ec5ec26ad9c8065048da74e'});
+        let count4 = await api.getQuizUserResponseCount("CS4450", {quiz: "5efa978c92c1290235963112", user: '5ec5ec26ad9c8065048da74e'});
+      
+        if (!count4 || count4.length === 0 || count1.length === 0 || count2.length === 0 || count3.length === 0){
+         throw Error("No Count quizResponses returned");
+        }
+        return true;
+          
+      },
+      
+      async getQuestionResponses() {
+        let questionResponse = await api.getQuestionResponses("CS4450", "5efa978c92c1290235963112", "1");
+        
+        if(!questionResponse || questionResponse === 0){
+          throw Error("No questions responses");
+        }
+        questionResponse.forEach(q =>{
+          !isNaN(q)
+        });
+        
+        return true;
+      },
+      
+      async getQuizScores() {
+        
+        let quizScore1 = await api.getQuizScores("CS4450", {})
+        let quizScore2 = await api.getQuizScores("CS4450", {user: "5ec5ec26ad9c8065048da74e"})
+        let quizScore3 = await api.getQuizScores("CS4450", {quiz: "5efa978c92c1290235963112"})
+        let quizScore4 = await api.getQuizScores("CS4450", {quiz: "5efa978c92c1290235963112", user: "5ec5ec26ad9c8065048da74e"})
+        
+        if(!quizScore1 || !quizScore2 || !quizScore3)
+        {
+          throw Error("No quiz scores response");
+        }
+        
+        if (!quizScore4 || quizScore4.length === 0){
+          throw Error ("No quiz scores returned");
+        }
+        
+        quizScore4.forEach(q => {
+          !isNaN(q)
+        })
+        
+        return true;
+      },
+    
+      
+      async getPanels() {
+        let panels = await api.getPanels('CS4450');
+        if(!panels || panels.length === 0){
+          throw Error('No panels returned');
+        }
+        panels.forEach(p => {
+          if(!p._id){
+            throw Error('invalid Panels object: ' + p._id);
+          }
+        });
+        return true;
+      },
+      
+    async getPanelByName(){
+      let panelName = await api.getPanelByName("CS4450", "UniqueName");
+      if(!panelName || panelName.length === 0){
+        throw Error('No panel by name returned');
+      }
+      if(!panelName.PanelName){
+        throw Error('invalid panel Name' + panelName.PanelName);
+      }
+      return true;
+    },
+     
+    //TODO: panelScore,
+      async panelScore(){
+        let score = await api.panelScore("CS4450", "UniqueName");
+        if(!score || score.length === 0){
+          throw Error ("No panel scores returned");
+        }
+        return true;
+      },
+      
+    //TODO: getPanelDifficulty,
+      async getPanelDifficulty(){
+        let difficulty = await api.getPanelDifficulty("CS4450", "easy");
+        let difficulty2 = await api.getPanelDifficulty("CS4450", "hard");
+        if(!difficulty || !difficulty2 || difficulty.length === 0) {
+          throw Error("No panels returned.")
+        }
+        return true;
+      }
+    }
+    
+    let resultEls = [];
+    
+    function init(){
+      for(let test in tests){
+        let el = document.createElement("div")
+        el.innerHTML = 
+          `<div class='result' test=${test}>
+            <h2>${test}</h2>
+            <div class='message'></div>
+          </div>`;
+        el = el.firstChild;
+        resultEls.push(el);
+        
+        document.querySelector('#results').appendChild(el);
+      }
+    }
+    
+    function runAll(){
+      let results = {},
+          statuses = {};
+      function updateResults(){
+        for(name in statuses){
+          let el = resultEls.find(el => el.getAttribute('test') === name);
+          el.setAttribute('status', statuses[name] || 'idle');
+          if(statuses[name] === 'pass' || statuses[name] === 'fail'){
+            el.querySelector('.message').innerText = results[name];
+          }
+        }
+      }
+      for(let test in tests){
+        statuses[test] = 'running';
+        updateResults();
+        tests[test]().then((res) => {
+          statuses[test] = 'pass';
+          results[test] = res;
+          updateResults();
+        }).catch((err) => {
+          statuses[test] = 'fail';
+          results[test] = JSON.stringify(err.message || err);
+          updateResults();
+        }).finally(() => {
+          console.log(results);
+        });
+      }
+      console.log(results);
+    }
+    
+    init();
+    runAll();
+  </script>
+</html>
