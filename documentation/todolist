@@ -26,6 +26,7 @@ quiz-analytics.js:
     -Retrieve actual analytics and questions.
     -Fix text color inside question/answer cards.
 
+<<<<<<< HEAD
 user authentication
     - right now the user authentication/signup only kind of works. a person can sign up just fine,
     but when you go to login/authenticate the token the api sends back isn't actually useful.
@@ -35,3 +36,33 @@ user authentication
     when trying to access pages that require a logged in user, the client looks up the time that it stored earlier.
     if it doesn't exist or is more than 5 hours old (the time the real token lasts on the server), then the user will
     be forced to reauthenticate.
+=======
+landingpages.html:
+    create a landing page for both the student and the home when they log in. 
+    This landing page should be linked to the 'home' page of the menu options.
+    Perhaps add the user name and department/email. Quiz results for students and 
+    quiz taken/archived/active for the professor. Try to make it so that the professor
+    knows how each quiz is doing, is it successfull? Or are students struggling with it.
+    for both the instructor and the student this kind of information needs to be pulled from the database.
+    The figma shows an idea of how this can be done.
+
+study-materials.html:
+    -Add rescources students can use. This can include pdf's, videos, textbooks. Talk to adminstrator about what
+    theyou would want on here
+    -The style of it should remain as is each button should be labeled appropreatly to what it has in content. Such as "videos" or "pdf's".
+
+manage-quizzes.html:
+    -Add the list of quizzes each professor has and add a delete/edit/add button.
+    figma shows what we had in mind for this.
+    from this page the adminstrator should be able to make changes to current/old quizzes and add more quizzes.
+
+quiz-results.html:
+    -Pull records from database and compose a pie chart or some kind of visual representation of what quiz results are.
+    -add an option to "hide" student names, make "anonymous"
+    -Perhaps have reports of which question is being missed the most.
+
+study-materails-admin:
+    -Add/delete/new buttons for the adminstrator to edit the resources.
+
+
+>>>>>>> 9f2fd83c4673b7e6ec7762a577f4c64d77043ea0
