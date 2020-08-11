@@ -1,0 +1,12 @@
+Attached are the Figma’s that our group presented to Justin (the client). He approved these layouts.
+
+--Admin add quiz -- https://www.figma.com/proto/bjSXwTTamb4brN5hZnBFPR/AdminAddQuiz?node-id=0%3A1
+
+Student quiz view -- https://www.figma.com/file/A8MHxTmBHYhvhLJuanUI4S/StudentQuizView?node-id=0%3A1
+
+-Admin edit quiz –
+https://www.figma.com/file/Y1I40Mwh9i7hmNUApNWrIO/AdminEditQuiz?node-id=0%3A1
+
+Figma is a program used to lay out what the possible user interfaces would look like. If you would like to learn how to use Figma please just google Figma tutorials. It is a pretty easy program to learn.  
+
+Please keep in mind that in order to maintain a constant theme you will have to communicate with the other groups of this project. The main layout colors/styles/fonts and everything are kept in the css file called ‘ styleQuizCleanUp.css’.
