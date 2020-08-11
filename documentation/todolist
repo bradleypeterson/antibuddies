@@ -27,7 +27,7 @@ quiz-analytics.js:
     -Fix text color inside question/answer cards.
 
 landingpages.html:
-    create a landing page for both the student and the home when they log in. 
+    create a landing page for the student and the home when they log in. Right now its the index.html page, which is just the login page.
     This landing page should be linked to the 'home' page of the menu options.
     Perhaps add the user name and department/email. Quiz results for students and 
     quiz taken/archived/active for the professor. Try to make it so that the professor
