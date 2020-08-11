@@ -53,4 +53,12 @@ quiz-results.html:
 study-materails-admin:
     -Add/delete/new buttons for the adminstrator to edit the resources.
 
-
+user authentication
+    - right now the user authentication/signup only kind of works. a person can sign up just fine,
+    but when you go to login/authenticate the token the api sends back isn't actually useful.
+    the api needs to check and validate tokens when requests are made to the api. right now the
+    authentication works by checking if they api has sent back a token. if it did, authentication was successful
+    thus, the client (javascript) creates a variable that stores the current unix epoch in local storage.
+    when trying to access pages that require a logged in user, the client looks up the time that it stored earlier.
+    if it doesn't exist or is more than 5 hours old (the time the real token lasts on the server), then the user will
+    be forced to reauthenticate.
