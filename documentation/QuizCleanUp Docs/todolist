@@ -1,5 +1,9 @@
 -Future tasks-
 
+Miscellaneous JavaScript files:
+    -JavaScript files throughout the project use a mix of traditional JavaScript and JQuery.
+    The project may benefit from unifying to one or the other.
+
 quiz.html:
     -Consider finding a more efficient submit quiz function.
 
