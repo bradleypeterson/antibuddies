@@ -83,11 +83,11 @@
     </div>
   </div>
   <!-- <div class="quiz-footer" style="position: absolute; bottom: 0;"> -->
-    <!-- <div class="quiz-footer"></div> -->
-    <footer class="quiz-footer">
+    <div class="quiz-footer"></div>
+    <footer>
       <h6>CS4450 Summer 2020 -- Quiz CleanUp Group</h6>
     </footer>
-  <!-- </div> -->
+  </div>
   <script src="https://antibuddies-api.glitch.me/js/api.js"></script>
   <script type="text/javascript" src="../js/quiz.js"></script>
   <script>
@@ -142,18 +142,40 @@
         var quizzes2 = api.getQuizzes(data.course);
         var resolve2 = Promise.resolve(quizzes2);
         resolve2.then(function (v) {
-          quizId = v[quiz]._id;
           quizdata = v[quiz];
           $("#quizName").html("Your are taking quiz: " + v[quiz].title);
-          var html = '<div id="quiz"></div><div id="results"></div><div><input class="btn btn-primary" type="submit" id="submit" onclick="submitQuiz()"></div>';
-          $("#answers").append(html);
-          showQuestions(v[quiz].questions, $("#quiz"));
-          $("#answers").show();
+          //for (var i = 0; i < v[quiz].questions.length; i++) {
+            var html = '<div id="quiz"></div><div id="results"></div><div><input class="btn btn-primary" type="submit" id="submit" onclick="submitQuiz()"></div>';
+            //$("#submit").click(showResults);
+            $("#answers").append(html);
+            showQuestions(v[quiz].questions, $("#quiz"));
+            
+              // '<div class="col-4"><div class="card"><div class="card-body"><h5 class="card-title">' +
+              // v[quiz].questions[i].question +
+              // '</h5></div><ul class="list-group list-group-flush"><li class="list-group-item">' + v[
+              //   quiz]
+              // .questions[i].answers[0] +
+              // ' <input class="form-check-input" type="radio" name="' +
+              // v[quiz].questions[i]._id +
+              // '" value="option1"></li><li class="list-group-item">' +
+              // v[quiz].questions[i].answers[1] +
+              // ' <input class="form-check-input" type="radio" name="' +
+              // v[quiz].questions[i]._id +
+              // '" value="option2"></li><li class="list-group-item">' +
+              // v[quiz].questions[i].answers[2] +
+              // ' <input class="form-check-input" type="radio" name="' +
+              // v[quiz].questions[i]._id +
+              // '" value="option3" ></li><li class="list-group-item">' +
+              // v[quiz].questions[i].answers[3] +
+              // ' <input class="form-check-input" type="radio" name="' +
+              // v[quiz].questions[i]._id +
+              // '" value="option4"></li></ul><div class="card-body"></div></div></div>';
+             $("#answers").show();
+          // }
         });
         
       });
     });
-    //TODO: Consider more efficient structure for submit functions.
     function submitQuiz()
     {
       showResults(quizdata.questions, $("#quiz"), $("#results"), $("#submit"));

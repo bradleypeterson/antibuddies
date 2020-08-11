@@ -1,7 +1,7 @@
 ///////////////
 //Basic questions array structure
 ///////////////
-// var myQuestions = [
+// var myQuestion = [
 //     {
 //         question: "This string will be the question",
 //         answers: [
@@ -13,7 +13,7 @@
 //         correctAnswer: '', //This will be blank until the answers are randomly rearranged.
 //         displayAnswer: 'This will be an explanation of the answer'
 //     }
-// ];
+// ]
 
 
 
@@ -52,19 +52,19 @@
 //Keeps track of the correct answers.
 var answerKey = [];
 
-//TODO: Retrieve chosen course to fill this variable.
 //Course ID to use with api.getQuizQuestions.
-var course;
+//Will need to be passed into the page for actual quizzes.
+var course = "CS4450";
 
-//TODO: Retrieve chosen quiz to fill this variable.
 //Quiz ID to use with api.getQuizQuestions.
-//var quizId = "5efa978c92c1290235963112"
-var quizId
+//Will need to be passed into the page for actual quizzes.
+var quizId = "5efa978c92c1290235963112"
 
-//TODO: Retrieve logged in user ID to fill this variable.
+
 //Student ID to use with api.submitQuiz
-//This student ID corresponds to user waceyts
-var studentId = "5f2b63b0f669980959c93500"
+//Will need to be passed into the page for actual quizzes.
+//This student ID corresponds to user JeffWinger
+var studentId = "5f18ec5df89e6b0bb1ed4d51"
 
 var quizTitle;
 
@@ -73,11 +73,12 @@ var quizTitle;
 //questions = Array containing the quiz questions/answers.
 //quizContainer = Id of the div that the quiz will be built inside of.
 function showQuestions(questions, quizContainer){
+    console.log(questions);
     //Array that holds the html that will be pushed onto the page.
     var output = [];
 
-    
-    var answers = [];
+    //TODO: Figure out if this variable is needed.
+    var answers;
 
     //Loops through the questions array to build the html for the page.
     for(var i=0; i<questions.length; i++){
@@ -131,7 +132,6 @@ function showQuestions(questions, quizContainer){
                 answers.push('<span class="incorrect" id="question' + i + '_' + key[letter] + 'incorrect" hidden>&nbsp<i class="fa fa-times" sytle="color:#00FF00; display:inline"></i></span>'+ '</label>');
             }
         }
-        //TODO: Answer explanations are not currently in the database. Ask infrastructure to add answer explanations to the api.
         //Generates the div card that the question/answers will be held in
         //with the question as the card header.
         //Pushes that html into the output array.
@@ -195,16 +195,15 @@ function showResults(questions, quizContainer, resultsContainer, submitButton){
         }
     }
     //Shows the user's score in the innerHTML of the resultsContainer.
-    resultsContainer.html('<div class="card"><div class="card-body">' + numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)</div></div>');
+    resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length + '(' + ((numCorrect/questions.length) * 100) + '%)';
     
-    //TODO: Fix quiz submission to the database.
+    //TODO: Test if this successfully submits quiz to database.
     //Submits quiz to database.
     var quizData = {
         quiz_id: quizId,
         user_id: studentId,
         answers: userAnswers,
     }
-    //console.log(quizData);
     //api.submitQuiz = (course, quizData)
 
     //TODO: Add confirmation message.
